@@ -1,3 +1,3 @@
 # Clean Story
 
-Clean Story aims to oultine story logic.
+Clean Story aims to outline game story logic.
