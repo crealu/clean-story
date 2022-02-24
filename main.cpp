@@ -5,7 +5,7 @@ using namespace std;
 enum { theWorld, theCharacter };
 
 int initialPrompt();
-int editPrompt();
+char editPrompt();
 
 class World
 {
@@ -57,26 +57,12 @@ int main()
   }
 
   int wantsEdit = editPrompt();
-  int editing;
   if (wantsEdit == 'y') {
-    editing = 1;
-    while (editing) {
-      cout << "Want to edit? (0) no  (1) yes";
-      cin >> editing;
+    while (wantsEdit == 'y') {
+      cout << "Continue? (0) no  (1) yes ";
+      cin >> wantsEdit;
     }
   }
-
-  // if (wantsEdit == theWorld) {
-  //   world.setLandscape();
-  //   world.setManyWorlds();
-  //   world.summarize();
-  // }
-  // else if (wantsEdit == theCharacter) {
-  //   character.setName();
-  //   character.setRole();
-  //   character.set_isHuman();
-  //   character.summarize();
-  // }
 
   return 0;
 }
@@ -89,20 +75,12 @@ int initialPrompt()
   return start;
 }
 
-int editPrompt()
+char editPrompt()
 {
-  int wantsEdit;
-  int theChange;
-
+  char wantsEdit;
   cout << "Edit data before saving? (y/n) ";
   cin >> wantsEdit;
-  if (wantsEdit == 'y') {
-    cout << "Change: (0) World  (1) Character" << "\n";
-    cin >> theChange;
-    return theChange;
-  }
-  else
-    return 0;
+  return wantsEdit;
 }
 
 World::World()
