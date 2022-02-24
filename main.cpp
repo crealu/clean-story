@@ -5,6 +5,7 @@ using namespace std;
 enum { theWorld, theCharacter };
 
 int initialPrompt();
+int editPrompt();
 
 class World
 {
@@ -27,12 +28,15 @@ public:
   Character();
   ~Character();
   void setName();
+  void setRole();
   void set_isHuman();
   void getName();
+  void getRole();
   void get_isHuman();
   void summarize();
 private:
   string name;
+  string role;
   bool isHuman;
 };
 
@@ -43,16 +47,36 @@ int main()
   if (startWith == theWorld) {
     World world;
     Character character;
-
     world.summarize();
     character.summarize();
   } else if (startWith == theCharacter) {
     Character character;
     World world;
-
     character.summarize();
     world.summarize();
   }
+
+  int wantsEdit = editPrompt();
+  int editing;
+  if (wantsEdit == 'y') {
+    editing = 1;
+    while (editing) {
+      cout << "Want to edit? (0) no  (1) yes";
+      cin >> editing;
+    }
+  }
+
+  // if (wantsEdit == theWorld) {
+  //   world.setLandscape();
+  //   world.setManyWorlds();
+  //   world.summarize();
+  // }
+  // else if (wantsEdit == theCharacter) {
+  //   character.setName();
+  //   character.setRole();
+  //   character.set_isHuman();
+  //   character.summarize();
+  // }
 
   return 0;
 }
@@ -63,6 +87,22 @@ int initialPrompt()
   cout << "Begin with: (0) World  (1) Character" << "\n";
   cin >> start;
   return start;
+}
+
+int editPrompt()
+{
+  int wantsEdit;
+  int theChange;
+
+  cout << "Edit data before saving? (y/n) ";
+  cin >> wantsEdit;
+  if (wantsEdit == 'y') {
+    cout << "Change: (0) World  (1) Character" << "\n";
+    cin >> theChange;
+    return theChange;
+  }
+  else
+    return 0;
 }
 
 World::World()
@@ -121,6 +161,7 @@ void World::summarize()
 Character::Character()
 {
   setName();
+  setRole();
   set_isHuman();
 }
 
@@ -134,6 +175,26 @@ void Character::setName()
   name = aName;
 }
 
+void Character::setRole()
+{
+  int aRole;
+  int size = 5;
+  string roles[] = {
+    "Protagonist",
+    "Antagonist",
+    "Sidekick",
+    "Confidante",
+    "Extra"
+  };
+
+  cout << "What is the character's role? " << "\n";
+  for (int i = 0; i < size; i++)
+    cout << i << " " << roles[i] << "\n";
+
+  cin >> aRole;
+  role = roles[aRole];
+}
+
 void Character::set_isHuman()
 {
   char characterIsHuman;
@@ -145,19 +206,25 @@ void Character::set_isHuman()
 
 void Character::getName()
 {
-  cout << "Name of character: " << name << "\n";
+  cout << "Name: " << name << "\n";
+}
+
+void Character::getRole()
+{
+  cout << "Role: " << role << "\n";
 }
 
 void Character::get_isHuman()
 {
   string output = isHuman ? "true" : "false";
-  cout << "Human character: " << output << "\n";
+  cout << "Human: " << output << "\n";
 }
 
 void Character::summarize()
 {
   cout << "Character: " << "\n";
   getName();
+  getRole();
   get_isHuman();
   cout << "\n";
 }
