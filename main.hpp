@@ -179,3 +179,35 @@ void Character::summarize()
   get_isHuman();
   cout << "\n";
 }
+
+void askQuestion();
+
+void askQuestions()
+{
+  int startWith = initialPrompt();
+
+  if (startWith == theWorld)
+  {
+    World world;
+    Character character;
+    world.summarize();
+    character.summarize();
+  }
+  else if (startWith == theCharacter)
+  {
+    Character character;
+    World world;
+    character.summarize();
+    world.summarize();
+  }
+
+  int wantsEdit = editPrompt();
+  if (wantsEdit == 'y')
+  {
+    while (wantsEdit == 'y')
+    {
+      cout << "Continue? (0) no  (1) yes ";
+      cin >> wantsEdit;
+    }
+  }
+}

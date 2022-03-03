@@ -1,11 +1,10 @@
 #include <SDL2/SDL.h>
 #include "main.hpp"
+#include "player.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
 #define SCREEN_HEIGHT 480
-
-void askQuestion();
 
 int main(int arc, char *argv[])
 {
@@ -25,7 +24,8 @@ int main(int arc, char *argv[])
 
   int running = 1;
   SDL_Event event;
-  SDL_Rect rect = { 220, 140, 200, 200 };
+  SDL_Rect rect = { 20, 10, 20, 20 };
+  Player player;
 
   while (running)
   {
@@ -36,18 +36,25 @@ int main(int arc, char *argv[])
         case SDL_QUIT:
           running = 0;
           break;
+
         case SDL_WINDOWEVENT_CLOSE:
           running = 0;
           if (window)
             window = NULL;
           break;
+
+        case SDL_KEYDOWN: player.move(event);
+        case SDL_KEYUP: player.stop(event);
       }
+      player.update(&rect);
+      // player.move(event);
     }
+
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
     SDL_RenderClear(renderer);
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 200, 15, 255, 255);
     SDL_RenderFillRect(renderer, &rect);
 
     SDL_RenderPresent(renderer);
@@ -57,34 +64,4 @@ int main(int arc, char *argv[])
   SDL_DestroyWindow(window);
   SDL_Quit();
   return 0;
-}
-
-void askQuestions()
-{
-  int startWith = initialPrompt();
-
-  if (startWith == theWorld)
-  {
-    World world;
-    Character character;
-    world.summarize();
-    character.summarize();
-  }
-  else if (startWith == theCharacter)
-  {
-    Character character;
-    World world;
-    character.summarize();
-    world.summarize();
-  }
-
-  int wantsEdit = editPrompt();
-  if (wantsEdit == 'y')
-  {
-    while (wantsEdit == 'y')
-    {
-      cout << "Continue? (0) no  (1) yes ";
-      cin >> wantsEdit;
-    }
-  }
 }
