@@ -2,57 +2,58 @@
 #include <iostream>
 using namespace std;
 
-class Player
-{
+class Player {
 public:
   Player();
   ~Player();
-  void move(SDL_Event event);
-  void stop(SDL_Event event);
-  void update(SDL_Rect *rect);
+  void draw(SDL_Renderer *renderer);
+  void update();
+  void move(SDL_Event &event);
 
-protected:
-  int velocity;
+private:
+  SDL_Rect pRect;
+  int vel;
   int xVel;
   int yVel;
 };
 
-Player::Player()
-{
-  velocity = 5.0;
+Player::Player() {
+  SDL_Rect rect = {100, 100, 30, 30};
+  pRect = rect;
+  vel = 5;
   cout << "Player created \n";
 }
 
 Player::~Player() {}
 
-void Player::move(SDL_Event event)
-{
-  if (event.key.keysym.sym == SDLK_LEFT)
-    xVel = -velocity;
-  if (event.key.keysym.sym == SDLK_RIGHT)
-    xVel = velocity;
-  if (event.key.keysym.sym == SDLK_UP)
-    yVel = -velocity;
-  if (event.key.keysym.sym == SDLK_DOWN)
-    yVel = velocity;
-
-  cout << event.type;
+void Player::draw(SDL_Renderer *renderer) {
+  update();
+  SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
+  SDL_RenderFillRect(renderer, &pRect);
 }
 
-void Player::stop(SDL_Event event)
-{
-  if (event.key.keysym.sym == SDLK_LEFT)
-    xVel = 0;
-  if (event.key.keysym.sym == SDLK_RIGHT)
-    xVel = 0;
-  if (event.key.keysym.sym == SDLK_UP)
-    yVel = 0;
-  if (event.key.keysym.sym == SDLK_DOWN)
-    yVel = 0;
+void Player::update() {
+  pRect.x += xVel;
+  pRect.y += yVel;
 }
 
-void Player::update(SDL_Rect *rect)
-{
-  rect->x += xVel;
-  rect->y += yVel;
+void Player::move(SDL_Event &event) {
+  int theKey;
+  switch (event.type) {
+    case SDL_KEYDOWN:
+      theKey = event.key.keysym.sym;
+      xVel = theKey == SDLK_LEFT  ? -vel : xVel;
+      xVel = theKey == SDLK_RIGHT ?  vel : xVel;
+      yVel = theKey == SDLK_UP    ? -vel : yVel;
+      yVel = theKey == SDLK_DOWN  ?  vel : yVel;
+      break;
+
+    case SDL_KEYUP:
+      theKey = event.key.keysym.sym;
+      xVel = theKey == SDLK_LEFT  ?  0 : xVel;
+      xVel = theKey == SDLK_RIGHT ?  0 : xVel;
+      yVel = theKey == SDLK_UP    ?  0 : yVel;
+      yVel = theKey == SDLK_DOWN  ?  0 : yVel;
+      break;
+  }
 }

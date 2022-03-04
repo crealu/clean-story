@@ -6,8 +6,9 @@ using namespace std;
 #define SCREEN_WIDTH  640
 #define SCREEN_HEIGHT 480
 
-int main(int arc, char *argv[])
-{
+void drawBackground(SDL_Renderer *renderer);
+
+int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
   SDL_Window *window;
   SDL_Renderer *renderer;
@@ -24,39 +25,23 @@ int main(int arc, char *argv[])
 
   int running = 1;
   SDL_Event event;
-  SDL_Rect rect = { 20, 10, 20, 20 };
   Player player;
 
-  while (running)
-  {
-    while (SDL_PollEvent(&event))
-    {
-      switch (event.type)
-      {
+  while (running) {
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
         case SDL_QUIT:
-          running = 0;
-          break;
-
         case SDL_WINDOWEVENT_CLOSE:
           running = 0;
           if (window)
             window = NULL;
           break;
-
-        case SDL_KEYDOWN: player.move(event);
-        case SDL_KEYUP: player.stop(event);
       }
-      player.update(&rect);
-      // player.move(event);
+      player.move(event);
     }
 
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    SDL_RenderClear(renderer);
-
-    SDL_SetRenderDrawColor(renderer, 200, 15, 255, 255);
-    SDL_RenderFillRect(renderer, &rect);
-
+    drawBackground(renderer);
+    player.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 
@@ -64,4 +49,9 @@ int main(int arc, char *argv[])
   SDL_DestroyWindow(window);
   SDL_Quit();
   return 0;
+}
+
+void drawBackground(SDL_Renderer *renderer) {
+  SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+  SDL_RenderClear(renderer);
 }

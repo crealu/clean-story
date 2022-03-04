@@ -4,8 +4,8 @@ Clean Story aims to outline task-based story logic for RPG games.
 
 &nbsp;
 ## Requirements
-SDL2 (window, renderer)
-GNU C++ compiler
+SDL2 (window, renderer)  
+GNU compiler    
 
 &nbsp;
 ## Usage

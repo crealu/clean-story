@@ -7,8 +7,7 @@ enum { theWorld, theCharacter };
 int initialPrompt();
 char editPrompt();
 
-class World
-{
+class World {
 public:
   World();
   ~World();
@@ -22,8 +21,7 @@ private:
   int worldAreas;
 };
 
-class Character
-{
+class Character {
 public:
   Character();
   ~Character();
@@ -40,16 +38,14 @@ private:
   bool isHuman;
 };
 
-int initialPrompt()
-{
+int initialPrompt() {
   int start;
   cout << "Begin with: (0) World  (1) Character" << "\n";
   cin >> start;
   return start;
 }
 
-char editPrompt()
-{
+char editPrompt() {
   char wantsEdit;
   cout << "Edit data before saving? (y/n) ";
   cin >> wantsEdit;
@@ -64,8 +60,7 @@ World::World()
 
 World::~World() {}
 
-void World::setLandscape()
-{
+void World::setLandscape() {
   int aLandscape;
   int size = 4;
   string landscapes[] = {
@@ -83,34 +78,29 @@ void World::setLandscape()
   landscape = landscapes[aLandscape];
 }
 
-void World::setWorldAreas()
-{
+void World::setWorldAreas() {
   int numAreas;
   cout << "How many areas exist in the world? ";
   cin >> numAreas;
   worldAreas = numAreas;
 }
 
-void World::getLandscape()
-{
+void World::getLandscape() {
   cout << "Landscape type: " << landscape << "\n";
 }
 
-void World::getWorldAreas()
-{
+void World::getWorldAreas() {
   cout << "Number of areas: " << worldAreas << "\n";
 }
 
-void World::summarize()
-{
+void World::summarize() {
   cout << "World: " << "\n";
   getLandscape();
   getWorldAreas();
   cout << "\n";
 }
 
-Character::Character()
-{
+Character::Character() {
   setName();
   setRole();
   set_isHuman();
@@ -118,16 +108,14 @@ Character::Character()
 
 Character::~Character() {}
 
-void Character::setName()
-{
+void Character::setName() {
   string aName;
   cout << "What is the character's name? ";
   cin >> aName;
   name = aName;
 }
 
-void Character::setRole()
-{
+void Character::setRole() {
   int aRole;
   int size = 5;
   string roles[] = {
@@ -146,8 +134,7 @@ void Character::setRole()
   role = roles[aRole];
 }
 
-void Character::set_isHuman()
-{
+void Character::set_isHuman() {
   char characterIsHuman;
   cout << "Is the character human? (y/n) ";
   cin >> characterIsHuman;
@@ -155,18 +142,15 @@ void Character::set_isHuman()
   cout << "\n";
 }
 
-void Character::getName()
-{
+void Character::getName() {
   cout << "Name: " << name << "\n";
 }
 
-void Character::getRole()
-{
+void Character::getRole() {
   cout << "Role: " << role << "\n";
 }
 
-void Character::get_isHuman()
-{
+void Character::get_isHuman() {
   string output = isHuman ? "true" : "false";
   cout << "Human: " << output << "\n";
 }
@@ -182,19 +166,16 @@ void Character::summarize()
 
 void askQuestion();
 
-void askQuestions()
-{
+void askQuestions() {
   int startWith = initialPrompt();
 
-  if (startWith == theWorld)
-  {
+  if (startWith == theWorld) {
     World world;
     Character character;
     world.summarize();
     character.summarize();
   }
-  else if (startWith == theCharacter)
-  {
+  else if (startWith == theCharacter) {
     Character character;
     World world;
     character.summarize();
@@ -202,10 +183,8 @@ void askQuestions()
   }
 
   int wantsEdit = editPrompt();
-  if (wantsEdit == 'y')
-  {
-    while (wantsEdit == 'y')
-    {
+  if (wantsEdit == 'y') {
+    while (wantsEdit == 'y') {
       cout << "Continue? (0) no  (1) yes ";
       cin >> wantsEdit;
     }
