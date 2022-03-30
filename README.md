@@ -1,5 +1,4 @@
 # Clean Story
-
 Clean Story aims to outline task-based story logic for RPG games.
 
 &nbsp;

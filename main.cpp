@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include "main.hpp"
-#include "player.cpp"
+#include "entity.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
@@ -25,7 +25,8 @@ int main(int arc, char *argv[]) {
 
   int running = 1;
   SDL_Event event;
-  Player player;
+  Player player(100, 100);
+  Wizard wizard(200, 200);
 
   while (running) {
     while (SDL_PollEvent(&event)) {
@@ -42,6 +43,7 @@ int main(int arc, char *argv[]) {
 
     drawBackground(renderer);
     player.draw(renderer);
+    wizard.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 
@@ -52,6 +54,6 @@ int main(int arc, char *argv[]) {
 }
 
 void drawBackground(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
 }
