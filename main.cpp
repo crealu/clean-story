@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include "main.hpp"
 #include "entity.cpp"
 using namespace std;
@@ -16,6 +17,13 @@ int main(int arc, char *argv[]) {
   SDL_Window *window;
   SDL_Renderer *renderer;
   SDL_Event event;
+
+  TTF_Font *font;
+  font = TTF_OpenFont("arial.ttf", 12);
+
+  SDL_Color fontColor = {250, 250, 250};
+  SDL_Surface *text;
+  text = TTF_RenderText_Solid(font, "yo", fontColor);
 
   window = SDL_CreateWindow("Game Window",
     SDL_WINDOWPOS_UNDEFINED,
@@ -37,6 +45,8 @@ int main(int arc, char *argv[]) {
       player.move(event);
       checkVicinity(player, wizard, event);
     }
+
+    SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
 
     drawBackground(renderer);
     player.draw(renderer);
