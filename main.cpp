@@ -15,7 +15,7 @@ void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
 class TextBox {
 public:
-  TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText);
+  TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, int xPos, int yPos);
   ~TextBox();
 
   void draw(SDL_Renderer *renderer);
@@ -25,12 +25,12 @@ private:
   SDL_Texture *textureText;
 };
 
-TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText) {
+TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, int xPos, int yPos) {
   SDL_Color fontColor = {255, 255, 255};
   SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, theText, fontColor);
   textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
-  tRect.x = 10;
-  tRect.y = 10;
+  tRect.x = xPos;
+  tRect.y = yPos;
   tRect.w = 60;
   tRect.h = 30;
   SDL_FreeSurface(surfaceText);
@@ -71,14 +71,15 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
-  const char *word = "hello";
-  cout << word;
+  const char *hello = "hello";
+  const char *world = "world";
 
   int running = 1;
   Player player(200, 300);
   Wizard wizard(200, 200);
   Wizard wizard2(200, 250);
-  TextBox textbox(theFont, renderer, word);
+  TextBox textbox(theFont, renderer, hello, 10, 10);
+  TextBox textbox1(theFont, renderer, world, 10, 50);
 
   while (running) {
     while (SDL_PollEvent(&event)) {
@@ -104,6 +105,7 @@ int main(int arc, char *argv[]) {
     wizard.draw(renderer);
     wizard2.draw(renderer);
     textbox.draw(renderer);
+    textbox1.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 
