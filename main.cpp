@@ -13,6 +13,40 @@ void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
+class TextBox {
+public:
+  TextBox(TTF_Font *aFont, SDL_Renderer *renderer);
+  ~TextBox();
+
+  void draw(SDL_Renderer *renderer);
+
+private:
+  SDL_Rect tRect;
+  SDL_Texture *textureText;
+};
+
+TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer) {
+  SDL_Color fontColor = {255, 255, 255};
+  SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, "Hello", fontColor);
+  textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
+  tRect.x = 10;
+  tRect.y = 10;
+  tRect.w = 60;
+  tRect.h = 30;
+  SDL_FreeSurface(surfaceText);
+
+  cout << "TextBox created";
+}
+
+TextBox::~TextBox() {
+
+
+}
+
+void TextBox::draw(SDL_Renderer *renderer) {
+  SDL_RenderCopy(renderer, textureText, NULL, &tRect);
+}
+
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
 
@@ -37,52 +71,42 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
-  SDL_Color fontColor = {255, 255, 255};
-  SDL_Surface *surfaceText = TTF_RenderText_Solid(theFont, "Hello", fontColor);
-  SDL_Texture *textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
-  SDL_FreeSurface(surfaceText);
-
-  SDL_Rect fontRect;
-  fontRect.x = 10;
-  fontRect.y = 10;
-  fontRect.w = 60;
-  fontRect.h = 30;
-
   int running = 1;
   Player player(200, 300);
   Wizard wizard(200, 200);
   Wizard wizard2(200, 250);
+  TextBox textbox(theFont, renderer);
 
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       // player.move(event);
       // checkVicinity(player, wizard, event);
-      if (event.type == SDL_KEYDOWN) {
-        if (event.key.keysym.sym == SDLK_b) {
-          fontRect.x += 10;
-        }
-        if (event.key.keysym.sym == SDLK_h) {
-          fontRect.w = 0;
-        }
-        if (event.key.keysym.sym == SDLK_g) {
-          fontRect.w = 60;
-        }
-      }
+      // if (event.type == SDL_KEYDOWN) {
+      //   if (event.key.keysym.sym == SDLK_b) {
+      //     fontRect.x += 10;
+      //   }
+      //   if (event.key.keysym.sym == SDLK_h) {
+      //     fontRect.w = 0;
+      //   }
+      //   if (event.key.keysym.sym == SDLK_g) {
+      //     fontRect.w = 60;
+      //   }
+      // }
     }
 
     drawBackground(renderer);
-    SDL_RenderCopy(renderer, textureText, NULL, &fontRect);
 
     player.draw(renderer);
     wizard.draw(renderer);
     wizard2.draw(renderer);
+    textbox.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
-  SDL_DestroyTexture(textureText);
+  // SDL_DestroyTexture(textureText);
   TTF_CloseFont(theFont);
   SDL_Quit();
   return 0;

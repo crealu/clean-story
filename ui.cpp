@@ -13,25 +13,3 @@ DialogBox::DialogBox(int x, int y) : Entity(x, y) {
 }
 
 DialogBox::~DialogBox() {}
-
-
-// class TextBox {
-// public:
-//   TextBox();
-//   ~TextBox();
-//
-//   void setup();
-//   void show();
-//   void hide();
-//   void draw();
-//
-// private:
-//   SDL_Rect tRect;
-// };
-//
-// TextBox::TextBox() {
-//   tRect.x =
-//   cout << "TextBox created";
-// }
-//
-// TextBox::~TextBox() {}
