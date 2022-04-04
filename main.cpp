@@ -15,7 +15,7 @@ void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
 class TextBox {
 public:
-  TextBox(TTF_Font *aFont, SDL_Renderer *renderer);
+  TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText);
   ~TextBox();
 
   void draw(SDL_Renderer *renderer);
@@ -25,9 +25,9 @@ private:
   SDL_Texture *textureText;
 };
 
-TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer) {
+TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText) {
   SDL_Color fontColor = {255, 255, 255};
-  SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, "Hello", fontColor);
+  SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, theText, fontColor);
   textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
   tRect.x = 10;
   tRect.y = 10;
@@ -71,11 +71,14 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
+  const char *word = "hello";
+  cout << word;
+
   int running = 1;
   Player player(200, 300);
   Wizard wizard(200, 200);
   Wizard wizard2(200, 250);
-  TextBox textbox(theFont, renderer);
+  TextBox textbox(theFont, renderer, word);
 
   while (running) {
     while (SDL_PollEvent(&event)) {
