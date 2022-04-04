@@ -6,11 +6,9 @@
 #include "entity.cpp"
 using namespace std;
 
-#define IDI_ICON 100
 #define SCREEN_WIDTH  640
 #define SCREEN_HEIGHT 480
 
-IDI_ICON ICON "favicon.ico";
 void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
@@ -38,6 +36,7 @@ int main(int arc, char *argv[]) {
   if (!theFont) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
+
   SDL_Color fontColor = {255, 255, 255};
   SDL_Surface *surfaceText = TTF_RenderText_Solid(theFont, "Hello", fontColor);
   SDL_Texture *textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
