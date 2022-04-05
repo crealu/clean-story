@@ -10,7 +10,3 @@ GNU compiler
 ## Usage
 This outline can be used as a simple roadmap to creating game components that
 update as the story's arc progresses.
-
-&nbsp;
-## Compile with
-g++ main.cpp -o cleanstory -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/lib -lSDL2

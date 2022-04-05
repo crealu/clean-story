@@ -1,53 +1,9 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <SDL2/SDL.h>
 using namespace std;
 
-struct Position {
-  int x;
-  int y;
-};
-
-class Entity {
-public:
-  Entity(int x, int y);
-  ~Entity();
-
-  void draw(SDL_Renderer *renderer);
-  void update();
-  void getPos();
-
-protected:
-  SDL_Rect pRect;
-  Position pos;
-  string name;
-};
-
-Entity::Entity(int x, int y) {
-  pos.x = x;
-  pos.y = y;
-  SDL_Rect rect = {x, y, 30, 30};
-  pRect = rect;
-  cout << "Entity created \n";
-}
-
-Entity::~Entity() {}
-
-void Entity::draw(SDL_Renderer *renderer) {
-  update();
-  SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
-  SDL_RenderFillRect(renderer, &pRect);
-}
-
-void Entity::update() {
-
-}
-
-void Entity::getPos() {
-  cout << name << ": " << pRect.x << " " << pRect.y << "\n";
-}
-
-class Player : public Entity {
+class Player {
 public:
   Player(int x, int y);
   ~Player();
@@ -57,12 +13,15 @@ public:
   void update();
 
 protected:
+  SDL_Rect pRect;
   int xVel;
   int yVel;
   int vel;
+  string name;
+
 };
 
-Player::Player(int x, int y) : Entity(x, y) {
+Player::Player(int x, int y) {
   name = "Player";
   vel = 5;
   cout << "Player created \n";
@@ -100,23 +59,4 @@ void Player::draw(SDL_Renderer *renderer) {
 void Player::update() {
   pRect.x += xVel;
   pRect.y += yVel;
-}
-
-class Wizard : public Entity {
-public:
-  Wizard(int x, int y);
-  ~Wizard();
-
-  void speak();
-};
-
-Wizard::Wizard(int x, int y) : Entity(x, y) {
-  name = "Wizard";
-  cout << "Wizard created" << "/n";
-}
-
-Wizard::~Wizard() {}
-
-void Wizard::speak() {
-  cout << "Wizard says yo";
 }

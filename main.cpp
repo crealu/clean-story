@@ -4,6 +4,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "main.hpp"
 #include "entity.cpp"
+#include "ui.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
@@ -13,46 +14,15 @@ void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
-class TextBox {
-public:
-  TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, int xPos, int yPos);
-  ~TextBox();
-
-  void draw(SDL_Renderer *renderer);
-
-private:
-  SDL_Rect tRect;
-  SDL_Texture *textureText;
-};
-
-TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, int xPos, int yPos) {
-  SDL_Color fontColor = {255, 255, 255};
-  SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, theText, fontColor);
-  textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
-  tRect.x = xPos;
-  tRect.y = yPos;
-  tRect.w = 60;
-  tRect.h = 30;
-  SDL_FreeSurface(surfaceText);
-
-  cout << "TextBox created";
-}
-
-TextBox::~TextBox() {
-
-
-}
-
-void TextBox::draw(SDL_Renderer *renderer) {
-  SDL_RenderCopy(renderer, textureText, NULL, &tRect);
-}
-
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
+  TTF_Init();
 
   SDL_Window *window;
   SDL_Renderer *renderer;
   SDL_Event event;
+
+  TTF_Font *theFont = TTF_OpenFont("Comfortaa[wght].ttf", 24);
 
   window = SDL_CreateWindow("Game Window",
     SDL_WINDOWPOS_UNDEFINED,
@@ -63,9 +33,6 @@ int main(int arc, char *argv[]) {
   );
 
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-  TTF_Init();
-  TTF_Font *theFont = TTF_OpenFont("Comfortaa[wght].ttf", 24);
 
   if (!theFont) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
