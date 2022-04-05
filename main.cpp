@@ -2,9 +2,9 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include "main.hpp"
-#include "entity.cpp"
-#include "ui.cpp"
+#include "components/entity.cpp"
+#include "components/player.cpp"
+#include "components/ui.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
@@ -22,7 +22,7 @@ int main(int arc, char *argv[]) {
   SDL_Renderer *renderer;
   SDL_Event event;
 
-  TTF_Font *theFont = TTF_OpenFont("Comfortaa[wght].ttf", 24);
+  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
 
   window = SDL_CreateWindow("Game Window",
     SDL_WINDOWPOS_UNDEFINED,
@@ -51,19 +51,6 @@ int main(int arc, char *argv[]) {
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
-      // player.move(event);
-      // checkVicinity(player, wizard, event);
-      // if (event.type == SDL_KEYDOWN) {
-      //   if (event.key.keysym.sym == SDLK_b) {
-      //     fontRect.x += 10;
-      //   }
-      //   if (event.key.keysym.sym == SDLK_h) {
-      //     fontRect.w = 0;
-      //   }
-      //   if (event.key.keysym.sym == SDLK_g) {
-      //     fontRect.w = 60;
-      //   }
-      // }
     }
 
     drawBackground(renderer);

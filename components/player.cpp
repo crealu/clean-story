@@ -11,6 +11,7 @@ public:
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
   void update();
+  void getPos();
 
 protected:
   SDL_Rect pRect;
@@ -18,10 +19,11 @@ protected:
   int yVel;
   int vel;
   string name;
-
 };
 
 Player::Player(int x, int y) {
+  SDL_Rect rect = {x, y, 30, 30};
+  pRect = rect;
   name = "Player";
   vel = 5;
   cout << "Player created \n";
@@ -52,11 +54,15 @@ void Player::move(SDL_Event &event) {
 
 void Player::draw(SDL_Renderer *renderer) {
   update();
-  SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
+  SDL_SetRenderDrawColor(renderer, 10, 15, 200, 255);
   SDL_RenderFillRect(renderer, &pRect);
 }
 
 void Player::update() {
   pRect.x += xVel;
   pRect.y += yVel;
+}
+
+void Player::getPos() {
+  cout << "x " << pRect.x << " y " << pRect.y;
 }
