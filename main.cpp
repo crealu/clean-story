@@ -19,7 +19,7 @@ public:
   void doPrint();
 private:
   int num;
-}
+};
 
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
@@ -45,27 +45,34 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
+  string words[] = {
+    "hey",
+    "yo"
+  };
+
+  cout << words[0] << "\n";
+
   const char *hello = "hello";
   const char *world = "world";
 
   int running = 1;
-  Player player(200, 300);
+  Player player;
   Wizard wizard(200, 200);
   Wizard wizard2(200, 250);
-
-  TextBox allBoxes[10];
-  cout << allBoxes[0];
-  // for (int i = 0; i < 10; i++) {
-  //   allBoxes[i]
-  //   TextBox aTextBox(theFont, renderer, hello, i * 10, i * 10);
-  //   allBoxes[i] = aTextBox;
-  // }
   TextBox textbox(theFont, renderer, hello, 10, 10);
   TextBox textbox1(theFont, renderer, world, 10, 50);
 
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
+      player.move(event);
+      switch (event.type) {
+        case SDL_KEYDOWN:
+          int theKey = event.key.keysym.sym;
+          if (theKey == SDLK_LEFT)
+            player.vel = 5;
+          // player.pRect = theKey == SDLK_LEFT  ? -5 : 0;
+      }
     }
 
     drawBackground(renderer);
@@ -76,9 +83,6 @@ int main(int arc, char *argv[]) {
     textbox.draw(renderer);
     textbox1.draw(renderer);
 
-    // for (int j = 0; j < 9; j++) {
-    //   allBoxes[j].draw(renderer);
-    // }
     SDL_RenderPresent(renderer);
   }
 

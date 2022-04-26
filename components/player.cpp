@@ -5,7 +5,7 @@ using namespace std;
 
 class Player {
 public:
-  Player(int x, int y);
+  Player();
   ~Player();
 
   void move(SDL_Event &event);
@@ -13,7 +13,6 @@ public:
   void update();
   void getPos();
 
-protected:
   SDL_Rect pRect;
   int xVel;
   int yVel;
@@ -21,8 +20,8 @@ protected:
   string name;
 };
 
-Player::Player(int x, int y) {
-  SDL_Rect rect = {x, y, 30, 30};
+Player::Player() {
+  SDL_Rect rect = {200, 300, 30, 30};
   pRect = rect;
   name = "Player";
   vel = 5;
@@ -36,10 +35,19 @@ void Player::move(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
-      xVel = theKey == SDLK_LEFT  ? -vel : xVel;
-      xVel = theKey == SDLK_RIGHT ?  vel : xVel;
-      yVel = theKey == SDLK_UP    ? -vel : yVel;
-      yVel = theKey == SDLK_DOWN  ?  vel : yVel;
+      if (theKey == SDLK_LEFT)
+        xVel = -vel;
+      if (theKey == SDLK_RIGHT)
+        xVel = vel;
+      if (theKey == SDLK_UP)
+        yVel = -vel;
+      if (theKey == SDLK_DOWN)
+        cout << "down pressed";
+        yVel = vel;
+      // xVel = theKey == SDLK_LEFT  ? -vel : xVel;
+      // xVel = theKey == SDLK_RIGHT ?  vel : xVel;
+      // yVel = theKey == SDLK_UP    ? -vel : yVel;
+      // yVel = theKey == SDLK_DOWN  ?  vel : yVel;
       break;
 
     case SDL_KEYUP:
@@ -50,6 +58,9 @@ void Player::move(SDL_Event &event) {
       yVel = theKey == SDLK_DOWN  ?  0 : yVel;
       break;
   }
+
+  pRect.x += xVel;
+  pRect.y += yVel;
 }
 
 void Player::draw(SDL_Renderer *renderer) {
