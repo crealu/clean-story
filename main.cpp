@@ -14,6 +14,13 @@ void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
+class TestClass {
+public:
+  void doPrint();
+private:
+  int num;
+}
+
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
   TTF_Init();
@@ -45,6 +52,14 @@ int main(int arc, char *argv[]) {
   Player player(200, 300);
   Wizard wizard(200, 200);
   Wizard wizard2(200, 250);
+
+  TextBox allBoxes[10];
+  cout << allBoxes[0];
+  // for (int i = 0; i < 10; i++) {
+  //   allBoxes[i]
+  //   TextBox aTextBox(theFont, renderer, hello, i * 10, i * 10);
+  //   allBoxes[i] = aTextBox;
+  // }
   TextBox textbox(theFont, renderer, hello, 10, 10);
   TextBox textbox1(theFont, renderer, world, 10, 50);
 
@@ -60,6 +75,10 @@ int main(int arc, char *argv[]) {
     wizard2.draw(renderer);
     textbox.draw(renderer);
     textbox1.draw(renderer);
+
+    // for (int j = 0; j < 9; j++) {
+    //   allBoxes[j].draw(renderer);
+    // }
     SDL_RenderPresent(renderer);
   }
 
