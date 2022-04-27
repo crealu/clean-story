@@ -45,6 +45,9 @@ public:
   ~Wizard();
 
   void speak();
+
+  int getX();
+  int getY();
 };
 
 Wizard::Wizard(int x, int y) : Entity(x, y) {
@@ -56,4 +59,12 @@ Wizard::~Wizard() {}
 
 void Wizard::speak() {
   cout << "Wizard says yo";
+}
+
+int Wizard::getX() {
+  return pRect.x;
+}
+
+int Wizard::getY() {
+  return pRect.y;
 }

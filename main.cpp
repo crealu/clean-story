@@ -12,7 +12,7 @@ using namespace std;
 
 void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
-void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
+// void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
@@ -49,23 +49,29 @@ int main(int arc, char *argv[]) {
   int running = 1;
   Player player;
   Wizard wizard(200, 200);
-  Wizard wizard2(200, 250);
   TextBox textbox(theFont, renderer, hello, 10, 10);
   TextBox textbox1(theFont, renderer, world, 10, 50);
+
+  int wizardX = wizard.getX();
+  int wizardY = wizard.getY();
+  bool near = false;
 
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
+      near = player.getPos(wizardX, wizardY, event);
     }
 
     drawBackground(renderer);
 
     player.draw(renderer);
     wizard.draw(renderer);
-    wizard2.draw(renderer);
-    textbox.draw(renderer);
-    textbox1.draw(renderer);
+
+    if (near) {
+      textbox.draw(renderer);
+      textbox1.draw(renderer);
+    }
 
     SDL_RenderPresent(renderer);
   }
@@ -95,11 +101,11 @@ void drawBackground(SDL_Renderer *renderer) {
   SDL_RenderClear(renderer);
 }
 
-void checkVicinity(Player player, Wizard wizard, SDL_Event &event) {
-  if (event.type == SDL_KEYDOWN) {
-    if (event.key.keysym.sym == SDLK_a) {
-      player.getPos();
-      wizard.getPos();
-    }
-  }
-}
+// void checkVicinity(Player player, Wizard wizard, SDL_Event &event) {
+//   if (event.type == SDL_KEYDOWN) {
+//     if (event.key.keysym.sym == SDLK_a) {
+//       player.getPos();
+//       wizard.getPos();
+//     }
+//   }
+// }

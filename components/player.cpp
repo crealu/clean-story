@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <math>
 #include <SDL2/SDL.h>
 using namespace std;
 
@@ -10,8 +11,8 @@ public:
 
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
+  bool getPos(int wizardX, int wizardY, SDL_Event &event);
   void update();
-  void getPos();
 
 protected:
   SDL_Rect pRect;
@@ -28,6 +29,7 @@ Player::Player() {
   vel = 5;
   xVel = 0;
   yVel = 0;
+  cout << abs(1 - 2);
 }
 
 Player::~Player() {}
@@ -64,6 +66,21 @@ void Player::update() {
   pRect.y += yVel;
 }
 
-void Player::getPos() {
-  cout << "x " << pRect.x << " y " << pRect.y;
+bool Player::getPos(int wizardX, int wizardY, SDL_Event &event) {
+  int theKey;
+  switch (event.type) {
+    case SDL_KEYDOWN:
+      theKey = event.key.keysym.sym;
+      if (theKey == SDLK_a) {
+        if (
+          wizardX - pRect.x <= 5 && wizardX + pRect.x >= 5 &&
+          wizardY -
+        ) {
+          cout << "they are near";
+          return true;
+        }
+      }
+      break;
+  }
+  return false;
 }
