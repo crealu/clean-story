@@ -46,11 +46,16 @@ int main(int arc, char *argv[]) {
   const char *hello = "hello";
   const char *world = "world";
 
+  const char *transcript[] = {
+    hello,
+    world
+  };
+
   int running = 1;
   Player player;
   Wizard wizard(200, 200);
-  TextBox textbox(theFont, renderer, hello, 10, 10);
-  TextBox textbox1(theFont, renderer, world, 10, 50);
+  TextBox textbox(theFont, renderer, transcript[0], 10, 10);
+  TextBox textbox1(theFont, renderer, transcript[1], 10, 50);
 
   int wizardX = wizard.getX();
   int wizardY = wizard.getY();
