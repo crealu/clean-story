@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <math>
+#include <cmath>
 #include <SDL2/SDL.h>
 using namespace std;
 
@@ -29,7 +29,6 @@ Player::Player() {
   vel = 5;
   xVel = 0;
   yVel = 0;
-  cout << abs(1 - 2);
 }
 
 Player::~Player() {}
@@ -72,11 +71,8 @@ bool Player::getPos(int wizardX, int wizardY, SDL_Event &event) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
       if (theKey == SDLK_a) {
-        if (
-          wizardX - pRect.x <= 5 && wizardX + pRect.x >= 5 &&
-          wizardY -
-        ) {
-          cout << "they are near";
+        if (abs(wizardX - pRect.x) <= 10 && abs(wizardY - pRect.y) <= 10) {
+          cout << "they are near \n";
           return true;
         }
       }

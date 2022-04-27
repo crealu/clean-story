@@ -60,7 +60,8 @@ int main(int arc, char *argv[]) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      near = player.getPos(wizardX, wizardY, event);
+      if (!near)
+        near = player.getPos(wizardX, wizardY, event);
     }
 
     drawBackground(renderer);
