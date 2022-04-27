@@ -2,7 +2,7 @@ cleanstory
 font.cpp
 DejaVuSans.ttf
 favicon.ico
-backupMain.cpp
+backup.cpp
 test.cpp
 test.py
 test.js

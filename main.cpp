@@ -14,13 +14,6 @@ void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
-class TestClass {
-public:
-  void doPrint();
-private:
-  int num;
-};
-
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
   TTF_Init();
@@ -50,8 +43,6 @@ int main(int arc, char *argv[]) {
     "yo"
   };
 
-  cout << words[0] << "\n";
-
   const char *hello = "hello";
   const char *world = "world";
 
@@ -66,13 +57,6 @@ int main(int arc, char *argv[]) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      switch (event.type) {
-        case SDL_KEYDOWN:
-          int theKey = event.key.keysym.sym;
-          if (theKey == SDLK_LEFT)
-            player.vel = 5;
-          // player.pRect = theKey == SDLK_LEFT  ? -5 : 0;
-      }
     }
 
     drawBackground(renderer);
