@@ -12,7 +12,6 @@ using namespace std;
 
 void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
-// void checkVicinity(Player player, Wizard wizard, SDL_Event &event);
 
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
@@ -37,11 +36,6 @@ int main(int arc, char *argv[]) {
   if (!theFont) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
-
-  string words[] = {
-    "hey",
-    "yo"
-  };
 
   const char *hello = "hello";
   const char *world = "world";
@@ -106,12 +100,3 @@ void drawBackground(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
 }
-
-// void checkVicinity(Player player, Wizard wizard, SDL_Event &event) {
-//   if (event.type == SDL_KEYDOWN) {
-//     if (event.key.keysym.sym == SDLK_a) {
-//       player.getPos();
-//       wizard.getPos();
-//     }
-//   }
-// }
