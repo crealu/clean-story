@@ -26,7 +26,7 @@ Player::Player() {
   SDL_Rect rect = {200, 300, 30, 30};
   pRect = rect;
   name = "Player";
-  vel = 5;
+  vel = 1;
   xVel = 0;
   yVel = 0;
 }
