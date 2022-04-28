@@ -1,3 +1,8 @@
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <math.h>
+using namespace std;
+
 class Circle {
 public:
   Circle();
@@ -7,10 +12,11 @@ public:
 
 protected:
   int p;
-  int cx;
-  int cy;
+  int xp;
   int *xPoints;
   int *yPoints;
+  int cx;
+  int cy;
 }
 
 Circle::Circle() {
@@ -18,6 +24,9 @@ Circle::Circle() {
   float pInc = 0.01;
   int p, pLen;
   pLen = pn / pInc;
+
+  cx = 320;
+  cy = 240;
 
   xPoints = new int[pLen];
   yPoints = new int[pLen];
@@ -35,5 +44,6 @@ Circle::Circle() {
 Circle::~Circle() {}
 
 void Circle::draw(SDL_Renderer *renderer) {
-  
+  for (xp = 0; xp < plen; xp++)
+    SDL_RenderDrawPoint(renderer, cx+xPoints[xp], cy+yPoints[xp]);
 }

@@ -5,6 +5,7 @@
 #include "components/entity.cpp"
 #include "components/player.cpp"
 #include "components/ui.cpp"
+#include "components/circle.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
@@ -19,9 +20,6 @@ int main(int arc, char *argv[]) {
 
   SDL_Window *window;
   SDL_Renderer *renderer;
-  SDL_Event event;
-
-  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
 
   window = SDL_CreateWindow("Game Window",
     SDL_WINDOWPOS_UNDEFINED,
@@ -33,6 +31,10 @@ int main(int arc, char *argv[]) {
 
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
+  SDL_Event event;
+  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
+  int running = 1;
+
   if (!theFont) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
@@ -40,12 +42,9 @@ int main(int arc, char *argv[]) {
   const char *hello = "hello";
   const char *world = "world";
 
-  const char *transcript[] = {
-    hello,
-    world
-  };
+  const char *transcript[] = { hello, world };
 
-  int running = 1;
+  Circle circle;
   Player player;
   Wizard wizard(200, 200);
   TextBox textbox(theFont, renderer, transcript[0], 10, 10);
