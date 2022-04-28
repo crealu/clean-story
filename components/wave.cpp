@@ -15,17 +15,17 @@ protected:
   int yPoints;
   int pLen;
   int xp;
-}
+};
 
 Wave::Wave() {
   int p;
   pLen = 100;
-  yPoints = 100;
 
-  points = new int[pLen];
+  yPoints = 100;
+  xPoints = new int[pLen];
 
   for (p = 0; p < pLen; p++)
-    points[p] = p;
+    xPoints[p] = p;
 }
 
 Wave::~Wave() {}

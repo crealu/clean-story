@@ -6,6 +6,7 @@
 #include "components/player.cpp"
 #include "components/ui.cpp"
 #include "components/circle.cpp"
+#include "components/wave.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
@@ -43,6 +44,7 @@ int main(int arc, char *argv[]) {
   const char *world = "world";
   const char *transcript[] = { hello, world };
 
+  Wave wave;
   Circle circle;
   Player player;
   Wizard wizard(200, 200);
@@ -66,6 +68,7 @@ int main(int arc, char *argv[]) {
     player.draw(renderer);
     wizard.draw(renderer);
     circle.draw(renderer);
+    wave.draw(renderer);
 
     if (near) {
       textbox.draw(renderer);
