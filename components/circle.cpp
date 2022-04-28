@@ -17,12 +17,13 @@ protected:
   int *yPoints;
   int cx;
   int cy;
-}
+  int pLen;
+};
 
 Circle::Circle() {
   float pn = 6.29;
   float pInc = 0.01;
-  int p, pLen;
+  int p;
   pLen = pn / pInc;
 
   cx = 320;
@@ -32,18 +33,18 @@ Circle::Circle() {
   yPoints = new int[pLen];
 
   float r = 0.0;
-  for (r = 0.0, p = 0; r <= pn; r += pinc, p++)
-    if (p < plen)
-      xpoints[p] = round( 20 * (cos(r/1.0)) );
+  for (r = 0.0, p = 0; r <= pn; r += pInc, p++)
+    if (p < pLen)
+      xPoints[p] = round( 20 * (cos(r/1.0)) );
 
-  for (r = 0.0, p = 0; r <= pn; r += pinc, p++)
-    if (p < plen)
-      ypoints[p] = round( 20 * (sin(r/1.0)) );
-}
+  for (r = 0.0, p = 0; r <= pn; r += pInc, p++)
+    if (p < pLen)
+      yPoints[p] = round( 20 * (sin(r/1.0)) );
+};
 
 Circle::~Circle() {}
 
 void Circle::draw(SDL_Renderer *renderer) {
-  for (xp = 0; xp < plen; xp++)
+  for (xp = 0; xp < pLen; xp++)
     SDL_RenderDrawPoint(renderer, cx+xPoints[xp], cy+yPoints[xp]);
 }

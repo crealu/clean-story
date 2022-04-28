@@ -41,7 +41,6 @@ int main(int arc, char *argv[]) {
 
   const char *hello = "hello";
   const char *world = "world";
-
   const char *transcript[] = { hello, world };
 
   Circle circle;
@@ -66,6 +65,7 @@ int main(int arc, char *argv[]) {
 
     player.draw(renderer);
     wizard.draw(renderer);
+    circle.draw(renderer);
 
     if (near) {
       textbox.draw(renderer);
