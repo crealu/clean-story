@@ -61,7 +61,7 @@ void Player::move(SDL_Event &event) {
 }
 
 void Player::draw(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 10, 15, 200, 255);
+  SDL_SetRenderDrawColor(renderer, 10, 255, 200, 255);
   SDL_RenderFillRect(renderer, &pRect);
   SDL_RenderFillRect(renderer, &leftRect);
   SDL_RenderFillRect(renderer, &rightRect);
