@@ -7,12 +7,13 @@
 #include "components/ui.cpp"
 #include "components/circle.cpp"
 #include "components/wave.cpp"
+#include "components/world.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
 #define SCREEN_HEIGHT 480
 
-void drawBackground(SDL_Renderer *renderer);
+// void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 
 int main(int arc, char *argv[]) {
@@ -40,10 +41,11 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
-  const char *hello = "hello";
-  const char *world = "world";
-  const char *transcript[] = { hello, world };
+  const char *helloT = "hello";
+  const char *worldT = "world";
+  const char *transcript[] = { helloT, worldT };
 
+  World world;
   Wave wave;
   Circle circle;
   Player player;
@@ -63,8 +65,7 @@ int main(int arc, char *argv[]) {
         near = player.getPos(wizardX, wizardY, event);
     }
 
-    drawBackground(renderer);
-
+    world.draw(renderer);
     player.draw(renderer);
     wizard.draw(renderer);
     circle.draw(renderer);
@@ -96,9 +97,4 @@ int quitGame(int running, SDL_Window *window, SDL_Event &event) {
       break;
   }
   return running;
-}
-
-void drawBackground(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-  SDL_RenderClear(renderer);
 }
