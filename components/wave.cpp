@@ -19,7 +19,7 @@ protected:
 
 Wave::Wave() {
   int p;
-  pLen = 100;
+  pLen = 640;
 
   yPoints = new int[pLen];
   xPoints = new int[pLen];

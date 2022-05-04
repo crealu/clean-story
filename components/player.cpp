@@ -16,6 +16,8 @@ public:
 
 protected:
   SDL_Rect pRect;
+  SDL_Rect leftRect;
+  SDL_Rect rightRect;
   int xVel;
   int yVel;
   int vel;
@@ -24,9 +26,13 @@ protected:
 
 Player::Player() {
   SDL_Rect rect = {200, 300, 30, 30};
+  SDL_Rect lRect = {190, 290, 10, 10};
+  SDL_Rect rRect = {230, 290, 10, 10};
   pRect = rect;
+  leftRect = lRect;
+  rightRect = rRect;
   name = "Player";
-  vel = 1;
+  vel = 8;
   xVel = 0;
   yVel = 0;
 }
@@ -57,12 +63,18 @@ void Player::move(SDL_Event &event) {
 void Player::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 10, 15, 200, 255);
   SDL_RenderFillRect(renderer, &pRect);
+  SDL_RenderFillRect(renderer, &leftRect);
+  SDL_RenderFillRect(renderer, &rightRect);
   update();
 }
 
 void Player::update() {
   pRect.x += xVel;
   pRect.y += yVel;
+  leftRect.x += xVel;
+  leftRect.y += yVel;
+  rightRect.x += xVel;
+  rightRect.y += yVel;
 }
 
 bool Player::getPos(int wizardX, int wizardY, SDL_Event &event) {
