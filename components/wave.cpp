@@ -15,11 +15,13 @@ protected:
   int *yPoints;
   int pLen;
   int xp;
+  int yo;
 };
 
 Wave::Wave() {
   int p;
   pLen = 640;
+  yo = 10;
 
   yPoints = new int[pLen];
   xPoints = new int[pLen];
@@ -35,8 +37,12 @@ Wave::Wave() {
 Wave::~Wave() {}
 
 void Wave::draw(SDL_Renderer *renderer) {
-  for (xp = 0; xp < pLen; xp++) {
-    SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp]);
-    SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp] + 10);
+  yo = 10;
+  for (int ys = 0; ys < 10; ys++) {
+    for (xp = 0; xp < pLen; xp++) {
+      SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp]);
+      SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp] + yo);
+    }
+    yo += 10;
   }
 }
