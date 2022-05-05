@@ -38,10 +38,11 @@ Wave::~Wave() {}
 
 void Wave::draw(SDL_Renderer *renderer) {
   yo = 10;
+  SDL_SetRenderDrawColor(renderer, 255, 0, 255, 100);
   for (int ys = 0; ys < 10; ys++) {
     for (xp = 0; xp < pLen; xp++) {
-      SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp]);
       SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp] + yo);
+      SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp] + yo + 1);
     }
     yo += 10;
   }
