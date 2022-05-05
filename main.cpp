@@ -61,8 +61,16 @@ int main(int arc, char *argv[]) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      if (!near)
+      if (!near) {
         near = player.getPos(wizardX, wizardY, event);
+      }
+
+      switch (event.type) {
+        case SDL_MOUSEBUTTONDOWN:
+          if (event.button.button == SDL_BUTTON_LEFT)
+            near = !near;
+          break;
+      }
     }
 
     world.draw(renderer);

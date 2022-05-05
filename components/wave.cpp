@@ -29,12 +29,14 @@ Wave::Wave() {
 
   float r = 0.0;
   for (p = 0, r = 0.0; p < pLen; p++, r += 0.09)
-    yPoints[p] = round(20 * cos(r/1.0)) + 100;
+    yPoints[p] = round(20 * sin(r/1.0)) + 100;
 }
 
 Wave::~Wave() {}
 
 void Wave::draw(SDL_Renderer *renderer) {
-  for (xp = 0; xp < pLen; xp++)
+  for (xp = 0; xp < pLen; xp++) {
     SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp]);
+    SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp] + 10);
+  }
 }
