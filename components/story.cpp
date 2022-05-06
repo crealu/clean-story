@@ -3,59 +3,19 @@
 // #include <SDL2/SDL.h>
 using namespace std;
 
-// class StoryScript {
-// public:
-//   StoryScript();
-//   ~StoryScript();
-//
-//   void writeText();
-//   void setCurrent(char c);
-//
-// protected:
-//   char *script;
-//   int currentLine;
-// };
-//
-// StoryScript::StoryScript() {
-//   const char *text[] = {
-//     "Serene voyager unbound by perpetuated chasm, the trial of times forgotten can only one bear.",
-//     "So... what brings you to Midoritierra?",
-//     "...",
-//     "...",
-//     "Excuse my unmannerliness... for I have yet to introduce myself.",
-//     "I am the sourcerer of these plains,",
-//     "maintainer of peace and order,",
-//     "caster of the breeze of tranquility,"
-//     "wielder of the inifinte grön magic.",
-//     "And my friends call me G."
-//   };
-//
-//   script = new char[sizeof text];
-//   currentLine = 0;
-//
-//   for (int t = 0; t < sizeof text; t++)
-//     script[t] = text[t];
-// }
-// StoryScript::~StoryScript() {}
-//
-// void StoryScript::writeText() {
-//   cout << script[currentLine] << "\n";
-// }
-//
-// void StoryScript::setCurrent(char c) {
-//   if (c == 'n' && currentLine != 9)
-//     currentLine += 1;
-//
-//   if (c == 'b' && currentLine != 0)
-//     currentLine -= 1;
-// }
+class StoryScript {
+public:
+  StoryScript();
+  ~StoryScript();
 
-int main() {
-  // StoryScript green;
-  char c;
-  int curr = 0;
+  void writeText(int current);
 
-  const char *text[] = {
+protected:
+  string *script;
+};
+
+StoryScript::StoryScript() {
+  string text[] = {
     "Serene voyager unbound by perpetuated chasm, the trial of times forgotten can only one bear.",
     "So... what brings you to Midoritierra?",
     "...",
@@ -63,23 +23,39 @@ int main() {
     "Excuse my unmannerliness... for I have yet to introduce myself.",
     "I am the sourcerer of these plains,",
     "maintainer of peace and order,",
-    "caster of the breeze of tranquility,"
+    "caster of the breeze of tranquility,",
     "wielder of the inifinte grön magic.",
     "And my friends call me G."
   };
 
+  int textLength = sizeof(text)/sizeof(text[0]);
+  script = new string[textLength];
+
+  for (int t = 0; t < textLength; t++)
+    script[t] = text[t];
+}
+
+StoryScript::~StoryScript() {}
+
+void StoryScript::writeText(int current) {
+  const char *dialog = script[current].c_str();
+  cout << dialog << "\n";
+}
+
+int main() {
+  StoryScript green;
+  int current = 0;
+  char c;
+
   while (c != 'e') {
     cout << "n/b ? ";
     cin >> c;
-    if (c == 'n')
-      curr += 1;
+    green.writeText(current);
+    if (c == 'n' && current != 9)
+      current += 1;
 
-    if (c == 'b')
-      curr -= 1;
-
-    cout << "\n" << text[curr] << "\n";
-    // green.writeText();
-    // green.setCurrent(c);
+    if (c == 'b' && current != 0)
+      current -= 1;
   }
 
   return 0;

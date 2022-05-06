@@ -13,7 +13,6 @@ using namespace std;
 #define SCREEN_WIDTH  640
 #define SCREEN_HEIGHT 480
 
-// void drawBackground(SDL_Renderer *renderer);
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 
 int main(int arc, char *argv[]) {
@@ -34,7 +33,7 @@ int main(int arc, char *argv[]) {
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   SDL_Event event;
-  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
+  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 12);
   int running = 1;
 
   if (!theFont) {
