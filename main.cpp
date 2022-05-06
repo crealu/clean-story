@@ -47,8 +47,7 @@ int main(int arc, char *argv[]) {
 
   int current = 0;
   StoryScript green;
-  const char *one = "Serene voyager";
-  TextBox textbox(theFont, renderer, one, 200, 200);
+  TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
 
   World world;
   Wave wave;

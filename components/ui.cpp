@@ -21,7 +21,7 @@ TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, i
   textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
   tRect.x = xPos;
   tRect.y = yPos;
-  tRect.w = 200;
+  tRect.w = 15 * strlen(theText);
   tRect.h = 30;
   SDL_FreeSurface(surfaceText);
 
@@ -31,5 +31,7 @@ TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, i
 TextBox::~TextBox() {}
 
 void TextBox::draw(SDL_Renderer *renderer) {
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderFillRect(renderer, &tRect);
   SDL_RenderCopy(renderer, textureText, NULL, &tRect);
 }

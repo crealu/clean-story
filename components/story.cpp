@@ -48,22 +48,3 @@ const char *StoryScript::getText(int current) {
   const char *dialog = script[current].c_str();
   return dialog;
 }
-
-// int main() {
-//   StoryScript green;
-//   int current = 0;
-//   char c;
-//
-//   while (c != 'e') {
-//     cout << "n/b ? ";
-//     cin >> c;
-//     green.writeText(current);
-//     if (c == 'n' && current != 9)
-//       current += 1;
-//
-//     if (c == 'b' && current != 0)
-//       current -= 1;
-//   }
-//
-//   return 0;
-// }
