@@ -16,12 +16,12 @@ private:
 };
 
 TextBox::TextBox(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText, int xPos, int yPos) {
-  SDL_Color fontColor = {255, 150, 255};
+  SDL_Color fontColor = {0, 0, 0};
   SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, theText, fontColor);
   textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
   tRect.x = xPos;
   tRect.y = yPos;
-  tRect.w = 60;
+  tRect.w = 200;
   tRect.h = 30;
   SDL_FreeSurface(surfaceText);
 

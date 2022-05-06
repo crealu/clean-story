@@ -9,6 +9,7 @@ public:
   ~StoryScript();
 
   void writeText(int current);
+  const char *getText(int current);
 
 protected:
   string *script;
@@ -16,11 +17,12 @@ protected:
 
 StoryScript::StoryScript() {
   string text[] = {
-    "Serene voyager unbound by perpetuated chasm, the trial of times forgotten can only one bear.",
+    "Serene voyager unbound by perpetuated chasm,",
+    "the trial of times forgotten can only one bear.",
     "So... what brings you to Midoritierra?",
     "...",
     "...",
-    "Excuse my unmannerliness... for I have yet to introduce myself.",
+    "Excuse my unmannerliness... I have yet to introduce myself.",
     "I am the sourcerer of these plains,",
     "maintainer of peace and order,",
     "caster of the breeze of tranquility,",
@@ -42,21 +44,26 @@ void StoryScript::writeText(int current) {
   cout << dialog << "\n";
 }
 
-int main() {
-  StoryScript green;
-  int current = 0;
-  char c;
-
-  while (c != 'e') {
-    cout << "n/b ? ";
-    cin >> c;
-    green.writeText(current);
-    if (c == 'n' && current != 9)
-      current += 1;
-
-    if (c == 'b' && current != 0)
-      current -= 1;
-  }
-
-  return 0;
+const char *StoryScript::getText(int current) {
+  const char *dialog = script[current].c_str();
+  return dialog;
 }
+
+// int main() {
+//   StoryScript green;
+//   int current = 0;
+//   char c;
+//
+//   while (c != 'e') {
+//     cout << "n/b ? ";
+//     cin >> c;
+//     green.writeText(current);
+//     if (c == 'n' && current != 9)
+//       current += 1;
+//
+//     if (c == 'b' && current != 0)
+//       current -= 1;
+//   }
+//
+//   return 0;
+// }

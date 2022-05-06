@@ -8,6 +8,7 @@
 #include "components/circle.cpp"
 #include "components/wave.cpp"
 #include "components/world.cpp"
+#include "components/story.cpp"
 using namespace std;
 
 #define SCREEN_WIDTH  640
@@ -33,7 +34,7 @@ int main(int arc, char *argv[]) {
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   SDL_Event event;
-  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 12);
+  TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
   int running = 1;
 
   if (!theFont) {
@@ -44,13 +45,16 @@ int main(int arc, char *argv[]) {
   const char *worldT = "world";
   const char *transcript[] = { helloT, worldT };
 
+  int current = 0;
+  StoryScript green;
+  const char *one = "Serene voyager";
+  TextBox textbox(theFont, renderer, one, 200, 200);
+
   World world;
   Wave wave;
   Circle circle;
   Player player;
   Wizard wizard(200, 200);
-  TextBox textbox(theFont, renderer, transcript[0], 10, 10);
-  TextBox textbox1(theFont, renderer, transcript[1], 10, 50);
 
   int wizardX = wizard.getX();
   int wizardY = wizard.getY();
@@ -78,10 +82,8 @@ int main(int arc, char *argv[]) {
     wizard.draw(renderer);
     player.draw(renderer);
 
-    if (near) {
+    if (near)
       textbox.draw(renderer);
-      textbox1.draw(renderer);
-    }
 
     SDL_RenderPresent(renderer);
   }
