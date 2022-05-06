@@ -22,6 +22,6 @@ World::World() {
 World::~World() {}
 
 void World::draw(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_SetRenderDrawColor(renderer, 0, 55, 0, 55);
   SDL_RenderClear(renderer);
 }

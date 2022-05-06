@@ -26,9 +26,7 @@ int main(int arc, char *argv[]) {
   window = SDL_CreateWindow("Game Window",
     SDL_WINDOWPOS_UNDEFINED,
     SDL_WINDOWPOS_UNDEFINED,
-    SCREEN_WIDTH,
-    SCREEN_HEIGHT,
-    0
+    SCREEN_WIDTH, SCREEN_HEIGHT, 0
   );
 
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -40,10 +38,6 @@ int main(int arc, char *argv[]) {
   if (!theFont) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
-
-  const char *helloT = "hello";
-  const char *worldT = "world";
-  const char *transcript[] = { helloT, worldT };
 
   int current = 0;
   StoryScript green;
