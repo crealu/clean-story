@@ -74,10 +74,10 @@ int main(int arc, char *argv[]) {
     }
 
     world.draw(renderer);
-    player.draw(renderer);
-    wizard.draw(renderer);
     circle.draw(renderer);
     wave.draw(renderer);
+    wizard.draw(renderer);
+    player.draw(renderer);
 
     if (near) {
       textbox.draw(renderer);
