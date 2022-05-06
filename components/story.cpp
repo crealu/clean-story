@@ -7,7 +7,6 @@ class StoryScript {
 public:
   StoryScript();
   ~StoryScript();
-
   void writeText(int current);
   const char *getText(int current);
 
