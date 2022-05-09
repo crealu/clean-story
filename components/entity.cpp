@@ -3,61 +3,33 @@
 #include <SDL2/SDL.h>
 using namespace std;
 
-class Entity {
+class Wizard {
 public:
-  Entity(int x, int y);
-  ~Entity();
-
+  Wizard(int x, int y);
+  ~Wizard();
   void draw(SDL_Renderer *renderer);
-  void update();
-  void getPos();
+  void speak();
+  int getX();
+  int getY();
 
 protected:
   SDL_Rect pRect;
   string name;
 };
 
-Entity::Entity(int x, int y) {
-  SDL_Rect rect = {x, y, 30, 30};
+Wizard::Wizard() {
+  SDL_Rect rect = {400, 200, 30, 30};
   pRect = rect;
-  cout << "Entity created \n";
-}
-
-Entity::~Entity() {}
-
-void Entity::draw(SDL_Renderer *renderer) {
-  update();
-  SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
-  SDL_RenderFillRect(renderer, &pRect);
-}
-
-void Entity::update() {
-
-}
-
-void Entity::getPos() {
-  cout << name << ": " << pRect.x << " " << pRect.y << "\n";
-}
-
-class Wizard : public Entity {
-public:
-  Wizard(int x, int y);
-  ~Wizard();
-
-  void speak();
-
-  int getX();
-  int getY();
-};
-
-Wizard::Wizard(int x, int y) : Entity(x, y) {
-  // initialize points
-  // run SDL_RendererDrawLine(renderer, )
   name = "Wizard";
   cout << "Wizard created" << "/n";
 }
 
 Wizard::~Wizard() {}
+
+void Wizard::draw(SDL_Renderer *renderer) {
+  SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
+  SDL_RenderFillRect(renderer, &pRect);
+}
 
 void Wizard::speak() {
   cout << "Wizard says yo";

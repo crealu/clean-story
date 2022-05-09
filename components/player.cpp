@@ -8,7 +8,6 @@ class Player {
 public:
   Player();
   ~Player();
-
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
   bool getPos(int wizardX, int wizardY, SDL_Event &event);
