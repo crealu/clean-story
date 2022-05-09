@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <stdio.h>
 using namespace std;
 
@@ -14,24 +16,20 @@ protected:
 };
 
 StoryScript::StoryScript() {
-  string text[] = {
-    "Serene voyager unbound by perpetuated chasm,",
-    "the trial of times forgotten can only one bear.",
-    "So... what brings you to Midoritierra?",
-    "...",
-    "Excuse my unmannerliness... I have yet to introduce myself.",
-    "I am the sourcerer of these plains,",
-    "maintainer of peace and order,",
-    "caster of the breeze of tranquility,",
-    "wielder of the inifinte grön magic.",
-    "And my friends call me G."
-  };
+  string text[12];
+  fstream textFile;
+  int count = 0;
+  script = new string[12];
 
-  int textLength = sizeof(text)/sizeof(text[0]);
-  script = new string[textLength];
-
-  for (int t = 0; t < textLength; t++)
-    script[t] = text[t];
+  textFile.open("./scripts/red.txt", ios::in);
+  if (textFile.is_open()) {
+    string line;
+    while (getline(textFile, line)) {
+      script[count] = line;
+      count++;
+    }
+    textFile.close();
+  }
 }
 
 StoryScript::~StoryScript() {}

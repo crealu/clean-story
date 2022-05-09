@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -29,7 +30,7 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
-  int current = 0;
+  int current = 2;
   StoryScript green;
   TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
   World world;

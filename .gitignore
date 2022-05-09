@@ -1,11 +1,6 @@
 cleanstory
-font.cpp
 DejaVuSans.ttf
 favicon.ico
 backup.cpp
-test.cpp
-test.py
-test.js
-test
-components/buttonpp
-components/button.cpp
+exp.cpp
+exp
