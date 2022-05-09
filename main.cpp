@@ -32,7 +32,11 @@ int main(int arc, char *argv[]) {
 
   int current = 2;
   StoryScript green;
-  TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
+  Dialog theDialog[10];
+  for (int i = 0; i < 10; i++) {
+    theDialog[i].setDialog(theFont, renderer, green.getText(i));
+  }
+  // TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
   World world;
   Wave wave;
   Circle circle;
@@ -56,6 +60,15 @@ int main(int arc, char *argv[]) {
           if (event.button.button == SDL_BUTTON_LEFT)
             near = !near;
           break;
+
+        case SDL_KEYDOWN:
+          if (event.key.keysym.sym == SDLK_f && count != 10) {
+            count++;
+          }
+
+          if (event.key.keysym.sym == SDLK_d && count != 0) {
+            count--;
+          }
       }
     }
 
@@ -66,7 +79,10 @@ int main(int arc, char *argv[]) {
     player.draw(renderer);
 
     if (near)
-      textbox.draw(renderer);
+      theDialog[count].draw(renderer);
+    //
+    // if (near)
+    //   textbox.draw(renderer);
 
     SDL_RenderPresent(renderer);
   }
