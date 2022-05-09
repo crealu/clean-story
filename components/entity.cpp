@@ -51,6 +51,8 @@ public:
 };
 
 Wizard::Wizard(int x, int y) : Entity(x, y) {
+  // initialize points
+  // run SDL_RendererDrawLine(renderer, )
   name = "Wizard";
   cout << "Wizard created" << "/n";
 }
