@@ -25,7 +25,7 @@ Wizard::Wizard() {
 Wizard::~Wizard() {}
 
 void Wizard::draw(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
+  SDL_SetRenderDrawColor(renderer, 15, 200, 0, 255);
   SDL_RenderFillRect(renderer, &pRect);
 }
 

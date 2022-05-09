@@ -19,7 +19,7 @@ int main(int arc, char *argv[]) {
   SDL_Event event;
   int running = 1;
 
-  window = SDL_CreateWindow("Game Window",
+  window = SDL_CreateWindow("Clean Story",
     SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
     SCREEN_WIDTH, SCREEN_HEIGHT, 0
   );
@@ -74,8 +74,8 @@ int main(int arc, char *argv[]) {
     }
 
     world.draw(renderer);
-    circle.draw(renderer);
     wave.draw(renderer);
+    circle.draw(renderer);
     wizard.draw(renderer);
     player.draw(renderer);
 
