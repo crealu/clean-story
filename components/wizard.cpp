@@ -20,7 +20,6 @@ Wizard::Wizard() {
   SDL_Rect rect = {400, 200, 30, 30};
   pRect = rect;
   name = "Wizard";
-  cout << "Wizard created" << "/n";
 };
 
 Wizard::~Wizard() {}

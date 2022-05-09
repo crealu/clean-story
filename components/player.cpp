@@ -43,18 +43,18 @@ void Player::move(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
-      xVel = theKey == SDLK_LEFT  ? -vel : xVel;
-      xVel = theKey == SDLK_RIGHT ?  vel : xVel;
-      yVel = theKey == SDLK_UP    ? -vel : yVel;
-      yVel = theKey == SDLK_DOWN  ?  vel : yVel;
+      xVel = theKey == SDLK_a ? -vel : xVel;
+      xVel = theKey == SDLK_d ?  vel : xVel;
+      yVel = theKey == SDLK_w ? -vel : yVel;
+      yVel = theKey == SDLK_s ?  vel : yVel;
       break;
 
     case SDL_KEYUP:
       theKey = event.key.keysym.sym;
-      xVel = theKey == SDLK_LEFT  ?  0 : xVel;
-      xVel = theKey == SDLK_RIGHT ?  0 : xVel;
-      yVel = theKey == SDLK_UP    ?  0 : yVel;
-      yVel = theKey == SDLK_DOWN  ?  0 : yVel;
+      xVel = theKey == SDLK_a ?  0 : xVel;
+      xVel = theKey == SDLK_d ?  0 : xVel;
+      yVel = theKey == SDLK_w ?  0 : yVel;
+      yVel = theKey == SDLK_s ?  0 : yVel;
       break;
   }
 }
@@ -82,7 +82,7 @@ bool Player::getPos(int wizardX, int wizardY, SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
-      if (theKey == SDLK_a) {
+      if (theKey == SDLK_k) {
         if (abs(wizardX - pRect.x) <= 10 && abs(wizardY - pRect.y) <= 10) {
           cout << "they are near \n";
           return true;

@@ -62,13 +62,14 @@ int main(int arc, char *argv[]) {
           break;
 
         case SDL_KEYDOWN:
-          if (event.key.keysym.sym == SDLK_f && count != 10) {
-            count++;
+          if (event.key.keysym.sym == SDLK_m && current != 10) {
+            current++;
           }
 
-          if (event.key.keysym.sym == SDLK_d && count != 0) {
-            count--;
+          if (event.key.keysym.sym == SDLK_n && current != 0) {
+            current--;
           }
+          break;
       }
     }
 
@@ -79,7 +80,7 @@ int main(int arc, char *argv[]) {
     player.draw(renderer);
 
     if (near)
-      theDialog[count].draw(renderer);
+      theDialog[current].draw(renderer);
     //
     // if (near)
     //   textbox.draw(renderer);
