@@ -7,7 +7,6 @@ class Circle {
 public:
   Circle();
   ~Circle();
-
   void draw(SDL_Renderer *renderer);
 
 protected:

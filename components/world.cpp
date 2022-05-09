@@ -6,7 +6,6 @@ class World {
 public:
   World();
   ~World();
-
   void draw(SDL_Renderer *renderer);
 
 protected:

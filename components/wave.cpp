@@ -7,7 +7,6 @@ class Wave {
 public:
   Wave();
   ~Wave();
-
   void draw(SDL_Renderer *renderer);
 
 protected:

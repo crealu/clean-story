@@ -5,7 +5,7 @@ using namespace std;
 
 class Wizard {
 public:
-  Wizard(int x, int y);
+  Wizard();
   ~Wizard();
   void draw(SDL_Renderer *renderer);
   void speak();
@@ -22,7 +22,7 @@ Wizard::Wizard() {
   pRect = rect;
   name = "Wizard";
   cout << "Wizard created" << "/n";
-}
+};
 
 Wizard::~Wizard() {}
 

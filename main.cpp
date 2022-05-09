@@ -2,7 +2,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include "components/entity.cpp"
+#include "components/wizard.cpp"
 #include "components/player.cpp"
 #include "components/ui.cpp"
 #include "components/circle.cpp"
@@ -47,7 +47,7 @@ int main(int arc, char *argv[]) {
   Wave wave;
   Circle circle;
   Player player;
-  Wizard wizard(200, 200);
+  Wizard wizard;
 
   int wizardX = wizard.getX();
   int wizardY = wizard.getY();
