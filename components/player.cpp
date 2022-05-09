@@ -25,8 +25,8 @@ protected:
 
 Player::Player() {
   SDL_Rect rect = {200, 300, 30, 30};
-  SDL_Rect lRect = {195, 295, 10, 10};
-  SDL_Rect rRect = {225, 295, 10, 10};
+  SDL_Rect lRect = {200, 300, 10, 10};
+  SDL_Rect rRect = {220, 300, 10, 10};
   pRect = rect;
   leftRect = lRect;
   rightRect = rRect;

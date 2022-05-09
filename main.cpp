@@ -30,30 +30,35 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
-  int current = 2;
-  StoryScript green;
-  Dialog theDialog[10];
-  for (int i = 0; i < 10; i++) {
-    theDialog[i].setDialog(theFont, renderer, green.getText(i));
-  }
-  // TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
-  World world;
-  Wave wave;
+  int current = 0;
+  bool near = false;
+  Screen screen;
+  screen.prepareDialog(theFont, renderer);
   Circle circle;
   Player player;
-  Wizard wizard;
 
-  int wizardX = wizard.getX();
-  int wizardY = wizard.getY();
-  bool near = false;
+  // StoryScript green;
+  // Dialog theDialog[10];
+  // for (int i = 0; i < 10; i++) {
+  //   theDialog[i].setDialog(theFont, renderer, green.getText(i));
+  // }
+  // TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
+  // World world;
+  // Wave wave;
+
+  // Wizard wizard;
+
+  // int wizardX = wizard.getX();
+  // int wizardY = wizard.getY();
 
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      if (!near) {
-        near = player.getPos(wizardX, wizardY, event);
-      }
+      current = screen.setCurrent(event, current);
+      // if (!near) {
+      //   near = player.getPos(wizardX, wizardY, event);
+      // }
 
       switch (event.type) {
         case SDL_MOUSEBUTTONDOWN:
@@ -73,14 +78,16 @@ int main(int arc, char *argv[]) {
       }
     }
 
-    world.draw(renderer);
-    wave.draw(renderer);
+    screen.draw(renderer, near, current);
     circle.draw(renderer);
-    wizard.draw(renderer);
     player.draw(renderer);
 
-    if (near)
-      theDialog[current].draw(renderer);
+    // world.draw(renderer);
+    // wave.draw(renderer);
+    // wizard.draw(renderer);
+
+    // if (near)
+    //   theDialog[current].draw(renderer);
     //
     // if (near)
     //   textbox.draw(renderer);

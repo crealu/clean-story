@@ -16,14 +16,6 @@ protected:
   int yPos;
 };
 
-// int string_size_1(const char * str)
-// {
-//     const char * str = "Hello World !";
-//     int Size = 0;
-//     while (str[Size] != '\0') Size++;
-//     return Size;
-// }
-
 void Dialog::setDialog(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText) {
   SDL_Color fontColor = {0, 0, 0};
   SDL_Surface *surfaceText1 = TTF_RenderText_Solid(aFont, theText, fontColor);
