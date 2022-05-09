@@ -1,9 +1,5 @@
 #include <iostream>
-#include <string>
 #include <SDL2/SDL.h>
-#include "wave.cpp"
-#include "wizard.cpp"
-using namespace std;
 
 class World {
 public:
@@ -12,23 +8,16 @@ public:
   void draw(SDL_Renderer *renderer);
 
 protected:
-  int r;
-  int g;
-  int b;
-  Wave *wave;
-  Wizard *wizard;
+  SDL_Color *color;
 };
 
-World::World() {
-  wave = new Wave;
-  wizard = new Wizard;
+World::World(SDL_Color color) {
+  color = color;
 }
 
 World::~World() {}
 
 void World::draw(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 0, 55, 0, 55);
+  SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   SDL_RenderClear(renderer);
-  wave->draw(renderer);
-  wizard->draw(renderer);
 }

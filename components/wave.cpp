@@ -15,15 +15,18 @@ protected:
   int pLen;
   int xp;
   int yo;
+  SDL_Color *color;
 };
 
-Wave::Wave() {
+Wave::Wave(SDL_Color color) {
   int p;
   pLen = 640;
   yo = 10;
 
   yPoints = new int[pLen];
   xPoints = new int[pLen];
+
+  color = color;
 
   for (p = 0; p < pLen; p++)
     xPoints[p] = p;
@@ -37,7 +40,7 @@ Wave::~Wave() {}
 
 void Wave::draw(SDL_Renderer *renderer) {
   yo = 10;
-  SDL_SetRenderDrawColor(renderer, 55, 255, 55, 255);
+  SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   for (int ys = 0; ys < 13; ys++) {
     for (xp = 0; xp < pLen; xp++) {
       SDL_RenderDrawPoint(renderer, xPoints[xp], yPoints[xp] + yo);

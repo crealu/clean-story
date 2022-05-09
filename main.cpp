@@ -37,43 +37,16 @@ int main(int arc, char *argv[]) {
   Circle circle;
   Player player;
 
-  // StoryScript green;
-  // Dialog theDialog[10];
-  // for (int i = 0; i < 10; i++) {
-  //   theDialog[i].setDialog(theFont, renderer, green.getText(i));
-  // }
-  // TextBox textbox(theFont, renderer, green.getText(current), 200, 200);
-  // World world;
-  // Wave wave;
-
-  // Wizard wizard;
-
-  // int wizardX = wizard.getX();
-  // int wizardY = wizard.getY();
-
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
       current = screen.setCurrent(event, current);
-      // if (!near) {
-      //   near = player.getPos(wizardX, wizardY, event);
-      // }
 
       switch (event.type) {
         case SDL_MOUSEBUTTONDOWN:
           if (event.button.button == SDL_BUTTON_LEFT)
             near = !near;
-          break;
-
-        case SDL_KEYDOWN:
-          if (event.key.keysym.sym == SDLK_m && current != 10) {
-            current++;
-          }
-
-          if (event.key.keysym.sym == SDLK_n && current != 0) {
-            current--;
-          }
           break;
       }
     }
@@ -81,16 +54,6 @@ int main(int arc, char *argv[]) {
     screen.draw(renderer, near, current);
     circle.draw(renderer);
     player.draw(renderer);
-
-    // world.draw(renderer);
-    // wave.draw(renderer);
-    // wizard.draw(renderer);
-
-    // if (near)
-    //   theDialog[current].draw(renderer);
-    //
-    // if (near)
-    //   textbox.draw(renderer);
 
     SDL_RenderPresent(renderer);
   }

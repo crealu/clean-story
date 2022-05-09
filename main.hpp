@@ -1,5 +1,4 @@
 #include <SDL2/SDL.h>
-// #include "components/wizard.cpp"
 #include "components/player.cpp"
 #include "components/circle.cpp"
 #include "components/screen.cpp"
