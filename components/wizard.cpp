@@ -8,7 +8,6 @@ public:
   Wizard();
   ~Wizard();
   void draw(SDL_Renderer *renderer);
-  void speak();
   int getX();
   int getY();
 
@@ -29,10 +28,6 @@ Wizard::~Wizard() {}
 void Wizard::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 200, 15, 0, 255);
   SDL_RenderFillRect(renderer, &pRect);
-}
-
-void Wizard::speak() {
-  cout << "Wizard says yo";
 }
 
 int Wizard::getX() {

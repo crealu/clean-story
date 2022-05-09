@@ -19,7 +19,6 @@ StoryScript::StoryScript() {
     "the trial of times forgotten can only one bear.",
     "So... what brings you to Midoritierra?",
     "...",
-    "...",
     "Excuse my unmannerliness... I have yet to introduce myself.",
     "I am the sourcerer of these plains,",
     "maintainer of peace and order,",
