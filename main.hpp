@@ -15,3 +15,8 @@ int quitGame(int running, SDL_Window *window, SDL_Event &event) {
   }
   return running;
 }
+
+// int getLength(string str);
+// int getLength(string str) {
+//   return sizeof(str)/sizeof(str[0]);
+// }

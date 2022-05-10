@@ -30,11 +30,20 @@ int main(int arc, char *argv[]) {
     printf("TTF_OpenFont: %s\n", TTF_GetError());
   }
 
+  int active = 0;
   int current = 0;
   bool near = false;
-  Screen screen;
-  screen.prepareDialog(theFont, renderer);
-  screen.setColor("blue");
+
+  string themes[] = {"green", "red", "blue"};
+  Screen screens[3];
+  for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
+    // screens[s] = new Screen;
+    screens[s].prepareDialog(theFont, renderer);
+    screens[s].setColor(themes[s]);
+  }
+  // Screen screen;
+  // screen.prepareDialog(theFont, renderer);
+  // screen.setColor("blue");
   Circle circle;
   Player player;
 
@@ -42,17 +51,24 @@ int main(int arc, char *argv[]) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      current = screen.setCurrent(event, current);
+      current = screens[active].setCurrent(event, current);
 
       switch (event.type) {
         case SDL_MOUSEBUTTONDOWN:
           if (event.button.button == SDL_BUTTON_LEFT)
             near = !near;
           break;
+
+        case SDL_KEYDOWN:
+          if (event.key.keysym.sym == SDLK_y && active != 2)
+            active++;
+          if (event.key.keysym.sym == SDLK_t && active != 0)
+            active--;
+          break;
       }
     }
 
-    screen.draw(renderer, near, current);
+    screens[active].draw(renderer, near, current);
     circle.draw(renderer);
     player.draw(renderer);
 
