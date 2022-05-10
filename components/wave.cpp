@@ -5,7 +5,7 @@ using namespace std;
 
 class Wave {
 public:
-  Wave();
+  Wave(SDL_Color color);
   ~Wave();
   void draw(SDL_Renderer *renderer);
 
@@ -15,10 +15,10 @@ protected:
   int pLen;
   int xp;
   int yo;
-  SDL_Color *color;
+  SDL_Color color;
 };
 
-Wave::Wave(SDL_Color color) {
+Wave::Wave(SDL_Color waveColor) {
   int p;
   pLen = 640;
   yo = 10;
@@ -26,7 +26,7 @@ Wave::Wave(SDL_Color color) {
   yPoints = new int[pLen];
   xPoints = new int[pLen];
 
-  color = color;
+  color = waveColor;
 
   for (p = 0; p < pLen; p++)
     xPoints[p] = p;

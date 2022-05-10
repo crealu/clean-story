@@ -3,16 +3,16 @@
 
 class World {
 public:
-  World();
+  World(SDL_Color worldColor);
   ~World();
   void draw(SDL_Renderer *renderer);
 
 protected:
-  SDL_Color *color;
+  SDL_Color color;
 };
 
-World::World(SDL_Color color) {
-  color = color;
+World::World(SDL_Color worldColor) {
+  color = worldColor;
 }
 
 World::~World() {}

@@ -34,6 +34,7 @@ int main(int arc, char *argv[]) {
   bool near = false;
   Screen screen;
   screen.prepareDialog(theFont, renderer);
+  screen.setColor("blue");
   Circle circle;
   Player player;
 

@@ -5,7 +5,7 @@ using namespace std;
 
 class WizardHat {
 public:
-  WizardHat();
+  WizardHat(SDL_Color color);
   ~WizardHat();
   void draw(SDL_Renderer *renderer);
 
@@ -13,10 +13,10 @@ protected:
   SDL_Point point1;
   SDL_Point point2;
   SDL_Point point3;
-  SDL_Color *color;
+  SDL_Color color;
 };
 
-WizardHat::WizardHat(SDL_Color color) {
+WizardHat::WizardHat(SDL_Color hatColor) {
   SDL_Point p1 = {400, 150};
   SDL_Point p2 = {415, 125};
   SDL_Point p3 = {430, 150};
@@ -25,7 +25,7 @@ WizardHat::WizardHat(SDL_Color color) {
   point2 = p2;
   point3 = p3;
 
-  color = color;
+  color = hatColor;
 }
 
 WizardHat::~WizardHat() {}
@@ -39,7 +39,7 @@ void WizardHat::draw(SDL_Renderer *renderer) {
 
 class Wizard {
 public:
-  Wizard();
+  Wizard(SDL_Color wizardColor);
   ~Wizard();
   void draw(SDL_Renderer *renderer);
   int getX();
@@ -49,14 +49,14 @@ protected:
   WizardHat *wizardHat;
   SDL_Rect pRect;
   string name;
-  SDL_Color *color;
+  SDL_Color color;
 };
 
-Wizard::Wizard(SDL_Color color) {
+Wizard::Wizard(SDL_Color wizardColor) {
   SDL_Rect rect = {400, 150, 30, 30};
   pRect = rect;
-  wizardHat = new WizardHat(color);
-  color = color;
+  wizardHat = new WizardHat(wizardColor);
+  color = wizardColor;
   name = "Wizard";
 };
 

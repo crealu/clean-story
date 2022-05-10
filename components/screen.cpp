@@ -39,17 +39,35 @@ void Screen::setColor(string color) {
   SDL_Color wizardColor;
 
   if (color == "green") {
-    worldColor = {20, 73, 0};
-    waveColor = {165, 218, 145};
-    wizardColor = {75, 145, 48};
+    worldColor.r = 20;
+    worldColor.g = 73;
+    worldColor.b = 0;
+    waveColor.r = 165;
+    waveColor.g = 218;
+    waveColor.b = 145;
+    wizardColor.r = 75;
+    wizardColor.g = 145;
+    wizardColor.b = 48;
   } else if (color == "red") {
-    worldColor = {83, 0, 6};
-    waveColor = {248, 166, 172};
-    wizardColor = {166, 55, 63};
+    worldColor.r = 83;
+    worldColor.g = 0;
+    worldColor.b = 6;
+    waveColor.r = 248;
+    waveColor.g = 166;
+    waveColor.b = 172;
+    wizardColor.r = 166;
+    wizardColor.g = 55;
+    wizardColor.b = 63;
   } else if (color == "blue") {
-    worldColor = {6, 19, 57};
-    waveColor = {121, 134, 172};
-    wizardColor = {47, 64, 115};
+    worldColor.r = 6;
+    worldColor.g = 19;
+    worldColor.b = 57;
+    waveColor.r = 121;
+    waveColor.g = 134;
+    waveColor.b = 172;
+    wizardColor.r = 47;
+    wizardColor.g = 64;
+    wizardColor.b = 115;
   }
 
   world = new World(worldColor);
@@ -59,6 +77,7 @@ void Screen::setColor(string color) {
 
 void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
+  wave->draw(renderer);
   wizard->draw(renderer);
   if (near) {
     dialog[current].draw(renderer);
