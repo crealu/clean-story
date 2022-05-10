@@ -24,7 +24,6 @@ WizardHat::WizardHat(SDL_Color hatColor) {
   point1 = p1;
   point2 = p2;
   point3 = p3;
-
   color = hatColor;
 }
 
