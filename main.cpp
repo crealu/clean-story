@@ -6,46 +6,32 @@
 #include "main.hpp"
 using namespace std;
 
-#define SCREEN_WIDTH  640
-#define SCREEN_HEIGHT 480
+string themes[] = {"green", "red", "blue"};
 
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
   TTF_Init();
 
-  SDL_Window *window;
-  SDL_Renderer *renderer;
+  SDL_Window *window = initWindow("Clean Story", 640, 480);
+  SDL_Renderer *renderer = initRenderer(window);
   TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
   SDL_Event event;
+  string state = "home";
   int running = 1;
-
-  window = SDL_CreateWindow("Clean Story",
-    SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-    SCREEN_WIDTH, SCREEN_HEIGHT, 0
-  );
-
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-  if (!theFont) {
-    printf("TTF_OpenFont: %s\n", TTF_GetError());
-  }
-
   int active = 0;
   int current = 0;
   bool near = false;
 
-  string themes[] = {"green", "red", "blue"};
+  Player player;
   Screen screens[3];
+  Home home;
+
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
-    // screens[s] = new Screen;
     screens[s].prepareDialog(theFont, renderer);
     screens[s].setColor(themes[s]);
   }
-  // Screen screen;
-  // screen.prepareDialog(theFont, renderer);
-  // screen.setColor("blue");
-  Circle circle;
-  Player player;
+
+  // Circle circle;
 
   while (running) {
     while (SDL_PollEvent(&event)) {
@@ -68,16 +54,19 @@ int main(int arc, char *argv[]) {
       }
     }
 
-    screens[active].draw(renderer, near, current);
-    circle.draw(renderer);
-    player.draw(renderer);
+    if (state == "home") {
+      home.draw(renderer);
+    } else {
+      screens[active].draw(renderer, near, current);
+    }
 
+    // circle.draw(renderer);
+    player.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
-  // SDL_DestroyTexture(textureText);
   TTF_CloseFont(theFont);
   SDL_Quit();
   return 0;
