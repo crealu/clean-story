@@ -9,7 +9,6 @@ public:
   void setText(TTF_Font *font, SDL_Renderer *renderer, const char *text);
 protected:
   SDL_Rect rect;
-  // TTF_Font *font;
   SDL_Surface *surface;
   SDL_Texture *texture;
 };
@@ -25,7 +24,6 @@ void Home::draw(SDL_Renderer *renderer) {
 
 void Home::setText(TTF_Font *font, SDL_Renderer *renderer, const char *text) {
   SDL_Color fontColor = {0, 0, 0};
-  // font = TTF_OpenFont("../fonts/Comfortaa[wght].ttf", 24);
   surface = TTF_RenderText_Solid(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
   rect.x = 125;

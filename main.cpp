@@ -38,6 +38,7 @@ int main(int arc, char *argv[]) {
       running = quitGame(running, window, event);
       player.move(event);
       current = screens[active].setCurrent(event, current);
+      // home.setState(event, state);
 
       switch (event.type) {
         case SDL_MOUSEBUTTONDOWN:
@@ -50,6 +51,8 @@ int main(int arc, char *argv[]) {
             active++;
           if (event.key.keysym.sym == SDLK_t && active != 0)
             active--;
+          if (event.key.keysym.sym == SDLK_SPACE)
+            state = "play";
           break;
       }
     }
