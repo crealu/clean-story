@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <math.h>
-using namespace std;
 
 class Circle {
 public:

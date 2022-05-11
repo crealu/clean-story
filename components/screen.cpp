@@ -24,13 +24,11 @@ protected:
   World *world;
   Wave *wave;
   Wizard *wizard;
-  TTF_Font *theFont;
 };
 
 Screen::Screen() {
   script = new StoryScript;
   dialog = new Dialog[10];
-  theFont = TTF_OpenFont("../fonts/Comfortaa[wght].ttf", 24);
 }
 
 Screen::~Screen() {}

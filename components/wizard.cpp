@@ -1,7 +1,5 @@
 #include <iostream>
-#include <string>
 #include <SDL2/SDL.h>
-using namespace std;
 
 class WizardHat {
 public:
@@ -47,7 +45,6 @@ public:
 protected:
   WizardHat *wizardHat;
   SDL_Rect pRect;
-  string name;
   SDL_Color color;
 };
 
@@ -56,7 +53,6 @@ Wizard::Wizard(SDL_Color wizardColor) {
   pRect = rect;
   wizardHat = new WizardHat(wizardColor);
   color = wizardColor;
-  name = "Wizard";
 };
 
 Wizard::~Wizard() {}

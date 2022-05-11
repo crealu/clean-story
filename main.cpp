@@ -1,12 +1,9 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include "main.hpp"
 using namespace std;
-
-string themes[] = {"green", "red", "blue"};
 
 int main(int arc, char *argv[]) {
   SDL_Init(SDL_INIT_VIDEO);
@@ -16,6 +13,7 @@ int main(int arc, char *argv[]) {
   SDL_Renderer *renderer = initRenderer(window);
   TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
   SDL_Event event;
+
   string state = "home";
   int running = 1;
   int active = 0;
@@ -25,6 +23,7 @@ int main(int arc, char *argv[]) {
   Player player;
   Screen screens[3];
   Home home;
+  string themes[] = {"green", "red", "blue"};
 
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
     screens[s].prepareDialog(theFont, renderer);

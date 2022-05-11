@@ -49,5 +49,6 @@ SDL_Renderer *initRenderer(SDL_Window *window) {
 
 int getLength(string str);
 int getLength(string str) {
-  return sizeof(str)/sizeof(str[0]);
+  int size = sizeof(str)/sizeof(str[0]);
+  return size;
 }

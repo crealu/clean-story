@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <math.h>
-using namespace std;
 
 class Wave {
 public:
@@ -25,7 +24,6 @@ Wave::Wave(SDL_Color waveColor) {
 
   yPoints = new int[pLen];
   xPoints = new int[pLen];
-
   color = waveColor;
 
   for (p = 0; p < pLen; p++)
