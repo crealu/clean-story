@@ -10,32 +10,32 @@ public:
   int getLength(const char *text);
 
 protected:
-  SDL_Rect textRect1;
-  SDL_Texture *textureText1;
+  SDL_Rect textRect;
+  SDL_Texture *textureText;
   int xPos;
   int yPos;
 };
 
 void Dialog::setDialog(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText) {
   SDL_Color fontColor = {0, 0, 0};
-  SDL_Surface *surfaceText1 = TTF_RenderText_Solid(aFont, theText, fontColor);
-  textureText1 = SDL_CreateTextureFromSurface(renderer, surfaceText1);
-  textRect1.x = 20;
-  textRect1.y = 400;
-  textRect1.h = 30;
+  SDL_Surface *surfaceText = TTF_RenderText_Solid(aFont, theText, fontColor);
+  textureText = SDL_CreateTextureFromSurface(renderer, surfaceText);
+  textRect.x = 20;
+  textRect.y = 400;
+  textRect.h = 30;
   if (15 * getLength(theText) >= 600) {
-    textRect1.w = 10 * getLength(theText);
+    textRect.w = 10 * getLength(theText);
   } else {
-    textRect1.w = 15 * getLength(theText);
+    textRect.w = 15 * getLength(theText);
   }
   cout << getLength(theText) << "\n";
-  SDL_FreeSurface(surfaceText1);
+  SDL_FreeSurface(surfaceText);
 }
 
 void Dialog::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_RenderFillRect(renderer, &textRect1);
-  SDL_RenderCopy(renderer, textureText1, NULL, &textRect1);
+  SDL_RenderFillRect(renderer, &textRect);
+  SDL_RenderCopy(renderer, textureText, NULL, &textRect);
 }
 
 int Dialog::getLength(const char *text) {

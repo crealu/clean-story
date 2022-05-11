@@ -23,6 +23,7 @@ int main(int arc, char *argv[]) {
   Player player;
   Screen screens[3];
   Home home;
+  home.setText(theFont, renderer, "Press Spacebar To Begin");
   string themes[] = {"green", "red", "blue"};
 
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
