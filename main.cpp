@@ -53,6 +53,8 @@ int main(int arc, char *argv[]) {
             active--;
           if (event.key.keysym.sym == SDLK_SPACE)
             state = "play";
+          if (event.key.keysym.sym == SDLK_RETURN)
+            state = "menu";
           break;
       }
     }
