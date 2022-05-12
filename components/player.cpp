@@ -43,18 +43,34 @@ void Player::move(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
-      xVel = theKey == SDLK_a ? -vel : xVel;
-      xVel = theKey == SDLK_d ?  vel : xVel;
-      yVel = theKey == SDLK_w ? -vel : yVel;
-      yVel = theKey == SDLK_s ?  vel : yVel;
+      if (theKey == SDLK_a && (pRect.x - vel) > 0)
+        xVel = -vel;
+      if (theKey == SDLK_d && (pRect.x + vel) < 610)
+        xVel = vel;
+      if (theKey == SDLK_w && (pRect.y - vel) > 0)
+        yVel = -vel;
+      if (theKey == SDLK_s && (pRect.y + vel) < 450)
+        yVel = vel;
+      // xVel = theKey == SDLK_a ? -vel : xVel;
+      // xVel = theKey == SDLK_d ?  vel : xVel;
+      // yVel = theKey == SDLK_w ? -vel : yVel;
+      // yVel = theKey == SDLK_s ?  vel : yVel;
       break;
 
     case SDL_KEYUP:
       theKey = event.key.keysym.sym;
-      xVel = theKey == SDLK_a ?  0 : xVel;
-      xVel = theKey == SDLK_d ?  0 : xVel;
-      yVel = theKey == SDLK_w ?  0 : yVel;
-      yVel = theKey == SDLK_s ?  0 : yVel;
+      if (theKey == SDLK_a && (pRect.x) > 0)
+        xVel = 0;
+      if (theKey == SDLK_d && (pRect.x + vel) < 610)
+        xVel = 0;
+      if (theKey == SDLK_w && (pRect.y) > 0)
+        yVel = 0;
+      if (theKey == SDLK_s && (pRect.y + vel) < 450)
+        yVel = 0;
+      // xVel = theKey == SDLK_a ?  0 : xVel;
+      // xVel = theKey == SDLK_d ?  0 : xVel;
+      // yVel = theKey == SDLK_w ?  0 : yVel;
+      // yVel = theKey == SDLK_s ?  0 : yVel;
       break;
   }
 }
@@ -70,10 +86,10 @@ void Player::draw(SDL_Renderer *renderer) {
 
 void Player::update() {
   pRect.x += xVel;
-  pRect.y += yVel;
   leftRect.x += xVel;
-  leftRect.y += yVel;
   rightRect.x += xVel;
+  pRect.y += yVel;
+  leftRect.y += yVel;
   rightRect.y += yVel;
 }
 
