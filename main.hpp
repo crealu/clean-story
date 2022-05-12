@@ -6,6 +6,7 @@
 #include "components/circle.cpp"
 #include "components/screen.cpp"
 #include "components/home.cpp"
+#include "components/menu.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {

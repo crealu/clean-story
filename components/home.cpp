@@ -7,6 +7,7 @@ public:
   ~Home();
   void draw(SDL_Renderer *renderer);
   void setText(TTF_Font *font, SDL_Renderer *renderer, const char *text);
+
 protected:
   SDL_Rect rect;
   SDL_Surface *surface;

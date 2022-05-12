@@ -22,15 +22,16 @@ int main(int arc, char *argv[]) {
 
   Player player;
   Screen screens[3];
-  Home home;
-  home.setText(theFont, renderer, "Press Spacebar To Begin");
   string themes[] = {"green", "red", "blue"};
-
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
     screens[s].prepareDialog(theFont, renderer);
     screens[s].setColor(themes[s]);
   }
 
+  Home home;
+  home.setText(theFont, renderer, "Press Spacebar To Begin");
+
+  Menu menu;
   // Circle circle;
 
   while (running) {
@@ -61,6 +62,8 @@ int main(int arc, char *argv[]) {
 
     if (state == "home") {
       home.draw(renderer);
+    } else if (state == "menu") {
+      menu.draw(renderer);
     } else {
       screens[active].draw(renderer, near, current);
     }
