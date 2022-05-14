@@ -30,9 +30,12 @@ void Menu::addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text[
     SDL_Surface *surface = TTF_RenderText_Solid(font, text[i], fontColor);
     texture[i] = SDL_CreateTextureFromSurface(renderer, surface);
     rect[i].x = 20;
-    rect[i].y = 30 * i;
+    rect[i].y = 30 + (30 * i);
     rect[i].h = 30;
-    rect[i].w = 100;
+    int size = 0;
+    while (text[i][size] != '\0') size++;
+    rect[i].w = size * 16;
+    size = 0;
     SDL_FreeSurface(surface);
   }
 }
