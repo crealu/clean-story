@@ -32,7 +32,7 @@ int main(int arc, char *argv[]) {
   home.setText(theFont, renderer, "Press Spacebar To Begin");
 
   Menu menu;
-  menu.addContents(theFont, renderer, "A - forward");
+  menu.addContents(theFont, renderer, "A - left \n D - right");
   // Circle circle;
 
   while (running) {
@@ -55,8 +55,12 @@ int main(int arc, char *argv[]) {
             active--;
           if (event.key.keysym.sym == SDLK_SPACE)
             state = "play";
-          if (event.key.keysym.sym == SDLK_RETURN)
-            state = "menu";
+          if (event.key.keysym.sym == SDLK_RETURN) {
+            if (state == "menu")
+              state = "play";
+            else
+              state = "menu";
+          }
           break;
       }
     }
