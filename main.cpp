@@ -39,7 +39,7 @@ int main(int arc, char *argv[]) {
   };
 
   Menu menu;
-  menu.addContents(theFont, renderer, controls[1], 30);
+  menu.addContents(theFont, renderer, controls);
   // Circle circle;
 
   while (running) {

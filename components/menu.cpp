@@ -6,11 +6,11 @@ public:
   Menu();
   ~Menu();
   void draw(SDL_Renderer *renderer);
-  void addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text, int offset);
+  void addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text[]);
 
 protected:
-  SDL_Rect rect;
-  SDL_Texture *texture;
+  SDL_Rect rect[4];
+  SDL_Texture *texture[4];
 };
 
 Menu::Menu() {}
@@ -19,16 +19,20 @@ Menu::~Menu() {}
 void Menu::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
   SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, texture, NULL, &rect);
+  for (int i = 0; i <= 3; i++) {
+    SDL_RenderCopy(renderer, texture[i], NULL, &rect[i]);
+  }
 }
 
-void Menu::addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text, int offset) {
-  SDL_Color fontColor = {0, 0, 0};
-  SDL_Surface *surface = TTF_RenderText_Solid(font, text, fontColor);
-  texture = SDL_CreateTextureFromSurface(renderer, surface);
-  rect.x = 20;
-  rect.y = 30 + offset;
-  rect.h = 30;
-  rect.w = 100;
-  SDL_FreeSurface(surface);
+void Menu::addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text[]) {
+  for (int i = 0; i <= 3; i++) {
+    SDL_Color fontColor = {0, 0, 0};
+    SDL_Surface *surface = TTF_RenderText_Solid(font, text[i], fontColor);
+    texture[i] = SDL_CreateTextureFromSurface(renderer, surface);
+    rect[i].x = 20;
+    rect[i].y = 30 * i;
+    rect[i].h = 30;
+    rect[i].w = 100;
+    SDL_FreeSurface(surface);
+  }
 }
