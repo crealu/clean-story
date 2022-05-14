@@ -32,6 +32,7 @@ int main(int arc, char *argv[]) {
   home.setText(theFont, renderer, "Press Spacebar To Begin");
 
   Menu menu;
+  menu.addContents(theFont, renderer, "A - forward");
   // Circle circle;
 
   while (running) {
