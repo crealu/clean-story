@@ -6,7 +6,7 @@ public:
   Menu();
   ~Menu();
   void draw(SDL_Renderer *renderer);
-  void addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text);
+  void addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text, int offset);
 
 protected:
   SDL_Rect rect;
@@ -22,12 +22,12 @@ void Menu::draw(SDL_Renderer *renderer) {
   SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 
-void Menu::addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text) {
+void Menu::addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text, int offset) {
   SDL_Color fontColor = {0, 0, 0};
   SDL_Surface *surface = TTF_RenderText_Solid(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
   rect.x = 20;
-  rect.y = 30;
+  rect.y = 30 + offset;
   rect.h = 30;
   rect.w = 100;
   SDL_FreeSurface(surface);

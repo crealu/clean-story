@@ -31,8 +31,15 @@ int main(int arc, char *argv[]) {
   Home home;
   home.setText(theFont, renderer, "Press Spacebar To Begin");
 
+  const char *controls[] = {
+    "A - left",
+    "D - right",
+    "W - forward",
+    "S - back"
+  };
+
   Menu menu;
-  menu.addContents(theFont, renderer, "A - left \n D - right");
+  menu.addContents(theFont, renderer, controls[1], 30);
   // Circle circle;
 
   while (running) {
