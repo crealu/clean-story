@@ -35,7 +35,10 @@ int main(int arc, char *argv[]) {
     "A - left",
     "D - right",
     "W - forward",
-    "S - back"
+    "S - back",
+    "",
+    "N - talk (back)"
+    "M - talk (forward)"
   };
 
   Menu menu;
