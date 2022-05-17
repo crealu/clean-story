@@ -44,26 +44,20 @@ int main(int arc, char *argv[]) {
 
   Menu menu;
   menu.addContents(theFont, renderer, controls);
-  // Circle circle;
+  Circle circle;
 
   int wizardX = screens[active].wizard->getX();
   int wizardY = screens[active].wizard->getY();
-  cout << wizardX;
 
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      near = player.getPos(wizardX, wizardY, event);
+      near = player.getPos(wizardX, wizardY, event, near);
       current = screens[active].setCurrent(event, current);
       // home.setState(event, state);
 
       switch (event.type) {
-        case SDL_MOUSEBUTTONDOWN:
-          if (event.button.button == SDL_BUTTON_LEFT)
-            near = !near;
-          break;
-
         case SDL_KEYDOWN:
           if (event.key.keysym.sym == SDLK_y && active != 2)
             active++;
@@ -89,7 +83,9 @@ int main(int arc, char *argv[]) {
       screens[active].draw(renderer, near, current);
     }
 
-    // circle.draw(renderer);
+    if (near)
+      circle.draw(renderer);
+
     player.draw(renderer);
     SDL_RenderPresent(renderer);
   }

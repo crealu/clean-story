@@ -10,7 +10,7 @@ public:
   ~Player();
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
-  bool getPos(int wizardX, int wizardY, SDL_Event &event);
+  bool getPos(int wizardX, int wizardY, SDL_Event &event, bool near);
   void update();
 
 protected:
@@ -93,18 +93,17 @@ void Player::update() {
   rightRect.y += yVel;
 }
 
-bool Player::getPos(int wizardX, int wizardY, SDL_Event &event) {
-  int theKey;
+bool Player::getPos(int wizardX, int wizardY, SDL_Event &event, bool near) {
   switch (event.type) {
     case SDL_KEYDOWN:
-      theKey = event.key.keysym.sym;
-      if (theKey == SDLK_k) {
+      if (event.key.keysym.sym == SDLK_k) {
         if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
-          cout << "they are near \n";
           return true;
+        } else {
+          return false;
         }
       }
       break;
   }
-  return false;
+  return near;
 }
