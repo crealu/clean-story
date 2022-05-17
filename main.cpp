@@ -44,7 +44,6 @@ int main(int arc, char *argv[]) {
 
   Menu menu;
   menu.addContents(theFont, renderer, controls);
-  Circle circle;
   Button button;
   button.setText(theFont, renderer);
 
@@ -88,7 +87,7 @@ int main(int arc, char *argv[]) {
     }
 
     if (near)
-      circle.draw(renderer);
+      button.draw(renderer);
 
     player.draw(renderer);
     SDL_RenderPresent(renderer);
