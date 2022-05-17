@@ -17,13 +17,13 @@ public:
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
   int setCurrent(SDL_Event &event, int current);
   void setColor(string color);
+  Wizard *wizard;
 
 protected:
   StoryScript *script;
   Dialog *dialog;
   World *world;
   Wave *wave;
-  Wizard *wizard;
 };
 
 Screen::Screen() {

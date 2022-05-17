@@ -46,10 +46,15 @@ int main(int arc, char *argv[]) {
   menu.addContents(theFont, renderer, controls);
   // Circle circle;
 
+  int wizardX = screens[active].wizard->getX();
+  int wizardY = screens[active].wizard->getY();
+  cout << wizardX;
+
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
+      near = player.getPos(wizardX, wizardY, event);
       current = screens[active].setCurrent(event, current);
       // home.setState(event, state);
 

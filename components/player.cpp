@@ -99,7 +99,7 @@ bool Player::getPos(int wizardX, int wizardY, SDL_Event &event) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
       if (theKey == SDLK_k) {
-        if (abs(wizardX - pRect.x) <= 10 && abs(wizardY - pRect.y) <= 10) {
+        if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
           cout << "they are near \n";
           return true;
         }
