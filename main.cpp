@@ -45,6 +45,8 @@ int main(int arc, char *argv[]) {
   Menu menu;
   menu.addContents(theFont, renderer, controls);
   Circle circle;
+  Button button;
+  button.setText(theFont, renderer);
 
   int wizardX = screens[active].wizard->getX();
   int wizardY = screens[active].wizard->getY();
