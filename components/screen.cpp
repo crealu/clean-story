@@ -93,7 +93,7 @@ void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
 int Screen::setCurrent(SDL_Event &event, int current) {
   switch (event.type) {
     case SDL_KEYDOWN:
-      if (event.key.keysym.sym == SDLK_m && current != 10)
+      if (event.key.keysym.sym == SDLK_m && current != 9)
         current++;
 
       if (event.key.keysym.sym == SDLK_n && current != 0)
