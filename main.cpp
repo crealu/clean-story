@@ -48,12 +48,14 @@ int main(int arc, char *argv[]) {
 
   int wizardX = screens[active].wizard->getX();
   int wizardY = screens[active].wizard->getY();
+  int playerX = player.getPosition()->x;
+  int playerY = player.getPosition()->y;
 
   while (running) {
     while (SDL_PollEvent(&event)) {
       running = quitGame(running, window, event);
       player.move(event);
-      near = player.getPos(wizardX, wizardY, event, near);
+      near = player.getVicinity(wizardX, wizardY, event, near);
       current = screens[active].setCurrent(event, current);
       // home.setState(event, state);
 

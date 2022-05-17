@@ -10,8 +10,9 @@ public:
   ~Player();
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
-  bool getPos(int wizardX, int wizardY, SDL_Event &event, bool near);
+  bool getVicinity(int wizardX, int wizardY, SDL_Event &event, bool near);
   void update();
+  SDL_Rect *getPosition();
 
 protected:
   SDL_Rect pRect;
@@ -93,7 +94,7 @@ void Player::update() {
   rightRect.y += yVel;
 }
 
-bool Player::getPos(int wizardX, int wizardY, SDL_Event &event, bool near) {
+bool Player::getVicinity(int wizardX, int wizardY, SDL_Event &event, bool near) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_k) {
@@ -106,4 +107,8 @@ bool Player::getPos(int wizardX, int wizardY, SDL_Event &event, bool near) {
       break;
   }
   return near;
+}
+
+SDL_Rect* Player::getPosition() {
+  return &pRect;
 }
