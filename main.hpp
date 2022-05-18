@@ -58,6 +58,6 @@ int getLength(string str) {
 
 void initialize();
 void initialize() {
-  SDL_Init(SDL_INIT_VIDEO);
+  SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
   TTF_Init();
 }

@@ -10,6 +10,12 @@ int main(int arc, char *argv[]) {
 
   int flags = MIX_INIT_MP3;
   int initted = Mix_Init(flags);
+  Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
+  Mix_Music *music;
+  Mix_AllocateChannels(16);
+  Mix_Volume(1, MIX_MAX_VOLUME/2);
+  music = Mix_LoadMUS("assets/audio/phased.mp3");
+  Mix_PlayMusic(music, -1);
 
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
@@ -80,6 +86,7 @@ int main(int arc, char *argv[]) {
     SDL_RenderPresent(renderer);
   }
 
+  Mix_FreeMusic(music);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   TTF_CloseFont(theFont);
