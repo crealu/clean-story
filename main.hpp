@@ -55,3 +55,9 @@ int getLength(string str) {
   int size = sizeof(str)/sizeof(str[0]);
   return size;
 }
+
+void initialize();
+void initialize() {
+  SDL_Init(SDL_INIT_VIDEO);
+  TTF_Init();
+}

@@ -12,6 +12,7 @@ protected:
   SDL_Rect rect;
   SDL_Surface *surface;
   SDL_Texture *texture;
+  const char *text;
 };
 
 Home::Home() {}
@@ -24,7 +25,7 @@ void Home::draw(SDL_Renderer *renderer) {
 }
 
 void Home::setText(TTF_Font *font, SDL_Renderer *renderer) {
-  const char *text = "Press Spacebar To Begin";
+  text = "Press Spacebar To Begin";
   SDL_Color fontColor = {0, 0, 0};
   surface = TTF_RenderText_Solid(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);

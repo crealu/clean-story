@@ -6,8 +6,7 @@
 using namespace std;
 
 int main(int arc, char *argv[]) {
-  SDL_Init(SDL_INIT_VIDEO);
-  TTF_Init();
+  initialize();
 
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);

@@ -10,6 +10,7 @@ public:
 
 protected:
   SDL_Rect rect[7];
+  SDL_Surface *surface[7];
   SDL_Texture *texture[7];
 };
 
