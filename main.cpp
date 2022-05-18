@@ -8,6 +8,9 @@ using namespace std;
 int main(int arc, char *argv[]) {
   initialize();
 
+  int flags = MIX_INIT_MP3;
+  int initted = Mix_Init(flags);
+
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
   TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
