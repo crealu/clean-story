@@ -6,11 +6,11 @@ public:
   Menu();
   ~Menu();
   void draw(SDL_Renderer *renderer);
-  void addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text[]);
+  void setText(TTF_Font *font, SDL_Renderer *renderer);
 
 protected:
-  SDL_Rect rect[4];
-  SDL_Texture *texture[4];
+  SDL_Rect rect[7];
+  SDL_Texture *texture[7];
 };
 
 Menu::Menu() {}
@@ -24,15 +24,27 @@ void Menu::draw(SDL_Renderer *renderer) {
   }
 }
 
-void Menu::addContents(TTF_Font *font, SDL_Renderer *renderer, const char *text[]) {
-  for (int i = 0; i <= 3; i++) {
+void Menu::setText(TTF_Font *font, SDL_Renderer *renderer) {
+  const char *text[] = {
+    "A - left",
+    "D - right",
+    "W - forward",
+    "S - back",
+    "",
+    "N - talk (back)",
+    "M - talk (forward)",
+    "Click - display text"
+  };
+
+  int size = 0;
+
+  for (int i = 0; i <= 6; i++) {
     SDL_Color fontColor = {0, 0, 0};
     SDL_Surface *surface = TTF_RenderText_Solid(font, text[i], fontColor);
     texture[i] = SDL_CreateTextureFromSurface(renderer, surface);
     rect[i].x = 20;
     rect[i].y = 30 + (30 * i);
     rect[i].h = 30;
-    int size = 0;
     while (text[i][size] != '\0') size++;
     rect[i].w = size * 16;
     size = 0;

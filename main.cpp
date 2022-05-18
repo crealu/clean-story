@@ -20,6 +20,7 @@ int main(int arc, char *argv[]) {
   int current = 0;
   bool near = false;
 
+  Circle circle;
   Player player;
   Screen screens[3];
   string themes[] = {"green", "red", "blue"};
@@ -29,22 +30,11 @@ int main(int arc, char *argv[]) {
   }
 
   Home home;
-  home.setText(theFont, renderer, "Press Spacebar To Begin");
-
-  const char *controls[] = {
-    "A - left",
-    "D - right",
-    "W - forward",
-    "S - back",
-    "",
-    "N - talk (back)",
-    "M - talk (forward)",
-    "Click - display text"
-  };
-
   Menu menu;
-  menu.addContents(theFont, renderer, controls);
   Button button;
+
+  home.setText(theFont, renderer);
+  menu.setText(theFont, renderer);
   button.setText(theFont, renderer);
 
   int wizardX = screens[active].wizard->getX();
@@ -58,7 +48,6 @@ int main(int arc, char *argv[]) {
       player.move(event);
       near = player.getVicinity(wizardX, wizardY, event, near);
       current = screens[active].setCurrent(event, current);
-      // home.setState(event, state);
 
       switch (event.type) {
         case SDL_KEYDOWN:
@@ -89,6 +78,7 @@ int main(int arc, char *argv[]) {
     if (near)
       button.draw(renderer);
 
+    circle.draw(renderer);
     player.draw(renderer);
     SDL_RenderPresent(renderer);
   }

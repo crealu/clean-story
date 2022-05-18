@@ -6,7 +6,7 @@ public:
   Home();
   ~Home();
   void draw(SDL_Renderer *renderer);
-  void setText(TTF_Font *font, SDL_Renderer *renderer, const char *text);
+  void setText(TTF_Font *font, SDL_Renderer *renderer);
 
 protected:
   SDL_Rect rect;
@@ -23,7 +23,8 @@ void Home::draw(SDL_Renderer *renderer) {
   SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 
-void Home::setText(TTF_Font *font, SDL_Renderer *renderer, const char *text) {
+void Home::setText(TTF_Font *font, SDL_Renderer *renderer) {
+  const char *text = "Press Spacebar To Begin";
   SDL_Color fontColor = {0, 0, 0};
   surface = TTF_RenderText_Solid(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);

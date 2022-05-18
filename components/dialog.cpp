@@ -28,7 +28,6 @@ void Dialog::setDialog(TTF_Font *aFont, SDL_Renderer *renderer, const char *theT
   } else {
     textRect.w = 15 * getLength(theText);
   }
-  cout << getLength(theText) << "\n";
   SDL_FreeSurface(surfaceText);
 }
 
