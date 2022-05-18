@@ -14,12 +14,7 @@ int main(int arc, char *argv[]) {
   TTF_Font *theFont = TTF_OpenFont("fonts/Comfortaa[wght].ttf", 24);
   SDL_Event event;
 
-  string state = "home";
-  int running = 1;
-  int active = 0;
-  int current = 0;
-  bool near = false;
-
+  Game game;
   Circle circle;
   Player player;
   Screen screens[3];
@@ -37,45 +32,45 @@ int main(int arc, char *argv[]) {
   menu.setText(theFont, renderer);
   button.setText(theFont, renderer);
 
-  int wizardX = screens[active].wizard->getX();
-  int wizardY = screens[active].wizard->getY();
+  int wizardX = screens[game.active].wizard->getX();
+  int wizardY = screens[game.active].wizard->getY();
   int playerX = player.getPosition()->x;
   int playerY = player.getPosition()->y;
 
-  while (running) {
+  while (game.running) {
     while (SDL_PollEvent(&event)) {
-      running = quitGame(running, window, event);
+      game.running = quitGame(game.running, window, event);
       player.move(event);
-      near = player.getVicinity(wizardX, wizardY, event, near);
-      current = screens[active].setCurrent(event, current);
+      game.near = player.getVicinity(wizardX, wizardY, event, game.near);
+      game.current = screens[game.active].setCurrent(event, game.current);
 
       switch (event.type) {
         case SDL_KEYDOWN:
-          if (event.key.keysym.sym == SDLK_y && active != 2)
-            active++;
-          if (event.key.keysym.sym == SDLK_t && active != 0)
-            active--;
+          if (event.key.keysym.sym == SDLK_y && game.active != 2)
+            game.active++;
+          if (event.key.keysym.sym == SDLK_t && game.active != 0)
+            game.active--;
           if (event.key.keysym.sym == SDLK_SPACE)
-            state = "play";
+            game.state = "play";
           if (event.key.keysym.sym == SDLK_RETURN) {
-            if (state == "menu")
-              state = "play";
+            if (game.state == "menu")
+              game.state = "play";
             else
-              state = "menu";
+              game.state = "menu";
           }
           break;
       }
     }
 
-    if (state == "home") {
+    if (game.state == "home") {
       home.draw(renderer);
-    } else if (state == "menu") {
+    } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[active].draw(renderer, near, current);
+      screens[game.active].draw(renderer, game.near, game.current);
     }
 
-    if (near)
+    if (game.near)
       button.draw(renderer);
 
     circle.draw(renderer);

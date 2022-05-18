@@ -12,10 +12,10 @@ public:
 };
 
 Game::Game():
-string("home")
-running(1)
-active(0)
-current(0)
+state("home"),
+running(1),
+active(0),
+current(0),
 near(false)
 {}
 
