@@ -8,8 +8,7 @@ using namespace std;
 int main(int arc, char *argv[]) {
   initialize();
 
-  int flags = MIX_INIT_MP3;
-  int initted = Mix_Init(flags);
+
   Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
   Mix_Music *music;
   Mix_AllocateChannels(16);

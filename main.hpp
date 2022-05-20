@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <string>
 #include "components/player.cpp"
 #include "components/circle.cpp"
@@ -60,4 +61,6 @@ void initialize();
 void initialize() {
   SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
   TTF_Init();
+  int flags = MIX_INIT_MP3;
+  int initted = Mix_Init(flags);
 }
