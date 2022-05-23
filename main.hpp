@@ -10,6 +10,7 @@
 #include "components/menu.cpp"
 #include "components/button.cpp"
 #include "components/game.cpp"
+#include "components/music.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {
