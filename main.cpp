@@ -7,15 +7,9 @@ using namespace std;
 
 int main(int arc, char *argv[]) {
   initialize();
-
-  // Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
-  // Mix_Music *music;
-  // Mix_AllocateChannels(16);
-  // Mix_Volume(1, MIX_MAX_VOLUME/2);
-  // music = Mix_LoadMUS("assets/audio/phased.mp3");
-  // Mix_PlayMusic(music, -1);
-  Music song1;
-  song1.play();
+  Music song;
+  // song1.play();
+  // Mix_PlayMusic(song.getMusic(), -1);
 
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
