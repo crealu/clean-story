@@ -86,7 +86,7 @@ int main(int arc, char *argv[]) {
     SDL_RenderPresent(renderer);
   }
 
-  Mix_FreeMusic(music);
+  // Mix_FreeMusic(music);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   TTF_CloseFont(theFont);
