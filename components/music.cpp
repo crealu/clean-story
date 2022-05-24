@@ -7,6 +7,8 @@ public:
   Music();
   ~Music();
   void play();
+protected:
+  Mix_Music *music;
 };
 
 Music::Music() {
