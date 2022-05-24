@@ -4,16 +4,14 @@ using namespace std;
 
 class Music {
 public:
-  Music();
+  Music(const char *musicFile);
   ~Music();
-  // Mix_Music getMusic();
 protected:
   Mix_Music *music;
 };
 
-Music::Music() {
-  Mix_Music *music;
-  music = Mix_LoadMUS("assets/audio/phased.mp3");
+Music::Music(const char *musicFile) {
+  music = Mix_LoadMUS(musicFile);
   Mix_PlayMusic(music, -1);
 }
 Music::~Music() {}

@@ -7,9 +7,7 @@ using namespace std;
 
 int main(int arc, char *argv[]) {
   initialize();
-  Music song;
-  // song1.play();
-  // Mix_PlayMusic(song.getMusic(), -1);
+  Music song("assets/audio/phased.mp3");
 
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
