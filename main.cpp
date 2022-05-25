@@ -15,13 +15,19 @@ int main(int arc, char *argv[]) {
   SDL_Event event;
 
   Game game;
-  Circle circle;
+  // Circle circle;
   Player player;
   Screen screens[3];
   string themes[] = {"green", "red", "blue"};
+  SDL_Color greenColors[] = {
+    {20, 73, 0},
+    {165, 218, 145},
+    {75, 145, 48}
+  };
+
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
     screens[s].prepareDialog(theFont, renderer);
-    screens[s].setColor(themes[s]);
+    screens[s].setColor(greenColors[1]);
   }
 
   Home home;
@@ -40,9 +46,9 @@ int main(int arc, char *argv[]) {
   while (game.running) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
-      player.move(event);
       game.near = player.getVicinity(wizardX, wizardY, event, game.near);
       game.current = screens[game.active].setCurrent(event, game.current);
+      player.move(event);
 
       switch (event.type) {
         case SDL_KEYDOWN:
@@ -73,7 +79,7 @@ int main(int arc, char *argv[]) {
     if (game.near)
       button.draw(renderer);
 
-    circle.draw(renderer);
+    // circle.draw(renderer);
     player.draw(renderer);
     SDL_RenderPresent(renderer);
   }

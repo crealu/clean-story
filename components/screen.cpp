@@ -16,7 +16,7 @@ public:
   void draw(SDL_Renderer *renderer, bool near, int current);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
   int setCurrent(SDL_Event &event, int current);
-  void setColor(string color);
+  void setColor(SDL_Color colors);
   Wizard *wizard;
 
 protected:
@@ -33,42 +33,42 @@ Screen::Screen() {
 
 Screen::~Screen() {}
 
-void Screen::setColor(string color) {
-  SDL_Color worldColor;
-  SDL_Color waveColor;
-  SDL_Color wizardColor;
+void Screen::setColor(SDL_Color colors) {
+  SDL_Color worldColor = {colors.r, colors.g, colors.b};
+  SDL_Color waveColor = {75, 145, 48};
+  SDL_Color wizardColor = {165, 218, 145};
 
-  if (color == "green") {
-    worldColor.r = 20;
-    worldColor.g = 73;
-    worldColor.b = 0;
-    waveColor.r = 165;
-    waveColor.g = 218;
-    waveColor.b = 145;
-    wizardColor.r = 75;
-    wizardColor.g = 145;
-    wizardColor.b = 48;
-  } else if (color == "red") {
-    worldColor.r = 83;
-    worldColor.g = 0;
-    worldColor.b = 6;
-    waveColor.r = 248;
-    waveColor.g = 166;
-    waveColor.b = 172;
-    wizardColor.r = 166;
-    wizardColor.g = 55;
-    wizardColor.b = 63;
-  } else if (color == "blue") {
-    worldColor.r = 6;
-    worldColor.g = 19;
-    worldColor.b = 57;
-    waveColor.r = 121;
-    waveColor.g = 134;
-    waveColor.b = 172;
-    wizardColor.r = 47;
-    wizardColor.g = 64;
-    wizardColor.b = 115;
-  }
+  // if (color == "green") {
+  //   worldColor.r = 20;
+  //   worldColor.g = 73;
+  //   worldColor.b = 0;
+  //   waveColor.r = 165;
+  //   waveColor.g = 218;
+  //   waveColor.b = 145;
+  //   wizardColor.r = 75;
+  //   wizardColor.g = 145;
+  //   wizardColor.b = 48;
+  // } else if (color == "red") {
+  //   worldColor.r = 83;
+  //   worldColor.g = 0;
+  //   worldColor.b = 6;
+  //   waveColor.r = 248;
+  //   waveColor.g = 166;
+  //   waveColor.b = 172;
+  //   wizardColor.r = 166;
+  //   wizardColor.g = 55;
+  //   wizardColor.b = 63;
+  // } else if (color == "blue") {
+  //   worldColor.r = 6;
+  //   worldColor.g = 19;
+  //   worldColor.b = 57;
+  //   waveColor.r = 121;
+  //   waveColor.g = 134;
+  //   waveColor.b = 172;
+  //   wizardColor.r = 47;
+  //   wizardColor.g = 64;
+  //   wizardColor.b = 115;
+  // }
 
   world = new World(worldColor);
   wave = new Wave(waveColor);
