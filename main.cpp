@@ -27,7 +27,6 @@ int main(int arc, char *argv[]) {
   home.setText(theFont, renderer);
   menu.setText(theFont, renderer);
   button.setText(theFont, renderer);
-
   position wizardPos = screens[game.active].wizard->getPosition();
 
   while (game.running) {
@@ -45,6 +44,7 @@ int main(int arc, char *argv[]) {
       menu.draw(renderer);
     } else {
       screens[game.active].draw(renderer, game.near, game.current);
+      // screens[game.active].wizard->move();
     }
 
     if (game.near)

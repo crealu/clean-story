@@ -6,7 +6,6 @@ public:
   WizardHat(SDL_Color color);
   ~WizardHat();
   void draw(SDL_Renderer *renderer);
-  position getPosition();
 
 protected:
   SDL_Point point1;
@@ -40,14 +39,14 @@ public:
   Wizard(SDL_Color wizardColor);
   ~Wizard();
   void draw(SDL_Renderer *renderer);
+  void move();
   position getPosition();
-  // int getX();
-  // int getY();
 
 protected:
   WizardHat *wizardHat;
   SDL_Rect pRect;
   SDL_Color color;
+  int speed;
 };
 
 Wizard::Wizard(SDL_Color wizardColor) {
@@ -55,6 +54,7 @@ Wizard::Wizard(SDL_Color wizardColor) {
   pRect = rect;
   wizardHat = new WizardHat(wizardColor);
   color = wizardColor;
+  speed = 2;
 }
 
 Wizard::~Wizard() {}
@@ -63,17 +63,20 @@ void Wizard::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   SDL_RenderFillRect(renderer, &pRect);
   wizardHat->draw(renderer);
+  this->move();
+}
+
+void Wizard::move() {
+  pRect.x -= speed;
+  if (pRect.x <= 300) {
+    speed = -speed;
+  }
+  if (pRect.x >= 500) {
+    speed = -speed;
+  }
 }
 
 position Wizard::getPosition() {
   position pos = {pRect.x, pRect.y};
   return pos;
 }
-// 
-// int Wizard::getX() {
-//   return pRect.x;
-// }
-//
-// int Wizard::getY() {
-//   return pRect.y;
-// }
