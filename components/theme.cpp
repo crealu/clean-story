@@ -5,7 +5,6 @@ public:
   Theme();
   ~Theme();
   themeColor getColor(int index);
-  SDL_Color *all;
 };
 
 Theme::Theme() {}
