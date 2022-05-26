@@ -16,7 +16,7 @@ public:
   void draw(SDL_Renderer *renderer, bool near, int current);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
   int setCurrent(SDL_Event &event, int current);
-  void setColor(SDL_Color colors);
+  void setColor(SDL_Color colors[]);
   Wizard *wizard;
 
 protected:
@@ -33,10 +33,10 @@ Screen::Screen() {
 
 Screen::~Screen() {}
 
-void Screen::setColor(SDL_Color colors) {
-  SDL_Color worldColor = {colors.r, colors.g, colors.b};
-  SDL_Color waveColor = {75, 145, 48};
-  SDL_Color wizardColor = {165, 218, 145};
+void Screen::setColor(SDL_Color colors[]) {
+  SDL_Color worldColor = {colors[0].r, colors[0].g, colors[0].b};
+  SDL_Color waveColor = {colors[1].r, colors[1].g, colors[1].b};
+  SDL_Color wizardColor = {colors[2].r, colors[2].g, colors[2].b};
 
   // if (color == "green") {
   //   worldColor.r = 20;

@@ -25,9 +25,23 @@ int main(int arc, char *argv[]) {
     {75, 145, 48}
   };
 
+  SDL_Color redColors[] = {
+    {83, 0, 6},
+    {248, 166, 172},
+    {166, 55, 63}
+  };
+
+  SDL_Color blueColors[] = {
+    {6, 19, 57},
+    {121, 134, 172},
+    {47, 64, 115}
+  };
+
+  SDL_Color *allColors[] = {greenColors, redColors, blueColors};
+
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
     screens[s].prepareDialog(theFont, renderer);
-    screens[s].setColor(greenColors[1]);
+    screens[s].setColor(allColors[s]);
   }
 
   Home home;
