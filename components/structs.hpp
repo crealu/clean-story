@@ -5,3 +5,8 @@ struct themeColor {
   SDL_Color waveColor;
   SDL_Color wizardColor;
 };
+
+struct position {
+  int x;
+  int y;
+};

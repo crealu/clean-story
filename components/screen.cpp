@@ -19,7 +19,7 @@ public:
   void setColor(struct themeColor color);
   Wizard *wizard;
 
-protected:
+private:
   StoryScript *script;
   Dialog *dialog;
   World *world;
@@ -37,7 +37,7 @@ void Screen::setColor(struct themeColor color) {
   SDL_Color worldColor = color.worldColor;
   SDL_Color waveColor = color.waveColor;
   SDL_Color wizardColor = color.wizardColor;
-  
+
   world = new World(worldColor);
   wave = new Wave(waveColor);
   wizard = new Wizard(wizardColor);

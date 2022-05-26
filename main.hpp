@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include "components/color.hpp"
+#include "components/structs.hpp"
 #include "components/player.cpp"
 #include "components/circle.cpp"
 #include "components/screen.cpp"

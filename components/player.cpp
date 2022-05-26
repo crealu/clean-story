@@ -12,9 +12,8 @@ public:
   void draw(SDL_Renderer *renderer);
   bool getVicinity(int wizardX, int wizardY, SDL_Event &event, bool near);
   void update();
-  SDL_Rect *getPosition();
 
-protected:
+private:
   SDL_Rect pRect;
   SDL_Rect leftRect;
   SDL_Rect rightRect;
@@ -52,10 +51,6 @@ void Player::move(SDL_Event &event) {
         yVel = -vel;
       if (theKey == SDLK_s && (pRect.y + vel) < 450)
         yVel = vel;
-      // xVel = theKey == SDLK_a ? -vel : xVel;
-      // xVel = theKey == SDLK_d ?  vel : xVel;
-      // yVel = theKey == SDLK_w ? -vel : yVel;
-      // yVel = theKey == SDLK_s ?  vel : yVel;
       break;
 
     case SDL_KEYUP:
@@ -68,10 +63,6 @@ void Player::move(SDL_Event &event) {
         yVel = 0;
       if (theKey == SDLK_s && (pRect.y + vel) < 450)
         yVel = 0;
-      // xVel = theKey == SDLK_a ?  0 : xVel;
-      // xVel = theKey == SDLK_d ?  0 : xVel;
-      // yVel = theKey == SDLK_w ?  0 : yVel;
-      // yVel = theKey == SDLK_s ?  0 : yVel;
       break;
   }
 }
@@ -107,8 +98,4 @@ bool Player::getVicinity(int wizardX, int wizardY, SDL_Event &event, bool near) 
       break;
   }
   return near;
-}
-
-SDL_Rect* Player::getPosition() {
-  return &pRect;
 }

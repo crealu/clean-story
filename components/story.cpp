@@ -11,7 +11,7 @@ public:
   void writeText(int current);
   const char *getText(int current);
 
-protected:
+private:
   string *script;
 };
 
