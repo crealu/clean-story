@@ -92,16 +92,4 @@ bool Player::getVicinity(int wizardX, int wizardY, bool near) {
     return false;
   }
   return near;
-  // switch (event.type) {
-  //   case SDL_KEYDOWN:
-  //     if (event.key.keysym.sym == SDLK_k) {
-  //       if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     }
-  //     break;
-  // }
-  // return near;
 }
