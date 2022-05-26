@@ -39,7 +39,7 @@ public:
   Wizard(SDL_Color wizardColor);
   ~Wizard();
   void draw(SDL_Renderer *renderer);
-  void move();
+  void move(bool near);
   position getPosition();
 
 protected:
@@ -63,16 +63,15 @@ void Wizard::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   SDL_RenderFillRect(renderer, &pRect);
   wizardHat->draw(renderer);
-  this->move();
 }
 
-void Wizard::move() {
-  pRect.x -= speed;
-  if (pRect.x <= 300) {
-    speed = -speed;
-  }
-  if (pRect.x >= 500) {
-    speed = -speed;
+void Wizard::move(bool near) {
+  if (!near) {
+    pRect.x -= speed;
+    if (pRect.x <= 300)
+      speed = -speed;
+    if (pRect.x >= 500)
+      speed = -speed;
   }
 }
 

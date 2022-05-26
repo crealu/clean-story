@@ -10,7 +10,7 @@ public:
   ~Player();
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
-  bool getVicinity(int wizardX, int wizardY, SDL_Event &event, bool near);
+  bool getVicinity(int wizardX, int wizardY, bool near);
   void update();
 
 private:
@@ -85,17 +85,23 @@ void Player::update() {
   rightRect.y += yVel;
 }
 
-bool Player::getVicinity(int wizardX, int wizardY, SDL_Event &event, bool near) {
-  switch (event.type) {
-    case SDL_KEYDOWN:
-      if (event.key.keysym.sym == SDLK_k) {
-        if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      break;
+bool Player::getVicinity(int wizardX, int wizardY, bool near) {
+  if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
+    return true;
+  } else {
+    return false;
   }
   return near;
+  // switch (event.type) {
+  //   case SDL_KEYDOWN:
+  //     if (event.key.keysym.sym == SDLK_k) {
+  //       if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     }
+  //     break;
+  // }
+  // return near;
 }

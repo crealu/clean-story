@@ -27,16 +27,19 @@ int main(int arc, char *argv[]) {
   home.setText(theFont, renderer);
   menu.setText(theFont, renderer);
   button.setText(theFont, renderer);
-  position wizardPos = screens[game.active].wizard->getPosition();
+  position wizardPos;
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
       game.current = screens[game.active].setCurrent(event, game.current);
-      game.near = player.getVicinity(wizardPos.x, wizardPos.y, event, game.near);
+      // game.near = player.getVicinity(wizardPos.x, wizardPos.y, event, game.near);
       game.handleKeyDown(event);
       player.move(event);
     }
+
+    wizardPos = screens[game.active].wizard->getPosition();
+    game.near = player.getVicinity(wizardPos.x, wizardPos.y, game.near);
 
     if (game.state == "home") {
       home.draw(renderer);
@@ -44,7 +47,7 @@ int main(int arc, char *argv[]) {
       menu.draw(renderer);
     } else {
       screens[game.active].draw(renderer, game.near, game.current);
-      // screens[game.active].wizard->move();
+      screens[game.active].wizard->move(game.near);
     }
 
     if (game.near)
