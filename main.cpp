@@ -18,7 +18,6 @@ int main(int arc, char *argv[]) {
   // Circle circle;
   Player player;
   Screen screens[3];
-  string themes[] = {"green", "red", "blue"};
   SDL_Color greenColors[] = {
     {20, 73, 0},
     {165, 218, 145},

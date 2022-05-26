@@ -38,38 +38,6 @@ void Screen::setColor(SDL_Color colors[]) {
   SDL_Color waveColor = {colors[1].r, colors[1].g, colors[1].b};
   SDL_Color wizardColor = {colors[2].r, colors[2].g, colors[2].b};
 
-  // if (color == "green") {
-  //   worldColor.r = 20;
-  //   worldColor.g = 73;
-  //   worldColor.b = 0;
-  //   waveColor.r = 165;
-  //   waveColor.g = 218;
-  //   waveColor.b = 145;
-  //   wizardColor.r = 75;
-  //   wizardColor.g = 145;
-  //   wizardColor.b = 48;
-  // } else if (color == "red") {
-  //   worldColor.r = 83;
-  //   worldColor.g = 0;
-  //   worldColor.b = 6;
-  //   waveColor.r = 248;
-  //   waveColor.g = 166;
-  //   waveColor.b = 172;
-  //   wizardColor.r = 166;
-  //   wizardColor.g = 55;
-  //   wizardColor.b = 63;
-  // } else if (color == "blue") {
-  //   worldColor.r = 6;
-  //   worldColor.g = 19;
-  //   worldColor.b = 57;
-  //   waveColor.r = 121;
-  //   waveColor.g = 134;
-  //   waveColor.b = 172;
-  //   wizardColor.r = 47;
-  //   wizardColor.g = 64;
-  //   wizardColor.b = 115;
-  // }
-
   world = new World(worldColor);
   wave = new Wave(waveColor);
   wizard = new Wizard(wizardColor);
