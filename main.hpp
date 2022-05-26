@@ -1,8 +1,8 @@
 #include <iostream>
+#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include <string>
 #include "components/player.cpp"
 #include "components/circle.cpp"
 #include "components/screen.cpp"

@@ -1,13 +1,7 @@
-#include <iostream>
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 #include "main.hpp"
-using namespace std;
 
 int main(int arc, char *argv[]) {
   initialize();
-  Music song("assets/audio/phased.mp3");
 
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
@@ -15,26 +9,28 @@ int main(int arc, char *argv[]) {
   SDL_Event event;
 
   Game game;
+  Music song("assets/audio/phased.mp3");
   // Circle circle;
   Player player;
   Screen screens[3];
-  SDL_Color greenColors[] = {
-    {20, 73, 0},
-    {165, 218, 145},
-    {75, 145, 48}
-  };
-
-  SDL_Color redColors[] = {
-    {83, 0, 6},
-    {248, 166, 172},
-    {166, 55, 63}
-  };
-
-  SDL_Color blueColors[] = {
-    {6, 19, 57},
-    {121, 134, 172},
-    {47, 64, 115}
-  };
+  Theme themes
+  // SDL_Color greenColors[] = {
+  //   {20, 73, 0},
+  //   {165, 218, 145},
+  //   {75, 145, 48}
+  // };
+  //
+  // SDL_Color redColors[] = {
+  //   {83, 0, 6},
+  //   {248, 166, 172},
+  //   {166, 55, 63}
+  // };
+  //
+  // SDL_Color blueColors[] = {
+  //   {6, 19, 57},
+  //   {121, 134, 172},
+  //   {47, 64, 115}
+  // };
 
   SDL_Color *themes[] = {greenColors, redColors, blueColors};
 
@@ -59,10 +55,10 @@ int main(int arc, char *argv[]) {
   while (game.running) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
-      game.near = player.getVicinity(wizardX, wizardY, event, game.near);
       game.current = screens[game.active].setCurrent(event, game.current);
-      player.move(event);
+      game.near = player.getVicinity(wizardX, wizardY, event, game.near);
       game.handleKeyDown(event);
+      player.move(event);
     }
 
     if (game.state == "home") {
