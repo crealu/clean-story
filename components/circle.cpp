@@ -38,7 +38,7 @@ Circle::Circle() {
   for (r = 0.0, p = 0; r <= pn; r += pInc, p++)
     if (p < pLen)
       yPoints[p] = round( 20 * (sin(r/1.0)) );
-};
+}
 
 Circle::~Circle() {}
 

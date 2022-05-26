@@ -49,7 +49,7 @@ Button::Button() {
       yPoints[p] = round( 20 * (sin(r/1.0)) );
 
   xy = 0;
-};
+}
 
 Button::~Button() {}
 

@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
+#include "components/color.hpp"
 #include "components/player.cpp"
 #include "components/circle.cpp"
 #include "components/screen.cpp"
@@ -11,6 +12,7 @@
 #include "components/button.cpp"
 #include "components/game.cpp"
 #include "components/music.cpp"
+#include "components/theme.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {

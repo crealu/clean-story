@@ -7,6 +7,9 @@
 #include "world.cpp"
 #include "wave.cpp"
 #include "wizard.cpp"
+// #ifndef COLOR_HPP
+// #include "color.hpp"
+// #endif
 using namespace std;
 
 class Screen {
@@ -16,7 +19,7 @@ public:
   void draw(SDL_Renderer *renderer, bool near, int current);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
   int setCurrent(SDL_Event &event, int current);
-  void setColor(SDL_Color colors[]);
+  void setColor(struct themeColor color);
   Wizard *wizard;
 
 protected:
@@ -33,10 +36,13 @@ Screen::Screen() {
 
 Screen::~Screen() {}
 
-void Screen::setColor(SDL_Color colors[]) {
-  SDL_Color worldColor = {colors[0].r, colors[0].g, colors[0].b};
-  SDL_Color waveColor = {colors[1].r, colors[1].g, colors[1].b};
-  SDL_Color wizardColor = {colors[2].r, colors[2].g, colors[2].b};
+void Screen::setColor(struct themeColor color) {
+  // SDL_Color worldColor = {colors[0].r, colors[0].g, colors[0].b};
+  // SDL_Color waveColor = {colors[1].r, colors[1].g, colors[1].b};
+  // SDL_Color wizardColor = {colors[2].r, colors[2].g, colors[2].b};
+  SDL_Color worldColor = color.worldColor;
+  SDL_Color waveColor = color.waveColor;
+  SDL_Color wizardColor = color.wizardColor;
 
   world = new World(worldColor);
   wave = new Wave(waveColor);

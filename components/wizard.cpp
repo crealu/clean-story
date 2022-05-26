@@ -53,7 +53,7 @@ Wizard::Wizard(SDL_Color wizardColor) {
   pRect = rect;
   wizardHat = new WizardHat(wizardColor);
   color = wizardColor;
-};
+}
 
 Wizard::~Wizard() {}
 

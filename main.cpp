@@ -9,34 +9,34 @@ int main(int arc, char *argv[]) {
   SDL_Event event;
 
   Game game;
-  Music song("assets/audio/phased.mp3");
+  // Music song("assets/audio/phased.mp3");
   // Circle circle;
   Player player;
   Screen screens[3];
-  Theme themes
-  // SDL_Color greenColors[] = {
-  //   {20, 73, 0},
-  //   {165, 218, 145},
-  //   {75, 145, 48}
-  // };
-  //
-  // SDL_Color redColors[] = {
-  //   {83, 0, 6},
-  //   {248, 166, 172},
-  //   {166, 55, 63}
-  // };
-  //
-  // SDL_Color blueColors[] = {
-  //   {6, 19, 57},
-  //   {121, 134, 172},
-  //   {47, 64, 115}
-  // };
+  Theme themes;
+  SDL_Color greenColors[] = {
+    {20, 73, 0},
+    {165, 218, 145},
+    {75, 145, 48}
+  };
 
-  SDL_Color *themes[] = {greenColors, redColors, blueColors};
+  SDL_Color redColors[] = {
+    {83, 0, 6},
+    {248, 166, 172},
+    {166, 55, 63}
+  };
 
-  for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
+  SDL_Color blueColors[] = {
+    {6, 19, 57},
+    {121, 134, 172},
+    {47, 64, 115}
+  };
+
+  SDL_Color *all[] = {greenColors, redColors, blueColors};
+
+  for (int s = 0; s < 3; s++) {
     screens[s].prepareDialog(theFont, renderer);
-    screens[s].setColor(themes[s]);
+    screens[s].setColor(themes.getColor(s));
   }
 
   Home home;
