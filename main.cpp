@@ -36,11 +36,11 @@ int main(int arc, char *argv[]) {
     {47, 64, 115}
   };
 
-  SDL_Color *allColors[] = {greenColors, redColors, blueColors};
+  SDL_Color *themes[] = {greenColors, redColors, blueColors};
 
   for (int s = 0; s < sizeof(themes)/sizeof(themes[0]); s++) {
     screens[s].prepareDialog(theFont, renderer);
-    screens[s].setColor(allColors[s]);
+    screens[s].setColor(themes[s]);
   }
 
   Home home;
@@ -62,23 +62,7 @@ int main(int arc, char *argv[]) {
       game.near = player.getVicinity(wizardX, wizardY, event, game.near);
       game.current = screens[game.active].setCurrent(event, game.current);
       player.move(event);
-
-      switch (event.type) {
-        case SDL_KEYDOWN:
-          if (event.key.keysym.sym == SDLK_y && game.active != 2)
-            game.active++;
-          if (event.key.keysym.sym == SDLK_t && game.active != 0)
-            game.active--;
-          if (event.key.keysym.sym == SDLK_SPACE)
-            game.state = "play";
-          if (event.key.keysym.sym == SDLK_RETURN) {
-            if (game.state == "menu")
-              game.state = "play";
-            else
-              game.state = "menu";
-          }
-          break;
-      }
+      game.handleKeyDown(event);
     }
 
     if (game.state == "home") {
