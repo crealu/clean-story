@@ -1,3 +1,4 @@
+#include <SDL2/SDL_ttf.h>
 #include "main.hpp"
 
 int main(int arc, char *argv[]) {
