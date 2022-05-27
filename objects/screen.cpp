@@ -20,14 +20,14 @@ public:
   Wizard *wizard;
 
 private:
-  StoryScript *script;
+  StoryScript *story;
   Dialog *dialog;
   World *world;
   Wave *wave;
 };
 
 Screen::Screen() {
-  script = new StoryScript;
+  story = new StoryScript;
   dialog = new Dialog[10];
 }
 
@@ -54,7 +54,7 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
   for (int i = 0; i < 10; i++) {
-    dialog[i].setDialog(font, renderer, script->getText(i));
+    dialog[i].setDialog(font, renderer, story->getText(i));
   }
 }
 
