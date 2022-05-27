@@ -10,13 +10,13 @@ int main(int arc, char *argv[]) {
   SDL_Event event;
 
   Game game;
-  Music song("assets/audio/phased.mp3");
   Player player;
   Theme themes;
   Home home;
   Menu menu;
   Button button;
   Screen screens[3];
+  Music song("assets/audio/phased.mp3");
   // Circle circle;
 
   for (int s = 0; s < 3; s++) {
@@ -49,7 +49,7 @@ int main(int arc, char *argv[]) {
       screens[game.active].wizard->move(game.near);
     }
 
-    if (game.near)
+    if (near)
       button.draw(renderer);
 
     // circle.draw(renderer);

@@ -70,7 +70,7 @@ void Button::draw(SDL_Renderer *renderer) {
 
 void Button::setText(TTF_Font *font, SDL_Renderer *renderer) {
   SDL_Color fontColor = {0, 0, 0};
-  SDL_Surface *surface = TTF_RenderText_Solid(font, "M", fontColor);
+  SDL_Surface *surface = TTF_RenderText_Blended(font, "M", fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
   rect.x = 30;
   rect.y = 450;

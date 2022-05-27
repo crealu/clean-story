@@ -7,6 +7,7 @@
 #include "wizard.cpp"
 #include "../ui/story.cpp"
 #include "../ui/dialog.cpp"
+#include "../ui/button.cpp"
 using namespace std;
 
 class Screen {
@@ -15,15 +16,15 @@ public:
   ~Screen();
   void draw(SDL_Renderer *renderer, bool near, int current);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
-  int setCurrent(SDL_Event &event, int current);
   void setColor(struct themeColor color);
+  int setCurrent(SDL_Event &event, int current);
   Wizard *wizard;
 
 private:
   StoryScript *story;
-  Dialog *dialog;
   World *world;
   Wave *wave;
+  Dialog *dialog;
 };
 
 Screen::Screen() {
@@ -47,9 +48,8 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
   wizard->draw(renderer);
-  if (near) {
+  if (near)
     dialog[current].draw(renderer);
-  }
 }
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
@@ -63,7 +63,6 @@ int Screen::setCurrent(SDL_Event &event, int current) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_m && current != 9)
         current++;
-
       if (event.key.keysym.sym == SDLK_n && current != 0)
         current--;
       break;

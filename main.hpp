@@ -12,7 +12,6 @@
 #include "objects/theme.cpp"
 #include "ui/home.cpp"
 #include "ui/menu.cpp"
-#include "ui/button.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {
