@@ -21,6 +21,7 @@ public:
   Wizard *wizard;
 
 private:
+  SDL_Rect dRect;
   StoryScript *story;
   World *world;
   Wave *wave;
@@ -28,6 +29,8 @@ private:
 };
 
 Screen::Screen() {
+  SDL_Rect rect = {20, 410, 600, 50};
+  dRect = rect;
   story = new StoryScript;
   dialog = new Dialog[10];
 }
@@ -48,8 +51,11 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
   wizard->draw(renderer);
-  if (near)
+  if (near) {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(renderer, &dRect);
     dialog[current].draw(renderer);
+  }
 }
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {

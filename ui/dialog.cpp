@@ -18,9 +18,9 @@ void Dialog::setDialog(TTF_Font *font, SDL_Renderer *renderer, const char *text)
   SDL_Color fontColor = {0, 0, 0};
   SDL_Surface *surface = TTF_RenderText_Blended(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
-  rect.x = 0;
-  rect.y = 450;
-  rect.h = 30;
+  rect.x = 25;
+  rect.y = 412;
+  rect.h = 20;
   rect.w = 12 * getLength(text);
   // if (15 * getLength(theText) >= 600) {
   //   textRect.w = 10 * getLength(theText);
@@ -31,8 +31,8 @@ void Dialog::setDialog(TTF_Font *font, SDL_Renderer *renderer, const char *text)
 }
 
 void Dialog::draw(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_RenderFillRect(renderer, &rect);
+  // SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  // SDL_RenderFillRect(renderer, &rect);
   SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
   SDL_RenderCopy(renderer, texture, NULL, &rect);
 }

@@ -6,7 +6,7 @@ int main(int arc, char *argv[]) {
 
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
-  TTF_Font *theFont = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 24);
+  TTF_Font *theFont = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 20);
   SDL_Event event;
 
   Game game;
