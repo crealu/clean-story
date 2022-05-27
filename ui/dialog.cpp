@@ -33,8 +33,6 @@ void Dialog::setDialog(TTF_Font *font, SDL_Renderer *renderer, const char *text)
   SDL_FreeSurface(surface);
 }
 
-
-
 int Dialog::getLength(const char *text) {
   int size = 0;
   while (text[size] != '\0') size++;
