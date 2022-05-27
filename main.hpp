@@ -3,16 +3,16 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include "components/structs.hpp"
-#include "components/player.cpp"
-#include "components/circle.cpp"
-#include "components/screen.cpp"
-#include "components/home.cpp"
-#include "components/menu.cpp"
-#include "components/button.cpp"
-#include "components/game.cpp"
-#include "components/music.cpp"
-// #include "components/theme.cpp"
+#include "headers/structs.hpp"
+#include "objects/player.cpp"
+#include "objects/game.cpp"
+#include "objects/music.cpp"
+#include "objects/circle.cpp"
+#include "objects/screen.cpp"
+#include "objects/theme.cpp"
+#include "ui/home.cpp"
+#include "ui/menu.cpp"
+#include "ui/button.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {

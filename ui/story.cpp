@@ -21,7 +21,7 @@ StoryScript::StoryScript() {
   int count = 0;
   script = new string[12];
 
-  textFile.open("./assets/scripts/green.txt", ios::in);
+  textFile.open("./assets/stories/green.txt", ios::in);
   if (textFile.is_open()) {
     string line;
     while (getline(textFile, line)) {

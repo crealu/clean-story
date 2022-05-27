@@ -2,11 +2,11 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include "story.cpp"
-#include "dialog.cpp"
 #include "world.cpp"
 #include "wave.cpp"
 #include "wizard.cpp"
+#include "../ui/story.cpp"
+#include "../ui/dialog.cpp"
 using namespace std;
 
 class Screen {
