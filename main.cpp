@@ -49,12 +49,13 @@ int main(int arc, char *argv[]) {
       screens[game.active].wizard->move(game.near);
     }
 
-    if (near)
+    if (game.near)
       button.draw(renderer);
 
     // circle.draw(renderer);
     player.draw(renderer);
     SDL_RenderPresent(renderer);
+    SDL_RenderClear(renderer);
   }
 
   SDL_DestroyRenderer(renderer);

@@ -8,30 +8,40 @@ public:
   void draw(SDL_Renderer *renderer);
 
 protected:
-  SDL_Point point1;
-  SDL_Point point2;
-  SDL_Point point3;
+  SDL_Vertex vertex[3];
   SDL_Color color;
 };
 
 WizardHat::WizardHat(SDL_Color hatColor) {
-  SDL_Point p1 = {400, 150};
-  SDL_Point p2 = {415, 125};
-  SDL_Point p3 = {430, 150};
+  vertex[0].position.x = 400;
+  vertex[0].position.y = 150;
+  vertex[0].color.r = 0;
+  vertex[0].color.g = 255;
+  vertex[0].color.b = 255;
+  vertex[0].color.a = 255;
 
-  point1 = p1;
-  point2 = p2;
-  point3 = p3;
+  vertex[1].position.x = 415;
+  vertex[1].position.y = 125;
+  vertex[1].color.r = 255;
+  vertex[1].color.g = 0;
+  vertex[1].color.b = 255;
+  vertex[1].color.a = 255;
+
+  vertex[2].position.x = 430;
+  vertex[2].position.y = 150;
+  vertex[2].color.r = 255;
+  vertex[2].color.g = 0;
+  vertex[2].color.b = 0;
+  vertex[2].color.a = 255;
   color = hatColor;
 }
 
 WizardHat::~WizardHat() {}
 
 void WizardHat::draw(SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
-  SDL_RenderDrawLine(renderer, point1.x, point1.y, point2.x, point2.y);
-  SDL_RenderDrawLine(renderer, point2.x, point2.y, point3.x, point3.y);
-  SDL_RenderDrawLine(renderer, point3.x, point3.y, point1.x, point1.y);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+  SDL_RenderClear(renderer);
+  SDL_RenderGeometry(renderer, NULL, vertex, 3, NULL, 0);
 }
 
 class Wizard {
