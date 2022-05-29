@@ -23,8 +23,8 @@ Portal::Portal() {
   int p;
   pLen = pn / pInc;
 
-  cx = 320;
-  cy = 400;
+  cx = 100;
+  cy = 80;
 
   xPoints = new int[pLen];
   yPoints = new int[pLen];

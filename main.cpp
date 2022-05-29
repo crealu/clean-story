@@ -17,7 +17,7 @@ int main(int arc, char *argv[]) {
   Button button;
   Screen screens[3];
   Music song("assets/audio/phased.mp3");
-  // Circle circle;
+  Portal portal;
 
   for (int s = 0; s < 3; s++) {
     screens[s].prepareDialog(theFont, renderer);
@@ -49,10 +49,11 @@ int main(int arc, char *argv[]) {
       screens[game.active].wizard->move(game.near);
     }
 
-    if (game.near)
+    if (game.near) {
       button.draw(renderer);
+    }
 
-    // circle.draw(renderer);
+    portal.draw(renderer);
     player.draw(renderer);
     SDL_RenderPresent(renderer);
     SDL_RenderClear(renderer);

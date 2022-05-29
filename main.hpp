@@ -7,7 +7,7 @@
 #include "objects/player.cpp"
 #include "objects/game.cpp"
 #include "objects/music.cpp"
-// #include "objects/circle.cpp"
+#include "objects/portal.cpp"
 #include "objects/screen.cpp"
 #include "objects/theme.cpp"
 #include "ui/home.cpp"
