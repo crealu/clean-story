@@ -56,7 +56,7 @@ int main(int arc, char *argv[]) {
     portal.draw(renderer);
     player.draw(renderer);
     SDL_RenderPresent(renderer);
-    SDL_RenderClear(renderer);
+    // SDL_RenderClear(renderer);
   }
 
   SDL_DestroyRenderer(renderer);
