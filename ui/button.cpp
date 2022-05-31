@@ -24,6 +24,7 @@ protected:
   float pi;
   SDL_Texture *texture;
   SDL_Rect rect;
+  SDL_Vertex vertices[];
 };
 
 Button::Button() {
@@ -47,6 +48,12 @@ Button::Button() {
   for (r = 0.0, p = 0; r <= pi; r += pInc, p++)
     if (p < pLen)
       yPoints[p] = round( 20 * (sin(r/1.0)) );
+  // 
+  // int v;
+  // for (v = 0; v < sizeof(xPoints)/sizeof(xPoints[0]); v++) {
+  //   vertices[v].position.x = xPoints[v];
+  //   vertices[v].position.y = yPoints[v];
+  // }
 
   xy = 0;
 }
@@ -65,14 +72,16 @@ void Button::draw(SDL_Renderer *renderer) {
   //   SDL_RenderDrawPoint(renderer, cx+fx, cx+fy);
   // }
 
+  // SDL_RenderGeometry(renderer, NULL, vertices, 3, NULL, 0);
+
   SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 
 void Button::setText(TTF_Font *font, SDL_Renderer *renderer) {
-  SDL_Color fontColor = {0, 0, 0};
+  SDL_Color fontColor = {255, 255, 255};
   SDL_Surface *surface = TTF_RenderText_Blended(font, "M", fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
-  rect.x = 30;
+  rect.x = 305;
   rect.y = 450;
   rect.h = 20;
   rect.w = 20;
