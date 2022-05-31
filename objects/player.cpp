@@ -91,6 +91,7 @@ void Player::pickupItem(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
+      break;
 }
 
 bool Player::getVicinity(int wizardX, int wizardY, bool near) {
