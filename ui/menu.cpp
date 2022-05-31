@@ -8,7 +8,7 @@ public:
   ~Menu();
   void draw(SDL_Renderer *renderer);
   void setText(TTF_Font *font, SDL_Renderer *renderer);
-
+  
 protected:
   SDL_Rect rect[7];
   SDL_Surface *surface[7];

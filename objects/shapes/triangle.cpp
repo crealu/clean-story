@@ -44,23 +44,23 @@ protected:
   SDL_Color color;
 };
 
-FilledTriangle::FilledTriangle(SDL_Color hatColor) {
-  vertex[0].position.x = 400;
-  vertex[0].position.y = 150;
+FilledTriangle::FilledTriangle(SDL_Color hatColor, int x1, int y1) {
+  vertex[0].position.x = x1;
+  vertex[0].position.y = y1;
   vertex[0].color.r = 0;
   vertex[0].color.g = 0;
   vertex[0].color.b = 0;
   vertex[0].color.a = 255;
 
-  vertex[1].position.x = 415;
-  vertex[1].position.y = 125;
+  vertex[1].position.x = x1 + 15;
+  vertex[1].position.y = y1 - 25;
   vertex[1].color.r = hatColor.r;
   vertex[1].color.g = hatColor.g;
   vertex[1].color.b = hatColor.b;
   vertex[1].color.a = 255;
 
-  vertex[2].position.x = 430;
-  vertex[2].position.y = 150;
+  vertex[2].position.x = x1 + 30;
+  vertex[2].position.y = y1;
   vertex[2].color.r = 255;
   vertex[2].color.g = 255;
   vertex[2].color.b = 255;

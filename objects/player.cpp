@@ -10,8 +10,9 @@ public:
   ~Player();
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
-  bool getVicinity(int wizardX, int wizardY, bool near);
   void update();
+  void pickupItem(SDL_Event &event);
+  bool getVicinity(int wizardX, int wizardY, bool near);
 
 private:
   SDL_Rect pRect;
@@ -83,6 +84,13 @@ void Player::update() {
   pRect.y += yVel;
   leftRect.y += yVel;
   rightRect.y += yVel;
+}
+
+void Player::pickupItem(SDL_Event &event) {
+  int theKey;
+  switch (event.type) {
+    case SDL_KEYDOWN:
+      theKey = event.key.keysym.sym;
 }
 
 bool Player::getVicinity(int wizardX, int wizardY, bool near) {
