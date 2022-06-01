@@ -62,7 +62,7 @@ protected:
 Wizard::Wizard(SDL_Color wizardColor) {
   SDL_Rect rect = {400, 150, 30, 30};
   pRect = rect;
-  wizardHat = new FilledTriangle(wizardColor, 100, 120);
+  wizardHat = new FilledTriangle(wizardColor, 100, 170);
   color = wizardColor;
   speed = 2;
 }
