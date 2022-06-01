@@ -4,42 +4,28 @@
 #include <stdio.h>
 using namespace std;
 
-class StoryScript {
-public:
-  StoryScript();
-  ~StoryScript();
-  void writeText(int current);
-  const char *getText(int current);
-
-private:
-  string *script;
+struct Task {
+  string name;
+  bool completed;
+  int number;
 };
 
-StoryScript::StoryScript() {
-  string text[12];
-  fstream textFile;
-  int count = 0;
-  script = new string[12];
+class Story {
+public:
+  Story();
+  ~Story();
+  Task tasks[4];
+  void updateTask(int taskNumber);
+  void getTask(int taskNumber);
+};
 
-  textFile.open("./assets/stories/green.txt", ios::in);
-  if (textFile.is_open()) {
-    string line;
-    while (getline(textFile, line)) {
-      script[count] = line;
-      count++;
-    }
-    textFile.close();
-  }
+Story::Story() {}
+Story::~Story() {}
+
+void Story::updateTask(int taskNumber) {
+
 }
 
-StoryScript::~StoryScript() {}
+void Story::getTask(int taskNumber) {
 
-void StoryScript::writeText(int current) {
-  const char *dialog = script[current].c_str();
-  cout << dialog << "\n";
-}
-
-const char *StoryScript::getText(int current) {
-  const char *dialog = script[current].c_str();
-  return dialog;
 }
