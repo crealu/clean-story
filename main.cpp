@@ -16,7 +16,7 @@ int main(int arc, char *argv[]) {
   Menu menu;
   Button button;
   Screen screens[3];
-  Music song("assets/audio/phased.mp3");
+  // Music song("assets/audio/phased.mp3");
   Portal portal;
 
   for (int s = 0; s < 3; s++) {

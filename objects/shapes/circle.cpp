@@ -22,11 +22,10 @@ Circle::Circle() {
   float pn = 6.29;
   float pInc = 0.09;
   int p;
-  pLen = pn / pInc;
 
+  pLen = pn / pInc;
   cx = 320;
   cy = 400;
-
   xPoints = new int[pLen];
   yPoints = new int[pLen];
 

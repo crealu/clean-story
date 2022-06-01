@@ -35,7 +35,7 @@ void Triangle::draw(SDL_Renderer *renderer) {
 
 class FilledTriangle {
 public:
-  FilledTriangle(SDL_Color color);
+  FilledTriangle(SDL_Color color, int x1, int y1);
   ~FilledTriangle();
   void draw(SDL_Renderer *renderer);
 
