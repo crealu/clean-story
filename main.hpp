@@ -63,8 +63,7 @@ void initialize();
 void initialize() {
   SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
   TTF_Init();
-  int flags = MIX_INIT_MP3;
-  int initted = Mix_Init(flags);
+  Mix_Init(MIX_INIT_MP3);
   Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
   Mix_AllocateChannels(16);
   Mix_Volume(1, MIX_MAX_VOLUME/2);

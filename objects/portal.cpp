@@ -13,7 +13,7 @@ protected:
 };
 
 Portal::Portal() {
-  hexagon = new Hexagon(200, 200);
+  hexagon = new Hexagon(100, 100);
 }
 
 Portal::~Portal() {}
