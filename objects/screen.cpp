@@ -5,7 +5,7 @@
 #include "world.cpp"
 #include "wave.cpp"
 #include "wizard.cpp"
-#include "../ui/story.cpp"
+#include "../ui/script.cpp"
 #include "../ui/dialog.cpp"
 #include "../ui/button.cpp"
 using namespace std;
@@ -22,7 +22,7 @@ public:
 
 private:
   SDL_Rect dRect;
-  StoryScript *story;
+  Script *script;
   World *world;
   Wave *wave;
   Dialog *dialog;
@@ -31,7 +31,7 @@ private:
 Screen::Screen() {
   SDL_Rect rect = {20, 410, 600, 50};
   dRect = rect;
-  story = new StoryScript;
+  script = new Script;
   dialog = new Dialog[10];
 }
 
@@ -60,7 +60,7 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
   for (int i = 0; i < 10; i++) {
-    dialog[i].setDialog(font, renderer, story->getText(i));
+    dialog[i].setDialog(font, renderer, script->getText(i));
   }
 }
 
