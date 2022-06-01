@@ -45,3 +45,35 @@ void Circle::draw(SDL_Renderer *renderer) {
   for (xp = 0; xp < pLen; xp++)
     SDL_RenderDrawPoint(renderer, cx+xPoints[xp], cy+yPoints[xp]);
 }
+
+class FilledCircle {
+public:
+  FilledCircle();
+  ~FilledCircle();
+  void draw(SDL_Renderer *renderer);
+
+private:
+  int x;
+  int y;
+  int radius;
+};
+
+FilledCircle::FilledCircle() {
+  x = 100;
+  y = 100;
+  radius = 20;
+}
+FilledCircle::~FilledCircle() {}
+
+void FilledCircle::draw(SDL_Renderer *renderer) {
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+  for (int w = 0; w < radius * 2; w++) {
+    for (int h = 0; h < radius * 2; h++) {
+      int dx = radius - w;
+      int dy = radius - h;
+      if ((dx * dx + dy * dy) <= (radius * radius)) {
+        SDL_RenderDrawPoint(renderer, x + dx, y + dy);
+      }
+    }
+  }
+}
