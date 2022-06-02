@@ -13,8 +13,14 @@ struct position {
   int y;
 };
 
-struct Task {
+struct task {
   string title;
   string description;
   bool completed;
+};
+
+struct item {
+  string name;
+  string description;
+  int quantity;
 };

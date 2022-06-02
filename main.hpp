@@ -4,14 +4,14 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include "headers/structs.hpp"
-#include "objects/player.cpp"
 #include "objects/game.cpp"
-#include "objects/music.cpp"
-#include "objects/chunk.cpp"
+#include "objects/story.cpp"
+#include "objects/player.cpp"
 #include "objects/portal.cpp"
 #include "objects/screen.cpp"
 #include "objects/theme.cpp"
-#include "objects/story.cpp"
+#include "objects/music.cpp"
+#include "objects/chunk.cpp"
 #include "ui/home.cpp"
 #include "ui/menu.cpp"
 

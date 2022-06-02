@@ -8,7 +8,7 @@ class Story {
 public:
   Story();
   ~Story();
-  Task tasks[4];
+  task tasks[4];
   void updateTask(int taskNumber);
   void getTask(int taskNumber);
 };
