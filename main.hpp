@@ -10,6 +10,7 @@
 #include "objects/portal.cpp"
 #include "objects/screen.cpp"
 #include "objects/theme.cpp"
+#include "objects/story.cpp"
 #include "ui/home.cpp"
 #include "ui/menu.cpp"
 

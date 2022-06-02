@@ -18,6 +18,7 @@ int main(int arc, char *argv[]) {
   Theme themes;
   Screen screens[3];
   Music song("assets/audio/phased.mp3");
+  // Music song1("assets/audio/beep.mp3", 0);
   Portal portal;
 
   for (int s = 0; s < 3; s++) {
@@ -41,13 +42,15 @@ int main(int arc, char *argv[]) {
     wizardPos = screens[game.active].wizard->getPosition();
     game.near = player.getVicinity(wizardPos.x, wizardPos.y, game.near);
 
+
+
     if (game.state == "home") {
       home.draw(renderer);
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
       screens[game.active].draw(renderer, game.near, game.current);
-      screens[game.active].wizard->move(game.near);
+      player.draw(renderer);
     }
 
     if (game.near) {
@@ -55,7 +58,6 @@ int main(int arc, char *argv[]) {
       portal.draw(renderer);
     }
 
-    player.draw(renderer);
     SDL_RenderPresent(renderer);
     // SDL_RenderClear(renderer);
   }

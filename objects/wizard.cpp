@@ -6,7 +6,7 @@ class Wizard {
 public:
   Wizard(SDL_Color wizardColor);
   ~Wizard();
-  void draw(SDL_Renderer *renderer);
+  void draw(SDL_Renderer *renderer, bool near);
   void move(bool near);
   position getPosition();
 
@@ -27,10 +27,11 @@ Wizard::Wizard(SDL_Color wizardColor) {
 
 Wizard::~Wizard() {}
 
-void Wizard::draw(SDL_Renderer *renderer) {
+void Wizard::draw(SDL_Renderer *renderer, bool near) {
   SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   SDL_RenderFillRect(renderer, &pRect);
   wizardHat->draw(renderer);
+  move(near);
 }
 
 void Wizard::move(bool near) {

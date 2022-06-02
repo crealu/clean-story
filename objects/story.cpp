@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <stdio.h>
-#include "../headers/structs.hpp"
 using namespace std;
 
 class Story {
@@ -33,5 +32,5 @@ void Story::updateTask(int taskNumber) {
 }
 
 void Story::getTask(int taskNumber) {
-  
+
 }

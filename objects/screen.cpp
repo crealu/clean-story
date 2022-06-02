@@ -50,7 +50,7 @@ void Screen::setColor(struct themeColor color) {
 void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
-  wizard->draw(renderer);
+  wizard->draw(renderer, near);
   if (near) {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(renderer, &dRect);
