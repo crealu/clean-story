@@ -1,4 +1,6 @@
 #include <SDL2/SDL.h>
+#include <string>
+using namespace std;
 
 struct themeColor {
   SDL_Color worldColor;
@@ -9,4 +11,10 @@ struct themeColor {
 struct position {
   int x;
   int y;
+};
+
+struct Task {
+  string title;
+  string description;
+  bool completed;
 };

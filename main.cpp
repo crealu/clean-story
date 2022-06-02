@@ -9,12 +9,13 @@ int main(int arc, char *argv[]) {
   TTF_Font *theFont = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 20);
   SDL_Event event;
 
+  Story story;
   Game game;
   Player player;
-  Theme themes;
   Home home;
   Menu menu;
   Button button;
+  Theme themes;
   Screen screens[3];
   Music song("assets/audio/phased.mp3");
   Portal portal;
