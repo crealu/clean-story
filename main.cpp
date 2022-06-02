@@ -18,7 +18,7 @@ int main(int arc, char *argv[]) {
   Theme themes;
   Screen screens[3];
   Music song("assets/audio/phased.mp3");
-  // Music song1("assets/audio/beep.mp3", 0);
+  // Chunk song1("assets/audio/beep.wav");
   Portal portal;
 
   for (int s = 0; s < 3; s++) {
@@ -41,8 +41,6 @@ int main(int arc, char *argv[]) {
 
     wizardPos = screens[game.active].wizard->getPosition();
     game.near = player.getVicinity(wizardPos.x, wizardPos.y, game.near);
-
-
 
     if (game.state == "home") {
       home.draw(renderer);

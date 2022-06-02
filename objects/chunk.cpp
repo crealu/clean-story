@@ -9,8 +9,8 @@ protected:
 };
 
 Chunk::Chunk(const char *musicFile) {
-  chunk = Mix_LoadMUS(musicFile);
-  Mix_PlayMusic(music, -1);
+  chunk = Mix_LoadWAV(musicFile);
+  Mix_PlayChannel(-1, chunk, 0);
 }
 
 Chunk::~Chunk() {}
