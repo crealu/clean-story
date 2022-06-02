@@ -4,13 +4,18 @@ class Chunk {
 public:
   Chunk(const char *musicFile);
   ~Chunk();
-protected:
+  void play();
+private:
   Mix_Chunk *chunk;
 };
 
 Chunk::Chunk(const char *musicFile) {
   chunk = Mix_LoadWAV(musicFile);
-  Mix_PlayChannel(-1, chunk, 0);
+  // Mix_PlayChannel(-1, chunk, 0);
 }
 
 Chunk::~Chunk() {}
+
+void Chunk::play() {
+  Mix_PlayChannel(-1, chunk, 0);
+}

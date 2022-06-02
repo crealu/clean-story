@@ -4,7 +4,7 @@ class Music {
 public:
   Music(const char *musicFile);
   ~Music();
-protected:
+private:
   Mix_Music *music;
 };
 

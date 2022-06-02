@@ -18,7 +18,7 @@ int main(int arc, char *argv[]) {
   Theme themes;
   Screen screens[3];
   Music song("assets/audio/phased.mp3");
-  // Chunk song1("assets/audio/beep.wav");
+  Chunk song1("assets/audio/beep.wav");
   Portal portal;
 
   for (int s = 0; s < 3; s++) {
@@ -37,6 +37,13 @@ int main(int arc, char *argv[]) {
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleKeyDown(event);
       player.move(event);
+
+      switch (event.type) {
+        case SDL_KEYDOWN:
+          if (event.key.keysym.sym == SDLK_p)
+            song1.play();
+          break;
+      }
     }
 
     wizardPos = screens[game.active].wizard->getPosition();
