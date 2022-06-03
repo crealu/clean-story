@@ -29,7 +29,9 @@ int main(int arc, char *argv[]) {
   home.setText(theFont, renderer);
   menu.setText(theFont, renderer);
   button.setText(theFont, renderer);
-  position wizardPos;
+  pos wizardPos;
+  pos hatPos = screens[game.active].wizard->getHatPosition();
+  bool hatPickedUp = false;
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -37,14 +39,12 @@ int main(int arc, char *argv[]) {
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleKeyDown(event);
       player.move(event);
-      // player.pickupItem(event);
+      hatPickedUp = player.pickupItem(event, hatPos);
 
       switch (event.type) {
         case SDL_KEYDOWN:
           if (event.key.keysym.sym == SDLK_p)
             song1.play();
-          if (event.key.keysym.sym == SDLK_g)
-            screens[game.active].wizard->getHatPosition();
           break;
       }
     }
@@ -57,7 +57,7 @@ int main(int arc, char *argv[]) {
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[game.active].draw(renderer, game.near, game.current);
+      screens[game.active].draw(renderer, game.near, game.current, hatPickedUp);
       player.draw(renderer);
     }
 
@@ -67,7 +67,6 @@ int main(int arc, char *argv[]) {
     }
 
     SDL_RenderPresent(renderer);
-    // SDL_RenderClear(renderer);
   }
 
   SDL_DestroyRenderer(renderer);

@@ -8,7 +8,7 @@ struct themeColor {
   SDL_Color wizardColor;
 };
 
-struct position {
+struct pos {
   int x;
   int y;
 };
@@ -23,4 +23,6 @@ struct item {
   string name;
   string description;
   int quantity;
+  pos position;
+  bool gathered;
 };
