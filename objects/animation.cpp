@@ -7,11 +7,15 @@ public:
 	Animation();
 	~Animation();
 	void draw(SDL_Renderer *renderer);
+	void update();
 	int t0;
 	int t1;
+	SDL_Rect rect;
 };
 
 Animation::Animation() {
+	SDL_Rect aRect = {200, 200, 20, 20};
+	rect = aRect;
 	t0 = SDL_GetTicks();
 	t1 = t0 + 1;
 }
@@ -23,6 +27,15 @@ void Animation::draw(SDL_Renderer *renderer) {
 		t1 = t0;
 		cout << t0 << endl;
 	}
+	if (t0 > 1 && t0 < 2) {
+		SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+		SDL_RenderFillRect(renderer, &rect);
+		t0 = 0;
+	}
+}
+
+void Animation::update() {
+	
 }
 
 // float animatedFPS = 24.0f;
