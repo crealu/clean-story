@@ -8,10 +8,11 @@ public:
   ~Wizard();
   void draw(SDL_Renderer *renderer, bool near);
   void move(bool near);
+  position getHatPosition();
   position getPosition();
 
 protected:
-  FilledTriangle *wizardHat;
+  FilledTriangle *hat;
   SDL_Rect pRect;
   SDL_Color color;
   int speed;
@@ -20,7 +21,7 @@ protected:
 Wizard::Wizard(SDL_Color wizardColor) {
   SDL_Rect rect = {400, 150, 30, 30};
   pRect = rect;
-  wizardHat = new FilledTriangle(wizardColor, 100, 170);
+  hat = new FilledTriangle(wizardColor, 100, 170);
   color = wizardColor;
   speed = 2;
 }
@@ -30,7 +31,7 @@ Wizard::~Wizard() {}
 void Wizard::draw(SDL_Renderer *renderer, bool near) {
   SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   SDL_RenderFillRect(renderer, &pRect);
-  wizardHat->draw(renderer);
+  hat->draw(renderer);
   move(near);
 }
 
@@ -47,4 +48,8 @@ void Wizard::move(bool near) {
 position Wizard::getPosition() {
   position pos = {pRect.x, pRect.y};
   return pos;
+}
+
+void Wizard::getHatPosition() {
+  return hat->vertex[0].position;
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <cmath>
 #include <SDL2/SDL.h>
+// #include "bag.cpp"
 using namespace std;
 
 class Player {
@@ -12,7 +13,8 @@ public:
   void draw(SDL_Renderer *renderer);
   void update();
   void pickupItem(SDL_Event &event);
-  bool getVicinity(int wizardX, int wizardY, bool near);
+  bool getVicinity(int entityX, int entityY, bool near);
+  // Bag bag;
 
 private:
   SDL_Rect pRect;
@@ -95,8 +97,8 @@ void Player::pickupItem(SDL_Event &event) {
   }
 }
 
-bool Player::getVicinity(int wizardX, int wizardY, bool near) {
-  if (abs(wizardX - pRect.x) <= 15 && abs(wizardY - pRect.y) <= 15) {
+bool Player::getVicinity(int entityX, int entityY, bool near) {
+  if (abs(entityX - pRect.x) <= 15 && abs(entityY - pRect.y) <= 15) {
     return true;
   } else {
     return false;

@@ -38,9 +38,9 @@ public:
   FilledTriangle(SDL_Color color, int x1, int y1);
   ~FilledTriangle();
   void draw(SDL_Renderer *renderer);
-
-protected:
   SDL_Vertex vertex[3];
+  
+protected:
   SDL_Color color;
 };
 
