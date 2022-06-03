@@ -31,7 +31,6 @@ int main(int arc, char *argv[]) {
   button.setText(theFont, renderer);
   pos wizardPos;
   pos hatPos = screens[game.active].wizard->getHatPosition();
-  bool hatPickedUp = false;
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -39,7 +38,7 @@ int main(int arc, char *argv[]) {
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleKeyDown(event);
       player.move(event);
-      hatPickedUp = player.pickupItem(event, hatPos);
+      player.pickupItem(event, screens[game.active].wizard->hat);
 
       switch (event.type) {
         case SDL_KEYDOWN:
@@ -57,7 +56,7 @@ int main(int arc, char *argv[]) {
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[game.active].draw(renderer, game.near, game.current, hatPickedUp);
+      screens[game.active].draw(renderer, game.near, game.current);
       player.draw(renderer);
     }
 

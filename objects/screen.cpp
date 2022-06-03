@@ -14,7 +14,7 @@ class Screen {
 public:
   Screen();
   ~Screen();
-  void draw(SDL_Renderer *renderer, bool near, int current, bool hatPickedUp);
+  void draw(SDL_Renderer *renderer, bool near, int current);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
   void setColor(struct themeColor color);
   int setCurrent(SDL_Event &event, int current);
@@ -47,10 +47,10 @@ void Screen::setColor(struct themeColor color) {
   wizard = new Wizard(wizardColor);
 }
 
-void Screen::draw(SDL_Renderer *renderer, bool near, int current, bool hatPickedUp) {
+void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
-  wizard->draw(renderer, near, hatPickedUp);
+  wizard->draw(renderer, near);
   if (near) {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(renderer, &dRect);

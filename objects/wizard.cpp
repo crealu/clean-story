@@ -26,13 +26,13 @@ class Wizard {
 public:
   Wizard(SDL_Color wizardColor);
   ~Wizard();
-  void draw(SDL_Renderer *renderer, bool near, bool hatPickedUp);
+  void draw(SDL_Renderer *renderer, bool near);
   void move();
   pos getHatPosition();
   pos getPosition();
+  Hat *hat;
 
 protected:
-  Hat *hat;
   SDL_Rect pRect;
   SDL_Color color;
   int speed;
