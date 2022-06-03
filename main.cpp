@@ -30,7 +30,7 @@ int main(int arc, char *argv[]) {
   menu.setText(theFont, renderer);
   button.setText(theFont, renderer);
   pos wizardPos;
-  pos hatPos = screens[game.active].wizard->getHatPosition();
+  Animation animation;
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -65,6 +65,7 @@ int main(int arc, char *argv[]) {
       portal.draw(renderer);
     }
 
+    animation.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 

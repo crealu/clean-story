@@ -12,6 +12,7 @@
 #include "objects/music.cpp"
 #include "objects/chunk.cpp"
 #include "objects/player.cpp"
+#include "objects/animation.cpp"
 #include "ui/home.cpp"
 #include "ui/menu.cpp"
 
