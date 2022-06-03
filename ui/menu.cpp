@@ -8,7 +8,7 @@ public:
   ~Menu();
   void draw(SDL_Renderer *renderer);
   void setText(TTF_Font *font, SDL_Renderer *renderer);
-  
+
 protected:
   SDL_Rect rect[7];
   SDL_Surface *surface[7];
@@ -42,7 +42,7 @@ void Menu::setText(TTF_Font *font, SDL_Renderer *renderer) {
 
   for (int i = 0; i <= 6; i++) {
     SDL_Color fontColor = {0, 0, 0};
-    SDL_Surface *surface = TTF_RenderText_Solid(font, text[i], fontColor);
+    SDL_Surface *surface = TTF_RenderText_Blended(font, text[i], fontColor);
     texture[i] = SDL_CreateTextureFromSurface(renderer, surface);
     rect[i].x = 20;
     rect[i].y = 30 + (30 * i);
