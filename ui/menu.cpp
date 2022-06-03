@@ -21,7 +21,8 @@ Menu::~Menu() {}
 void Menu::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
   SDL_RenderClear(renderer);
-  for (int i = 0; i <= 3; i++) {
+  for (int i = 0; i <= 6; i++) {
+    SDL_QueryTexture(texture[i], NULL, NULL, &rect[i].w, &rect[i].h);
     SDL_RenderCopy(renderer, texture[i], NULL, &rect[i]);
   }
 }
