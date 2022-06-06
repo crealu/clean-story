@@ -29,6 +29,7 @@ void Menu::draw(SDL_Renderer *renderer) {
 
 void Menu::setText(TTF_Font *font, SDL_Renderer *renderer) {
   const char *text[] = {
+    "Controls",
     "A - left",
     "D - right",
     "W - forward",
@@ -38,7 +39,7 @@ void Menu::setText(TTF_Font *font, SDL_Renderer *renderer) {
     ".",
     "Bag",
     "----",
-    "Hat"
+    "Green Hat"
   };
 
   int size = 0;
