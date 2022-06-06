@@ -10,9 +10,9 @@ public:
   void setText(TTF_Font *font, SDL_Renderer *renderer);
 
 protected:
-  SDL_Rect rect[7];
-  SDL_Surface *surface[7];
-  SDL_Texture *texture[7];
+  SDL_Rect rect[10];
+  SDL_Surface *surface[10];
+  SDL_Texture *texture[10];
 };
 
 Menu::Menu() {}
@@ -21,7 +21,7 @@ Menu::~Menu() {}
 void Menu::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
   SDL_RenderClear(renderer);
-  for (int i = 0; i <= 6; i++) {
+  for (int i = 0; i <= 9; i++) {
     SDL_QueryTexture(texture[i], NULL, NULL, &rect[i].w, &rect[i].h);
     SDL_RenderCopy(renderer, texture[i], NULL, &rect[i]);
   }
@@ -33,16 +33,19 @@ void Menu::setText(TTF_Font *font, SDL_Renderer *renderer) {
     "D - right",
     "W - forward",
     "S - back",
-    "",
     "N - talk (back)",
     "M - talk (forward)",
-    "Click - display text"
+    ".",
+    "Bag",
+    "----",
+    "Hat"
   };
 
   int size = 0;
+  int i = 0;
+  SDL_Color fontColor = {0, 0, 0};
 
-  for (int i = 0; i <= 6; i++) {
-    SDL_Color fontColor = {0, 0, 0};
+  for (i = 0; i <= 9; i++) {
     SDL_Surface *surface = TTF_RenderText_Blended(font, text[i], fontColor);
     texture[i] = SDL_CreateTextureFromSurface(renderer, surface);
     rect[i].x = 20;
