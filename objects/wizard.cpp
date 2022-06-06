@@ -36,6 +36,9 @@ protected:
   SDL_Rect pRect;
   SDL_Color color;
   int speed;
+  bool pause;
+  int t0;
+  int t1;
 };
 
 Wizard::Wizard(SDL_Color wizardColor) {
@@ -44,6 +47,8 @@ Wizard::Wizard(SDL_Color wizardColor) {
   hat = new Hat(wizardColor);
   color = wizardColor;
   speed = 2;
+  t0 = 0;
+  pause = false;
 }
 
 Wizard::~Wizard() {}
@@ -51,7 +56,7 @@ Wizard::~Wizard() {}
 void Wizard::draw(SDL_Renderer *renderer, bool near) {
   SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
   SDL_RenderFillRect(renderer, &pRect);
-  if (!near)
+  if (!near && !pause)
     move();
   if (!hat->collected)
     hat->shape->draw(renderer);
@@ -59,10 +64,21 @@ void Wizard::draw(SDL_Renderer *renderer, bool near) {
 
 void Wizard::move() {
   pRect.x -= speed;
-  if (pRect.x <= 300)
+
+  if (pRect.x <= 300) {
+    pause = true;
+    t0 = SDL_GetTicks() / 1000;
+    t1 = t0 + 3;
+    while (t0 < t1) {
+      t0 = SDL_GetTicks() / 1000;
+    }
+    pause = false;
     speed = -speed;
-  if (pRect.x >= 500)
+  }
+
+  if (pRect.x >= 500) {
     speed = -speed;
+  }
 }
 
 pos Wizard::getPosition() {

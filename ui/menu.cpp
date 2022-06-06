@@ -35,6 +35,7 @@ void Menu::setText(TTF_Font *font, SDL_Renderer *renderer) {
     "W - forward",
     "S - back",
     "M - talk",
+    "G - pikup item"
     ".",
     "Bag",
     "----",
