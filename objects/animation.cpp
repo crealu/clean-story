@@ -16,26 +16,26 @@ public:
 Animation::Animation() {
 	SDL_Rect aRect = {200, 200, 20, 20};
 	rect = aRect;
-	t0 = SDL_GetTicks();
-	t1 = t0 + 1;
 }
 Animation::~Animation() {}
 
 void Animation::draw(SDL_Renderer *renderer) {
 	t0 = round(SDL_GetTicks() / 1000);
-	if (t0 != t1) {
-		t1 = t0;
-		cout << t0 << endl;
-	}
-	if (t0 > 1 && t0 < 2) {
+
+	if (t0 % 2 != 0) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 		SDL_RenderFillRect(renderer, &rect);
 		t0 = 0;
 	}
+
+	if (t0 != t1) {
+		t1 = t0;
+		cout << t0 << endl;
+	}
 }
 
 void Animation::update() {
-	
+
 }
 
 // float animatedFPS = 24.0f;
