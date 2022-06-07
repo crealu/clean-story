@@ -10,6 +10,7 @@ public:
 protected:
   SDL_Rect rect;
   SDL_Texture *texture;
+  SDL_Surface *surface;
   int xPos;
   int yPos;
 };
@@ -21,7 +22,7 @@ void Dialog::draw(SDL_Renderer *renderer) {
 
 void Dialog::setDialog(TTF_Font *font, SDL_Renderer *renderer, const char *text) {
   SDL_Color fontColor = {0, 0, 0};
-  SDL_Surface *surface = TTF_RenderText_Blended(font, text, fontColor);
+  surface = TTF_RenderText_Blended(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
   rect.x = 25;
   rect.y = 412;

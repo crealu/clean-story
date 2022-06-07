@@ -15,22 +15,25 @@ public:
   Screen();
   ~Screen();
   void draw(SDL_Renderer *renderer, bool near, int current);
+  void drawDialogBox(SDL_Renderer *renderer);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
   void setColor(struct themeColor color);
   int setCurrent(SDL_Event &event, int current);
   Wizard *wizard;
 
 private:
-  SDL_Rect dRect;
   Script *script;
   World *world;
   Wave *wave;
   Dialog *dialog;
+  SDL_Rect dialogBox;
+  bool showDialog;
 };
 
 Screen::Screen() {
   SDL_Rect rect = {20, 410, 600, 50};
-  dRect = rect;
+  dialogBox = rect;
+  showDialog = false;
   script = new Script;
   dialog = new Dialog[10];
 }
@@ -51,11 +54,15 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
   wizard->draw(renderer, near);
-  if (near) {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderFillRect(renderer, &dRect);
+  if (showDialog) {
+    drawDialogBox(renderer);
     dialog[current].draw(renderer);
   }
+}
+
+void Screen::drawDialogBox(SDL_Renderer *renderer) {
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderFillRect(renderer, &dialogBox);
 }
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
@@ -67,10 +74,15 @@ void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
 int Screen::setCurrent(SDL_Event &event, int current) {
   switch (event.type) {
     case SDL_KEYDOWN:
-      if (event.key.keysym.sym == SDLK_m && current != 9)
-        current++;
-      if (event.key.keysym.sym == SDLK_n && current != 0)
-        current--;
+      if (event.key.keysym.sym == SDLK_m) {
+        if (current != 9) {
+          showDialog = true;
+          current++;
+        } else {
+          current = 0;
+          showDialog = false;
+        }
+      }
       break;
   }
 
