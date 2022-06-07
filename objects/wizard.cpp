@@ -82,14 +82,14 @@ void Wizard::move() {
 }
 
 pos Wizard::getPosition() {
-  pos pos = {pRect.x, pRect.y};
-  return pos;
+  pos position = {pRect.x, pRect.y};
+  return position;
 }
 
 pos Wizard::getHatPosition() {
-  pos pos = {
-    hat->shape->vertex[0].position.x, 
+  pos position = {
+    hat->shape->vertex[0].position.x,
     hat->shape->vertex[0].position.y
   };
-  return pos;
+  return position;
 }

@@ -22,7 +22,7 @@ int main(int arc, char *argv[]) {
   Screen screens[3];
   // Music song("assets/audio/phased.mp3");
   Chunk song1("assets/audio/beep.wav");
-  Portal portal;
+  // Portal portal;
   Animation animation;
 
   for (int s = 0; s < 3; s++) {
@@ -44,6 +44,7 @@ int main(int arc, char *argv[]) {
 
   pos wizardPos;
   pos itemPos;
+  pos portalPos;
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -68,10 +69,13 @@ int main(int arc, char *argv[]) {
     }
 
     wizardPos = screens[game.active].wizard->getPosition();
-    game.nearEntity = player.getVicinity(wizardPos.x, wizardPos.y, game.nearEntity);
+    game.nearEntity = player.getVicinity(wizardPos.x, wizardPos.y);
 
     itemPos = screens[game.active].wizard->getHatPosition();
-    game.nearItem = player.getVicinity(itemPos.x, itemPos.y, game.nearItem);
+    game.nearItem = player.getVicinity(itemPos.x, itemPos.y);
+
+    portalPos = screens[game.active].portal.getPosition();
+    game.nearPortal = player.getVicinity(portalPos.x, portalPos.y);
 
     if (game.state == "home") {
       home.draw(renderer);
@@ -84,12 +88,15 @@ int main(int arc, char *argv[]) {
 
     if (game.nearEntity)
       button1.draw(renderer);
+
     if (game.nearItem)
       button2.draw(renderer);
+
     if (game.nearPortal)
       button3.draw(renderer);
-    if (story.tasks[0].completed)
-      portal.draw(renderer);
+
+    // if (story.tasks[0].completed)
+    //   portal.draw(renderer);
 
     // animation.draw(renderer);
     SDL_RenderPresent(renderer);

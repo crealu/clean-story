@@ -6,7 +6,7 @@
 #include "headers/structs.hpp"
 #include "objects/game.cpp"
 #include "objects/story.cpp"
-#include "objects/portal.cpp"
+// #include "objects/portal.cpp"
 #include "objects/screen.cpp"
 #include "objects/theme.cpp"
 #include "objects/music.cpp"

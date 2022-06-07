@@ -5,9 +5,9 @@ public:
   Hexagon(int x1, int y1);
   ~Hexagon();
   void draw(SDL_Renderer *renderer);
+  SDL_Vertex vertex[12];
 
 protected:
-  SDL_Vertex vertex[12];
   SDL_Color color;
 };
 
