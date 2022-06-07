@@ -17,12 +17,14 @@ public:
   void draw(SDL_Renderer *renderer, bool near, int current);
   void drawDialogBox(SDL_Renderer *renderer);
   void prepareDialog(TTF_Font *font, SDL_Renderer *renderer);
+  void updateDialog(TTF_Font *font, SDL_Renderer *renderer);
   void setColor(struct themeColor color);
   int setCurrent(SDL_Event &event, int current);
   Wizard *wizard;
+  Script *script;
+  int dialogLimit;
 
 private:
-  Script *script;
   World *world;
   Wave *wave;
   Dialog *dialog;
@@ -34,7 +36,8 @@ Screen::Screen() {
   SDL_Rect rect = {20, 410, 600, 50};
   dialogBox = rect;
   showDialog = false;
-  script = new Script;
+  script = new Script("./assets/stories/green/script1.txt");
+  // dialogLimit = script->length;
   dialog = new Dialog[10];
 }
 
@@ -56,9 +59,17 @@ void Screen::drawDialogBox(SDL_Renderer *renderer) {
 }
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
-  for (int i = 0; i < 10; i++) {
+  dialogLimit = script->length;
+  cout << dialogLimit << endl;
+  for (int i = 0; i < dialogLimit; i++) {
     dialog[i].setDialog(font, renderer, script->getText(i));
   }
+}
+
+void Screen::updateDialog(TTF_Font *font, SDL_Renderer *renderer) {
+  script = new Script("./assets/stories/green/script2.txt");
+  // dialogLimit = script->length;
+  prepareDialog(font, renderer);
 }
 
 void Screen::setColor(struct themeColor color) {
@@ -75,7 +86,7 @@ int Screen::setCurrent(SDL_Event &event, int current) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_m) {
-        if (current != 9) {
+        if (current != dialogLimit) {
           showDialog = true;
           current++;
         } else {

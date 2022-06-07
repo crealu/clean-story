@@ -12,7 +12,7 @@ public:
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
   void update();
-  void pickupItem(SDL_Event &event, Hat *hat);
+  void pickupItem(SDL_Event &event, Hat *hat, Screen screen, SDL_Renderer *renderer, TTF_Font *font);
   bool getVicinity(int entityX, int entityY, bool near);
   // Bag bag;
 
@@ -88,12 +88,13 @@ void Player::update() {
   rightRect.y += yVel;
 }
 
-void Player::pickupItem(SDL_Event &event, Hat *hat) {
+void Player::pickupItem(SDL_Event &event, Hat *hat, Screen screen, SDL_Renderer *renderer, TTF_Font *font) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_g) {
         if (getVicinity(hat->shape->vertex[0].position.x, hat->shape->vertex[0].position.y, true)) {
           hat->updateStatus();
+          screen.updateDialog(font, renderer);
           cout << "picked up hat" << endl;
         }
       }

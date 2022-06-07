@@ -11,6 +11,7 @@ public:
   int current;
   bool nearEntity;
   bool nearItem;
+  bool nearPortal;
   void handleKeyDown(SDL_Event &event);
 };
 
@@ -20,7 +21,8 @@ running(1),
 active(0),
 current(0),
 nearEntity(false),
-nearItem(false)
+nearItem(false),
+nearPortal(false)
 {}
 
 Game::~Game() {}

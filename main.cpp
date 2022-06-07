@@ -14,8 +14,10 @@ int main(int arc, char *argv[]) {
   Player player;
   Home home;
   Menu menu;
+  // Button buttons[3];
   Button button1;
   Button button2;
+  Button button3;
   Theme themes;
   Screen screens[3];
   // Music song("assets/audio/phased.mp3");
@@ -37,6 +39,9 @@ int main(int arc, char *argv[]) {
   const char *button2Text[] = {"G", "Take"};
   button2.setText(theFont, button2Text, renderer);
 
+  const char *button3Text[] = {"H", "Enter"};
+  button3.setText(theFont, button3Text, renderer);
+
   pos wizardPos;
   pos itemPos;
 
@@ -46,7 +51,13 @@ int main(int arc, char *argv[]) {
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleKeyDown(event);
       player.move(event);
-      player.pickupItem(event, screens[game.active].wizard->hat);
+      player.pickupItem(
+        event,
+        screens[game.active].wizard->hat,
+        screens[game.active],
+        renderer,
+        theFont
+      );
 
       switch (event.type) {
         case SDL_KEYDOWN:
@@ -75,10 +86,12 @@ int main(int arc, char *argv[]) {
       button1.draw(renderer);
     if (game.nearItem)
       button2.draw(renderer);
+    if (game.nearPortal)
+      button3.draw(renderer);
     if (story.tasks[0].completed)
       portal.draw(renderer);
 
-    animation.draw(renderer);
+    // animation.draw(renderer);
     SDL_RenderPresent(renderer);
   }
 

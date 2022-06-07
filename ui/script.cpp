@@ -6,26 +6,29 @@ using namespace std;
 
 class Script {
 public:
-  Script();
+  Script(const char *filename);
   ~Script();
   void writeText(int current);
   const char *getText(int current);
+  int length;
 
 private:
   string text[12];
 };
 
-Script::Script() {
+Script::Script(const char *filename) {
   fstream textFile;
   int count = 0;
+  length = 0;
 
-  textFile.open("./assets/stories/green.txt", ios::in);
+  textFile.open(filename, ios::in);
   if (textFile.is_open()) {
     string line;
     while (getline(textFile, line)) {
       text[count] = line;
       count++;
     }
+    length = count;
     textFile.close();
   }
 }
