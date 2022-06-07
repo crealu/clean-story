@@ -12,8 +12,8 @@ public:
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
   void update();
-  void pickupItem(SDL_Event &event, Hat *hat, Screen screen, SDL_Renderer *renderer, TTF_Font *font);
-  bool getVicinity(int entityX, int entityY);
+  void pickupItem(SDL_Event &event, Screen screen, SDL_Renderer *renderer, TTF_Font *font);
+  bool getVicinity(pos entityPosition);
   // Bag bag;
 
 private:
@@ -90,13 +90,13 @@ void Player::update() {
   rightRect.y += yVel;
 }
 
-void Player::pickupItem(SDL_Event &event, Hat *hat, Screen screen, SDL_Renderer *renderer, TTF_Font *font) {
+void Player::pickupItem(SDL_Event &event, Screen screen, SDL_Renderer *renderer, TTF_Font *font) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_g) {
-        if (getVicinity(hat->shape->vertex[0].position.x, hat->shape->vertex[0].position.y)) {
+        if (getVicinity(screen.wizard->getHatPosition())) {
           beep->play();
-          hat->updateStatus();
+          screen.wizard->hat->updateStatus();
           screen.updateDialog(font, renderer);
           cout << "picked up hat" << endl;
         }
@@ -105,8 +105,8 @@ void Player::pickupItem(SDL_Event &event, Hat *hat, Screen screen, SDL_Renderer 
   }
 }
 
-bool Player::getVicinity(int entityX, int entityY) {
-  if (abs(entityX - pRect.x) <= 15 && abs(entityY - pRect.y) <= 15) {
+bool Player::getVicinity(pos entity) {
+  if (abs(entity.x - pRect.x) <= 15 && abs(entity.y - pRect.y) <= 15) {
     return true;
   } else {
     return false;

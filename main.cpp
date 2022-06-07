@@ -43,13 +43,7 @@ int main(int arc, char *argv[]) {
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleKeyDown(event);
       player.move(event);
-      player.pickupItem(
-        event,
-        screens[game.active].wizard->hat,
-        screens[game.active],
-        renderer,
-        theFont
-      );
+      player.pickupItem(event, screens[game.active], renderer, theFont);
     }
 
     entityPos[0] = screens[game.active].wizard->getPosition();
@@ -57,7 +51,7 @@ int main(int arc, char *argv[]) {
     entityPos[2] = screens[game.active].portal.getPosition();
 
     for (int e = 0; e < 3; e++) {
-      game.near[e] = player.getVicinity(entityPos[e].x, entityPos[e].y);
+      game.near[e] = player.getVicinity(entityPos[e]);
     }
 
     if (game.state == "home") {
