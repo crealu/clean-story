@@ -14,12 +14,14 @@ int main(int arc, char *argv[]) {
   Player player;
   Home home;
   Menu menu;
-  Button button;
+  Button button1;
+  Button button2;
   Theme themes;
   Screen screens[3];
   // Music song("assets/audio/phased.mp3");
   Chunk song1("assets/audio/beep.wav");
   Portal portal;
+  Animation animation;
 
   for (int s = 0; s < 3; s++) {
     screens[s].prepareDialog(theFont, renderer);
@@ -28,9 +30,15 @@ int main(int arc, char *argv[]) {
 
   home.setText(theFont, renderer);
   menu.setText(theFont, renderer);
-  button.setText(theFont, renderer);
+
+  const char *button1Text[] = {"M", "Talk"};
+  button1.setText(theFont, button1Text, renderer);
+
+  const char *button2Text[] = {"G", "Take"};
+  button2.setText(theFont, button2Text, renderer);
+
   pos wizardPos;
-  Animation animation;
+  pos itemPos;
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -49,21 +57,26 @@ int main(int arc, char *argv[]) {
     }
 
     wizardPos = screens[game.active].wizard->getPosition();
-    game.near = player.getVicinity(wizardPos.x, wizardPos.y, game.near);
+    game.nearEntity = player.getVicinity(wizardPos.x, wizardPos.y, game.nearEntity);
+
+    itemPos = screens[game.active].wizard->getHatPosition();
+    game.nearItem = player.getVicinity(itemPos.x, itemPos.y, game.nearItem);
 
     if (game.state == "home") {
       home.draw(renderer);
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[game.active].draw(renderer, game.near, game.current);
+      screens[game.active].draw(renderer, game.nearEntity, game.current);
       player.draw(renderer);
     }
 
-    if (game.near) {
-      button.draw(renderer);
+    if (game.nearEntity)
+      button1.draw(renderer);
+    if (game.nearItem)
+      button2.draw(renderer);
+    if (story.tasks[0].completed)
       portal.draw(renderer);
-    }
 
     animation.draw(renderer);
     SDL_RenderPresent(renderer);

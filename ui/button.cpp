@@ -11,7 +11,7 @@ public:
   void drawContainer(SDL_Renderer *renderer);
   void drawCircle(SDL_Renderer *renderer);
   void drawText(SDL_Renderer *renderer);
-  void setText(TTF_Font *font, SDL_Renderer *renderer);
+  void setText(TTF_Font *font, const char *text[], SDL_Renderer *renderer);
 
 private:
   int x;
@@ -68,9 +68,9 @@ void Button::drawText(SDL_Renderer *renderer) {
   SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 }
 
-void Button::setText(TTF_Font *font, SDL_Renderer *renderer) {
+void Button::setText(TTF_Font *font, const char *text[], SDL_Renderer *renderer) {
   SDL_Color circleFontColor = {255, 255, 255};
-  circleSurface = TTF_RenderText_Blended(font, "M", circleFontColor);
+  circleSurface = TTF_RenderText_Blended(font, text[0], circleFontColor);
   circleTexture = SDL_CreateTextureFromSurface(renderer, circleSurface);
   circleRect.x = x - 9;
   circleRect.y = y - 9;
@@ -79,7 +79,7 @@ void Button::setText(TTF_Font *font, SDL_Renderer *renderer) {
   SDL_FreeSurface(circleSurface);
 
   SDL_Color textFontColor = {0, 0, 0};
-  textSurface = TTF_RenderText_Blended(font, "Talk", textFontColor);
+  textSurface = TTF_RenderText_Blended(font, text[1], textFontColor);
   textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
   textRect.x = x + 20;
   textRect.y = y -10;

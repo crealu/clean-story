@@ -40,16 +40,6 @@ Screen::Screen() {
 
 Screen::~Screen() {}
 
-void Screen::setColor(struct themeColor color) {
-  SDL_Color worldColor = color.worldColor;
-  SDL_Color waveColor = color.waveColor;
-  SDL_Color wizardColor = color.wizardColor;
-
-  world = new World(worldColor);
-  wave = new Wave(waveColor);
-  wizard = new Wizard(wizardColor);
-}
-
 void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
@@ -69,6 +59,16 @@ void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
   for (int i = 0; i < 10; i++) {
     dialog[i].setDialog(font, renderer, script->getText(i));
   }
+}
+
+void Screen::setColor(struct themeColor color) {
+  SDL_Color worldColor = color.worldColor;
+  SDL_Color waveColor = color.waveColor;
+  SDL_Color wizardColor = color.wizardColor;
+
+  world = new World(worldColor);
+  wave = new Wave(waveColor);
+  wizard = new Wizard(wizardColor);
 }
 
 int Screen::setCurrent(SDL_Event &event, int current) {

@@ -87,6 +87,9 @@ pos Wizard::getPosition() {
 }
 
 pos Wizard::getHatPosition() {
-  pos pos = {hat->shape->vertex[0].position.x, hat->shape->vertex[0].position.y};
+  pos pos = {
+    hat->shape->vertex[0].position.x, 
+    hat->shape->vertex[0].position.y
+  };
   return pos;
 }
