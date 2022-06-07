@@ -66,13 +66,13 @@ void Wizard::move() {
   pRect.x -= speed;
 
   if (pRect.x <= 300) {
-    pause = true;
-    t0 = SDL_GetTicks() / 1000;
-    t1 = t0 + 3;
-    while (t0 < t1) {
-      t0 = SDL_GetTicks() / 1000;
-    }
-    pause = false;
+    // pause = true;
+    // t0 = SDL_GetTicks() / 1000;
+    // t1 = t0 + 3;
+    // while (t0 < t1) {
+    //   t0 = SDL_GetTicks() / 1000;
+    // }
+    // pause = false;
     speed = -speed;
   }
 
