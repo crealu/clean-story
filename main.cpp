@@ -14,15 +14,10 @@ int main(int arc, char *argv[]) {
   Player player;
   Home home;
   Menu menu;
-  // Button buttons[3];
-  Button button1;
-  Button button2;
-  Button button3;
+  Button buttons[3];
   Theme themes;
   Screen screens[3];
   // Music song("assets/audio/phased.mp3");
-  Chunk song1("assets/audio/beep.wav");
-  // Portal portal;
   Animation animation;
 
   for (int s = 0; s < 3; s++) {
@@ -34,17 +29,13 @@ int main(int arc, char *argv[]) {
   menu.setText(theFont, renderer);
 
   const char *button1Text[] = {"M", "Talk"};
-  button1.setText(theFont, button1Text, renderer);
-
   const char *button2Text[] = {"G", "Take"};
-  button2.setText(theFont, button2Text, renderer);
-
   const char *button3Text[] = {"H", "Enter"};
-  button3.setText(theFont, button3Text, renderer);
+  buttons[0].setText(theFont, button1Text, renderer);
+  buttons[1].setText(theFont, button2Text, renderer);
+  buttons[2].setText(theFont, button3Text, renderer);
 
-  pos wizardPos;
-  pos itemPos;
-  pos portalPos;
+  pos entityPos[3];
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -59,41 +50,30 @@ int main(int arc, char *argv[]) {
         renderer,
         theFont
       );
-
-      switch (event.type) {
-        case SDL_KEYDOWN:
-          if (event.key.keysym.sym == SDLK_p)
-            song1.play();
-          break;
-      }
     }
 
-    wizardPos = screens[game.active].wizard->getPosition();
-    game.nearEntity = player.getVicinity(wizardPos.x, wizardPos.y);
+    entityPos[0] = screens[game.active].wizard->getPosition();
+    entityPos[1] = screens[game.active].wizard->getHatPosition();
+    entityPos[2] = screens[game.active].portal.getPosition();
 
-    itemPos = screens[game.active].wizard->getHatPosition();
-    game.nearItem = player.getVicinity(itemPos.x, itemPos.y);
-
-    portalPos = screens[game.active].portal.getPosition();
-    game.nearPortal = player.getVicinity(portalPos.x, portalPos.y);
+    for (int e = 0; e < 3; e++) {
+      game.near[e] = player.getVicinity(entityPos[e].x, entityPos[e].y);
+    }
 
     if (game.state == "home") {
       home.draw(renderer);
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[game.active].draw(renderer, game.nearEntity, game.current);
+      screens[game.active].draw(renderer, game.near[0], game.current);
       player.draw(renderer);
     }
 
-    if (game.nearEntity)
-      button1.draw(renderer);
-
-    if (game.nearItem)
-      button2.draw(renderer);
-
-    if (game.nearPortal)
-      button3.draw(renderer);
+    for (int b = 0; b < 3; b++) {
+      if (game.near[b]) {
+        buttons[b].draw(renderer);
+      }
+    }
 
     // if (story.tasks[0].completed)
     //   portal.draw(renderer);

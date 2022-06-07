@@ -9,9 +9,7 @@ public:
   int running;
   int active;
   int current;
-  bool nearEntity;
-  bool nearItem;
-  bool nearPortal;
+  bool near[3];
   void handleKeyDown(SDL_Event &event);
 };
 
@@ -19,11 +17,12 @@ Game::Game():
 state("home"),
 running(1),
 active(0),
-current(0),
-nearEntity(false),
-nearItem(false),
-nearPortal(false)
-{}
+current(0)
+{
+  near[0] = false;
+  near[1] = false;
+  near[2] = false;
+}
 
 Game::~Game() {}
 

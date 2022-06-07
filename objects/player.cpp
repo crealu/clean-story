@@ -24,6 +24,7 @@ private:
   int yVel;
   int vel;
   string name;
+  Chunk *beep;
 };
 
 Player::Player() {
@@ -37,6 +38,7 @@ Player::Player() {
   vel = 8;
   xVel = 0;
   yVel = 0;
+  beep = new Chunk("./assets/audio/beep.wav");
 }
 
 Player::~Player() {}
@@ -93,6 +95,7 @@ void Player::pickupItem(SDL_Event &event, Hat *hat, Screen screen, SDL_Renderer 
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_g) {
         if (getVicinity(hat->shape->vertex[0].position.x, hat->shape->vertex[0].position.y)) {
+          beep->play();
           hat->updateStatus();
           screen.updateDialog(font, renderer);
           cout << "picked up hat" << endl;
