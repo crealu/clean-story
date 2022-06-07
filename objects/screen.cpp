@@ -50,6 +50,7 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
   wizard->draw(renderer, near);
+  
   if (showDialog) {
     drawDialogBox(renderer);
     dialog[current].draw(renderer);
@@ -72,9 +73,6 @@ void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
 void Screen::updateDialog(TTF_Font *font, SDL_Renderer *renderer) {
   script = new Script("./assets/stories/green/script2.txt");
   dialogLimit = script->length;
-  // for (int i = 0; i < dialogLimit; i++) {
-  //   dialog[i].setDialog(font, renderer, script->getText(i));
-  // }
   prepareDialog(font, renderer);
 }
 
@@ -94,7 +92,7 @@ int Screen::setCurrent(SDL_Event &event, int current) {
       if (event.key.keysym.sym == SDLK_m) {
         if (wizard->hat->collected)
           hatReturned = true;
-          
+
         if (current != dialogLimit) {
           showDialog = true;
           current++;

@@ -2,6 +2,7 @@
 #include <string>
 #include <cmath>
 #include <SDL2/SDL.h>
+#include "chunk.cpp"
 // #include "bag.cpp"
 using namespace std;
 
