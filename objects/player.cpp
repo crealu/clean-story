@@ -12,15 +12,13 @@ public:
   ~Player();
   void move(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
-  void update();
-  void pickupItem(SDL_Event &event, Screen screen, SDL_Renderer *renderer, TTF_Font *font);
+  void updatePosition();
+  void pickupItem(SDL_Event &event, Screen screen);
   bool getVicinity(pos entityPosition);
   // Bag bag;
 
 private:
-  SDL_Rect pRect;
-  SDL_Rect leftRect;
-  SDL_Rect rightRect;
+  SDL_Rect rect[3];
   int xVel;
   int yVel;
   int vel;
@@ -29,12 +27,16 @@ private:
 };
 
 Player::Player() {
-  SDL_Rect rect = {200, 300, 30, 30};
-  SDL_Rect lRect = {200, 300, 10, 10};
-  SDL_Rect rRect = {220, 300, 10, 10};
-  pRect = rect;
-  leftRect = lRect;
-  rightRect = rRect;
+  SDL_Rect rects[3] = {
+    {200, 300, 30, 30},
+    {200, 300, 10, 10},
+    {220, 300, 10, 10}
+  };
+
+  for (int r = 0; r < 3; r++) {
+    rect[r] = rects[r];
+  }
+
   name = "Player";
   vel = 8;
   xVel = 0;
@@ -49,25 +51,25 @@ void Player::move(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       theKey = event.key.keysym.sym;
-      if (theKey == SDLK_a && (pRect.x - vel) > 0)
+      if (theKey == SDLK_a && (rect[0].x - vel) > 0)
         xVel = -vel;
-      if (theKey == SDLK_d && (pRect.x + vel) < 610)
+      if (theKey == SDLK_d && (rect[0].x + vel) < 610)
         xVel = vel;
-      if (theKey == SDLK_w && (pRect.y - vel) > 0)
+      if (theKey == SDLK_w && (rect[0].y - vel) > 0)
         yVel = -vel;
-      if (theKey == SDLK_s && (pRect.y + vel) < 450)
+      if (theKey == SDLK_s && (rect[0].y + vel) < 450)
         yVel = vel;
       break;
 
     case SDL_KEYUP:
       theKey = event.key.keysym.sym;
-      if (theKey == SDLK_a && (pRect.x) > 0)
+      if (theKey == SDLK_a && (rect[0].x) > 0)
         xVel = 0;
-      if (theKey == SDLK_d && (pRect.x + vel) < 610)
+      if (theKey == SDLK_d && (rect[0].x + vel) < 610)
         xVel = 0;
-      if (theKey == SDLK_w && (pRect.y) > 0)
+      if (theKey == SDLK_w && (rect[0].y) > 0)
         yVel = 0;
-      if (theKey == SDLK_s && (pRect.y + vel) < 450)
+      if (theKey == SDLK_s && (rect[0].y + vel) < 450)
         yVel = 0;
       break;
   }
@@ -75,30 +77,28 @@ void Player::move(SDL_Event &event) {
 
 void Player::draw(SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-  SDL_RenderFillRect(renderer, &pRect);
+  SDL_RenderFillRect(renderer, &rect[0]);
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_RenderFillRect(renderer, &leftRect);
-  SDL_RenderFillRect(renderer, &rightRect);
-  update();
+  SDL_RenderFillRect(renderer, &rect[1]);
+  SDL_RenderFillRect(renderer, &rect[2]);
+  updatePosition();
 }
 
-void Player::update() {
-  pRect.x += xVel;
-  leftRect.x += xVel;
-  rightRect.x += xVel;
-  pRect.y += yVel;
-  leftRect.y += yVel;
-  rightRect.y += yVel;
+void Player::updatePosition() {
+  for (int rp = 0; rp < 3; rp++) {
+    rect[rp].x += xVel;
+    rect[rp].y += yVel;
+  }
 }
 
-void Player::pickupItem(SDL_Event &event, Screen screen, SDL_Renderer *renderer, TTF_Font *font) {
+void Player::pickupItem(SDL_Event &event, Screen screen) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_g) {
         if (getVicinity(screen.wizard->getHatPosition())) {
           beep->play();
           screen.wizard->hat->updateStatus();
-          screen.updateDialog(font, renderer);
+          screen.updateDialog();
           cout << "picked up hat" << endl;
         }
       }
@@ -107,10 +107,10 @@ void Player::pickupItem(SDL_Event &event, Screen screen, SDL_Renderer *renderer,
 }
 
 bool Player::getVicinity(pos entity) {
-  if (abs(entity.x - pRect.x) <= 15 && abs(entity.y - pRect.y) <= 15) {
+  if (abs(entity.x - rect[0].x) <= 15 &&
+      abs(entity.y - rect[0].y) <= 15)
+  {
     return true;
-  } else {
-    return false;
   }
   return false;
 }

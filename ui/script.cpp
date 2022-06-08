@@ -17,23 +17,7 @@ private:
   string text[12];
 };
 
-Script::Script() {
-  // fstream textFile;
-  // int count = 0;
-  // length = 0;
-  //
-  // textFile.open(filename, ios::in);
-  // if (textFile.is_open()) {
-  //   string line;
-  //   while (getline(textFile, line)) {
-  //     text[count] = line;
-  //     count++;
-  //   }
-  //   length = count;
-  //   textFile.close();
-  // }
-}
-
+Script::Script() {}
 Script::~Script() {}
 
 void Script::update(const char *filename) {

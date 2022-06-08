@@ -21,7 +21,7 @@ int main(int arc, char *argv[]) {
   // Music song("assets/audio/phased.mp3");
 
   for (int s = 0; s < 3; s++) {
-    screens[s].prepareDialog(theFont, renderer);
+    screens[s].update(renderer, theFont);
     screens[s].setColor(themes.getColor(s));
   }
 
@@ -46,7 +46,7 @@ int main(int arc, char *argv[]) {
       game.changeState(event);
       game.changeWorld(event);
       player.move(event);
-      player.pickupItem(event, screens[game.active], renderer, theFont);
+      player.pickupItem(event, screens[game.active]);
     }
 
     entityPos[0] = screens[game.active].wizard->getPosition();
@@ -62,7 +62,7 @@ int main(int arc, char *argv[]) {
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[game.active].draw(renderer, game.near[0], game.current);
+      screens[game.active].draw(game.near[0], game.current);
       player.draw(renderer);
     }
 
