@@ -40,13 +40,14 @@ int main(int arc, char *argv[]) {
     buttons[t].setText(buttonText[t]);
   }
 
+
   while (game.running) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
       game.current = screens[game.active].setCurrent(event, game.current);
-      game.changeState(event);
-      game.changeWorld(event);
-      player.handleInput(event, screens[game.active]);
+      game.handleInput(event);
+      player.setActiveScreen(screens[game.active]);
+      player.handleInput(event);
     }
 
     entityPos[0] = screens[game.active].wizard->getPosition();

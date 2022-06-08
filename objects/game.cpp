@@ -10,8 +10,9 @@ public:
   int active;
   int current;
   bool near[3];
-  void changeState(SDL_Event &event);
-  void changeWorld(SDL_Event &event);
+  void handleInput(SDL_Event &event);
+  void changeState(int theKey);
+  void changeWorld(int theKey);
 };
 
 Game::Game():
@@ -27,28 +28,29 @@ current(0)
 
 Game::~Game() {}
 
-void Game::changeState(SDL_Event &event) {
+void Game::handleInput(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
-      if (event.key.keysym.sym == SDLK_SPACE)
-        state = "play";
-      if (event.key.keysym.sym == SDLK_RETURN) {
-        if (state == "menu")
-          state = "play";
-        else
-          state = "menu";
-      }
+      changeState(event.key.keysym.sym);
+      changeWorld(event.key.keysym.sym);
       break;
   }
 }
 
-void Game::changeWorld(SDL_Event &event) {
-  switch (event.type) {
-    case SDL_KEYDOWN:
-      if (event.key.keysym.sym == SDLK_h && active != 2)
-        active++;
-      if (event.key.keysym.sym == SDLK_t && active != 0)
-        active--;
-      break;
+void Game::changeState(int theKey) {
+  if (theKey == SDLK_SPACE)
+    state = "play";
+  if (theKey == SDLK_RETURN) {
+    if (state == "menu")
+      state = "play";
+    else
+      state = "menu";
   }
+}
+
+void Game::changeWorld(int theKey) {
+  if (theKey == SDLK_h && active != 2)
+    active++;
+  if (theKey == SDLK_t && active != 0)
+    active--;
 }

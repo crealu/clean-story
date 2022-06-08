@@ -9,13 +9,16 @@ class Player {
 public:
   Player();
   ~Player();
-  void handleInput(SDL_Event &event, Screen screen);
+  void setActiveScreen(Screen activeScreen);
+  void handleInput(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
-  void move(int theKey);
-  void stop(int theKey);
+  void move(int key);
+  void stop(int key);
+  void talk(int key);
+  void pickup(int key);
   void update();
-  void pickupItem(int theKey, Screen screen);
   bool getVicinity(pos entityPosition);
+  Screen screen;
 
 private:
   SDL_Rect rect[3];
@@ -46,11 +49,15 @@ Player::Player() {
 
 Player::~Player() {}
 
-void Player::handleInput(SDL_Event &event, Screen screen) {
+void Player::setActiveScreen(Screen activeScreen) {
+  screen = activeScreen;
+}
+
+void Player::handleInput(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
       move(event.key.keysym.sym);
-      pickupItem(event.key.keysym.sym, screen);
+      pickup(event.key.keysym.sym);
       break;
     case SDL_KEYUP:
       stop(event.key.keysym.sym);
@@ -58,25 +65,25 @@ void Player::handleInput(SDL_Event &event, Screen screen) {
   }
 }
 
-void Player::move(int theKey) {
-  if (theKey == SDLK_a && (rect[0].x - vel) > 0)
+void Player::move(int key) {
+  if (key == SDLK_a && (rect[0].x - vel) > 0)
     xVel = -vel;
-  if (theKey == SDLK_d && (rect[0].x + vel) < 610)
+  if (key == SDLK_d && (rect[0].x + vel) < 610)
     xVel = vel;
-  if (theKey == SDLK_w && (rect[0].y - vel) > 0)
+  if (key == SDLK_w && (rect[0].y - vel) > 0)
     yVel = -vel;
-  if (theKey == SDLK_s && (rect[0].y + vel) < 450)
+  if (key == SDLK_s && (rect[0].y + vel) < 450)
     yVel = vel;
 }
 
-void Player::stop(int theKey) {
-  if (theKey == SDLK_a && (rect[0].x) > 0)
+void Player::stop(int key) {
+  if (key == SDLK_a && (rect[0].x) > 0)
     xVel = 0;
-  if (theKey == SDLK_d && (rect[0].x + vel) < 610)
+  if (key == SDLK_d && (rect[0].x + vel) < 610)
     xVel = 0;
-  if (theKey == SDLK_w && (rect[0].y) > 0)
+  if (key == SDLK_w && (rect[0].y) > 0)
     yVel = 0;
-  if (theKey == SDLK_s && (rect[0].y + vel) < 450)
+  if (key == SDLK_s && (rect[0].y + vel) < 450)
     yVel = 0;
 }
 
@@ -96,8 +103,8 @@ void Player::update() {
   }
 }
 
-void Player::pickupItem(int theKey, Screen screen) {
-  if (theKey == SDLK_g) {
+void Player::pickup(int key) {
+  if (key == SDLK_g) {
     if (getVicinity(screen.wizard->getHatPosition())) {
       beep->play();
       screen.wizard->hat->updateStatus();

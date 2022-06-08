@@ -98,8 +98,9 @@ int Screen::setCurrent(SDL_Event &event, int current) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_m) {
-        if (wizard->hat->collected && current == 2)
+        if (wizard->hat->collected && current == 2) {
           hatReturned = true;
+        }
         if (current != script->length - 1) {
           showDialog = true;
           current++;
@@ -108,7 +109,6 @@ int Screen::setCurrent(SDL_Event &event, int current) {
           showDialog = false;
         }
       }
-      break;
   }
 
   return current;
