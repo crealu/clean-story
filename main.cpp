@@ -45,8 +45,7 @@ int main(int arc, char *argv[]) {
       game.current = screens[game.active].setCurrent(event, game.current);
       game.changeState(event);
       game.changeWorld(event);
-      player.move(event);
-      player.pickupItem(event, screens[game.active]);
+      player.handleInput(event, screens[game.active]);
     }
 
     entityPos[0] = screens[game.active].wizard->getPosition();
@@ -71,9 +70,6 @@ int main(int arc, char *argv[]) {
         buttons[b].draw(renderer);
       }
     }
-
-    // if (story.tasks[0].completed)
-    //   portal.draw(renderer);
 
     // animation.draw(renderer);
     SDL_RenderPresent(renderer);
