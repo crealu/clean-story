@@ -6,8 +6,9 @@ using namespace std;
 
 class Script {
 public:
-  Script(const char *filename);
+  Script();
   ~Script();
+  void update(const char *filename);
   void writeText(int current);
   const char *getText(int current);
   int length;
@@ -16,7 +17,26 @@ private:
   string text[12];
 };
 
-Script::Script(const char *filename) {
+Script::Script() {
+  // fstream textFile;
+  // int count = 0;
+  // length = 0;
+  //
+  // textFile.open(filename, ios::in);
+  // if (textFile.is_open()) {
+  //   string line;
+  //   while (getline(textFile, line)) {
+  //     text[count] = line;
+  //     count++;
+  //   }
+  //   length = count;
+  //   textFile.close();
+  // }
+}
+
+Script::~Script() {}
+
+void Script::update(const char *filename) {
   fstream textFile;
   int count = 0;
   length = 0;
@@ -32,8 +52,6 @@ Script::Script(const char *filename) {
     textFile.close();
   }
 }
-
-Script::~Script() {}
 
 void Script::writeText(int current) {
   const char *dialog = text[current].c_str();

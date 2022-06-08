@@ -10,7 +10,8 @@ public:
   int active;
   int current;
   bool near[3];
-  void handleKeyDown(SDL_Event &event);
+  void changeState(SDL_Event &event);
+  void changeWorld(SDL_Event &event);
 };
 
 Game::Game():
@@ -26,13 +27,9 @@ current(0)
 
 Game::~Game() {}
 
-void Game::handleKeyDown(SDL_Event &event) {
+void Game::changeState(SDL_Event &event) {
   switch (event.type) {
     case SDL_KEYDOWN:
-      if (event.key.keysym.sym == SDLK_y && active != 2)
-        active++;
-      if (event.key.keysym.sym == SDLK_t && active != 0)
-        active--;
       if (event.key.keysym.sym == SDLK_SPACE)
         state = "play";
       if (event.key.keysym.sym == SDLK_RETURN) {
@@ -41,6 +38,17 @@ void Game::handleKeyDown(SDL_Event &event) {
         else
           state = "menu";
       }
+      break;
+  }
+}
+
+void Game::changeWorld(SDL_Event &event) {
+  switch (event.type) {
+    case SDL_KEYDOWN:
+      if (event.key.keysym.sym == SDLK_h && active != 2)
+        active++;
+      if (event.key.keysym.sym == SDLK_t && active != 0)
+        active--;
       break;
   }
 }

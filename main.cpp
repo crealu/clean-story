@@ -9,8 +9,8 @@ int main(int arc, char *argv[]) {
   TTF_Font *theFont = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 20);
   SDL_Event event;
 
-  Story story;
   Game game;
+  Story story;
   Player player;
   Home home;
   Menu menu;
@@ -43,7 +43,8 @@ int main(int arc, char *argv[]) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
       game.current = screens[game.active].setCurrent(event, game.current);
-      game.handleKeyDown(event);
+      game.changeState(event);
+      game.changeWorld(event);
       player.move(event);
       player.pickupItem(event, screens[game.active], renderer, theFont);
     }

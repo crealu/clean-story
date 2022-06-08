@@ -39,9 +39,11 @@ Screen::Screen() {
   SDL_Rect rect = {20, 410, 600, 50};
   dialogBox = rect;
   showDialog = false;
-  script = new Script("./assets/stories/green/script1.txt");
-  dialogLimit = script->length;
-  dialog = new Dialog[dialogLimit + 1];
+  // script = new Script("./assets/stories/green/script1.txt");
+  script = new Script;
+  script->update("./assets/stories/green/script1.txt");
+  // dialogLimit = script->length + 1;
+  dialog = new Dialog[script->length];
 }
 
 Screen::~Screen() {}
@@ -50,7 +52,7 @@ void Screen::draw(SDL_Renderer *renderer, bool near, int current) {
   world->draw(renderer);
   wave->draw(renderer);
   wizard->draw(renderer, near);
-  
+
   if (showDialog) {
     drawDialogBox(renderer);
     dialog[current].draw(renderer);
@@ -65,14 +67,15 @@ void Screen::drawDialogBox(SDL_Renderer *renderer) {
 }
 
 void Screen::prepareDialog(TTF_Font *font, SDL_Renderer *renderer) {
-  for (int i = 0; i < this->dialogLimit; i++) {
+  for (int i = 0; i < script->length; i++) {
     dialog[i].setDialog(font, renderer, script->getText(i));
   }
 }
 
 void Screen::updateDialog(TTF_Font *font, SDL_Renderer *renderer) {
-  script = new Script("./assets/stories/green/script2.txt");
-  dialogLimit = script->length;
+  // script = new Script("./assets/stories/green/script2.txt");
+  script->update("./assets/stories/green/script2.txt");
+  // dialogLimit = script->length + 1;
   prepareDialog(font, renderer);
 }
 
@@ -90,10 +93,10 @@ int Screen::setCurrent(SDL_Event &event, int current) {
   switch (event.type) {
     case SDL_KEYDOWN:
       if (event.key.keysym.sym == SDLK_m) {
-        if (wizard->hat->collected)
+        if (wizard->hat->collected) {
           hatReturned = true;
-
-        if (current != dialogLimit) {
+        }
+        if (current != script->length - 1) {
           showDialog = true;
           current++;
         } else {
