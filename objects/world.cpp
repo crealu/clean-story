@@ -7,7 +7,7 @@ public:
   ~World();
   void draw(SDL_Renderer *renderer);
 
-protected:
+private:
   SDL_Color color;
 };
 

@@ -4,9 +4,9 @@
 int main(int arc, char *argv[]) {
   initialize();
 
+  TTF_Font *font = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 20);
   SDL_Window *window = initWindow("Clean Story", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
-  TTF_Font *theFont = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 20);
   SDL_Event event;
 
   Game game;
@@ -21,12 +21,12 @@ int main(int arc, char *argv[]) {
   // Music song("assets/audio/phased.mp3");
 
   for (int s = 0; s < 3; s++) {
-    screens[s].update(renderer, theFont);
+    screens[s].setup(renderer, font);
     screens[s].setColor(themes.getColor(s));
   }
 
-  home.setText(theFont, renderer);
-  menu.setText(theFont, renderer);
+  home.setText(font, renderer);
+  menu.setText(font, renderer);
 
   pos entityPos[3];
   const char *buttonText[3][2] = {
@@ -36,7 +36,8 @@ int main(int arc, char *argv[]) {
   };
 
   for (int t = 0; t < 3; t++) {
-    buttons[t].setText(theFont, buttonText[t], renderer);
+    buttons[t].setup(renderer, font);
+    buttons[t].setText(buttonText[t]);
   }
 
   while (game.running) {
@@ -67,7 +68,7 @@ int main(int arc, char *argv[]) {
 
     for (int b = 0; b < 3; b++) {
       if (game.near[b]) {
-        buttons[b].draw(renderer);
+        buttons[b].draw();
       }
     }
 
@@ -77,7 +78,7 @@ int main(int arc, char *argv[]) {
 
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
-  TTF_CloseFont(theFont);
+  TTF_CloseFont(font);
   SDL_Quit();
   return 0;
 }

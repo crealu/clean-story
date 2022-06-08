@@ -8,7 +8,7 @@ public:
   ~Wave();
   void draw(SDL_Renderer *renderer);
 
-protected:
+private:
   int *xPoints;
   int *yPoints;
   int pLen;

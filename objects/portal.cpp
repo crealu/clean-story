@@ -9,7 +9,7 @@ public:
   void draw(SDL_Renderer *renderer);
   pos getPosition();
 
-protected:
+private:
   Hexagon *hexagon;
 };
 

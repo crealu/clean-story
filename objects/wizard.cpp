@@ -32,7 +32,7 @@ public:
   pos getPosition();
   Hat *hat;
 
-protected:
+private:
   SDL_Rect pRect;
   SDL_Color color;
   int speed;

@@ -15,7 +15,7 @@ class Screen {
 public:
   Screen();
   ~Screen();
-  void update(SDL_Renderer *theRenderer, TTF_Font *theFont);
+  void setup(SDL_Renderer *theRenderer, TTF_Font *theFont);
   void draw(bool near, int current);
   void drawDialogBox();
   void prepareDialog();
@@ -49,7 +49,7 @@ Screen::Screen() {
 
 Screen::~Screen() {}
 
-void Screen::update(SDL_Renderer *theRenderer, TTF_Font *theFont) {
+void Screen::setup(SDL_Renderer *theRenderer, TTF_Font *theFont) {
   renderer = theRenderer;
   font = theFont;
   prepareDialog();

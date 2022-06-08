@@ -6,8 +6,9 @@ public:
   void draw(SDL_Renderer *renderer);
   void setDialog(TTF_Font *aFont, SDL_Renderer *renderer, const char *theText);
   int getLength(const char *text);
+  void setRect(const char *text);
 
-protected:
+private:
   SDL_Rect rect;
   SDL_Texture *texture;
   SDL_Surface *surface;
@@ -24,10 +25,7 @@ void Dialog::setDialog(TTF_Font *font, SDL_Renderer *renderer, const char *text)
   SDL_Color fontColor = {0, 0, 0};
   surface = TTF_RenderText_Blended(font, text, fontColor);
   texture = SDL_CreateTextureFromSurface(renderer, surface);
-  rect.x = 25;
-  rect.y = 412;
-  rect.h = 20;
-  rect.w = 12 * getLength(text);
+  setRect(text);
   // if (12 * getLength(text) >= 600) {
   //    create new texture for line 2
   // }
@@ -38,4 +36,11 @@ int Dialog::getLength(const char *text) {
   int size = 0;
   while (text[size] != '\0') size++;
   return size;
+}
+
+void Dialog::setRect(const char *text) {
+  rect.x = 25;
+  rect.y = 412;
+  rect.h = 20;
+  rect.w = 12 * getLength(text);
 }
