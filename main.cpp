@@ -28,14 +28,16 @@ int main(int arc, char *argv[]) {
   home.setText(theFont, renderer);
   menu.setText(theFont, renderer);
 
-  const char *button1Text[] = {"M", "Talk"};
-  const char *button2Text[] = {"G", "Take"};
-  const char *button3Text[] = {"H", "Enter"};
-  buttons[0].setText(theFont, button1Text, renderer);
-  buttons[1].setText(theFont, button2Text, renderer);
-  buttons[2].setText(theFont, button3Text, renderer);
-
   pos entityPos[3];
+  const char *buttonText[3][2] = {
+    {"M", "Talk"},
+    {"G", "Take"},
+    {"H", "Enter"}
+  };
+
+  for (int t = 0; t < 3; t++) {
+    buttons[t].setText(theFont, buttonText[t], renderer);
+  }
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
