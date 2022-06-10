@@ -14,6 +14,7 @@ int main(int arc, char *argv[]) {
   Player player;
   Home home;
   Menu menu;
+  // Button button;
   Button buttons[3];
   Theme themes;
   Screen screens[3];
@@ -40,14 +41,13 @@ int main(int arc, char *argv[]) {
     buttons[t].setText(buttonText[t]);
   }
 
-
   while (game.running) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleInput(event);
-      player.setActiveScreen(screens[game.active]);
-      player.handleInput(event);
+      // player.setActiveScreen(screens[game.active]);
+      player.handleInput(event, game.active);
     }
 
     entityPos[0] = screens[game.active].wizard->getPosition();
@@ -55,7 +55,12 @@ int main(int arc, char *argv[]) {
     entityPos[2] = screens[game.active].portal.getPosition();
 
     for (int e = 0; e < 3; e++) {
-      game.near[e] = player.getVicinity(entityPos[e]);
+      if (player.getVicinity(entityPos[e])) {
+        buttons[e].draw();
+        game.near[e] = true;
+      } else {
+        game.near[e] = false;
+      }
     }
 
     if (game.state == "home") {
@@ -65,12 +70,6 @@ int main(int arc, char *argv[]) {
     } else {
       screens[game.active].draw(game.near[0], game.current);
       player.draw(renderer);
-    }
-
-    for (int b = 0; b < 3; b++) {
-      if (game.near[b]) {
-        buttons[b].draw();
-      }
     }
 
     // animation.draw(renderer);

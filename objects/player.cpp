@@ -10,12 +10,13 @@ public:
   Player();
   ~Player();
   void setActiveScreen(Screen activeScreen);
-  void handleInput(SDL_Event &event);
+  void handleInput(SDL_Event &event, int active);
   void draw(SDL_Renderer *renderer);
   void move(int key);
   void stop(int key);
   void talk(int key);
   void pickup(int key);
+  void enter(int key, int active);
   void update();
   bool getVicinity(pos entityPosition);
   Screen screen;
@@ -53,11 +54,12 @@ void Player::setActiveScreen(Screen activeScreen) {
   screen = activeScreen;
 }
 
-void Player::handleInput(SDL_Event &event) {
+void Player::handleInput(SDL_Event &event, int active) {
   switch (event.type) {
     case SDL_KEYDOWN:
       move(event.key.keysym.sym);
       pickup(event.key.keysym.sym);
+      enter(event.key.keysym.sym, active);
       break;
     case SDL_KEYUP:
       stop(event.key.keysym.sym);
@@ -110,6 +112,15 @@ void Player::pickup(int key) {
       screen.wizard->hat->updateStatus();
       screen.updateDialog();
       cout << "picked up hat" << endl;
+    }
+  }
+}
+
+void Player::enter(int key, int active) {
+  if (key == SDLK_h) {
+    if (getVicinity(screen.portal.getPosition())) {
+      beep->play();
+      setActiveScreen(screen);
     }
   }
 }
