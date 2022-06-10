@@ -14,3 +14,11 @@ The codebase can be used as a roadmap to creating game components and story logi
 &nbsp;
 ## Play
 If you would like to play the sample game, clone this repository and run `sh compile.sh`
+
+&nbsp;
+## Game Objects
+Player
+Wizard
+World
+Screen
+Story
