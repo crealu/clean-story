@@ -15,7 +15,8 @@ int main(int arc, char *argv[]) {
   Home home;
   Menu menu;
   // Button button;
-  Button buttons[3];
+  // Button buttons[3];
+  Button button;
   Theme themes;
   Screen screens[3];
   Animation animation;
@@ -30,38 +31,29 @@ int main(int arc, char *argv[]) {
   menu.setText(font, renderer);
 
   pos entityPos[3];
-  const char *buttonText[3][2] = {
-    {"M", "Talk"},
-    {"G", "Take"},
-    {"H", "Enter"}
-  };
-
-  for (int t = 0; t < 3; t++) {
-    buttons[t].setup(renderer, font);
-    buttons[t].setText(buttonText[t]);
-  }
+  // const char *buttonText[3][2] = {
+  //   {"M", "Talk"},
+  //   {"G", "Take"},
+  //   {"H", "Enter"}
+  // };
+  //
+  // for (int t = 0; t < 3; t++) {
+  //   buttons[t].setup(renderer, font);
+  //   buttons[t].setText(buttonText[t]);
+  // }
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
       game.running = quitGame(game.running, window, event);
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleInput(event);
-      // player.setActiveScreen(screens[game.active]);
-      player.handleInput(event, game.active);
+      player.setActiveScreen(screens[game.active]);
+      player.handleInput(event);
     }
 
     entityPos[0] = screens[game.active].wizard->getPosition();
     entityPos[1] = screens[game.active].wizard->getHatPosition();
     entityPos[2] = screens[game.active].portal.getPosition();
-
-    for (int e = 0; e < 3; e++) {
-      if (player.getVicinity(entityPos[e])) {
-        buttons[e].draw();
-        game.near[e] = true;
-      } else {
-        game.near[e] = false;
-      }
-    }
 
     if (game.state == "home") {
       home.draw(renderer);
@@ -70,6 +62,15 @@ int main(int arc, char *argv[]) {
     } else {
       screens[game.active].draw(game.near[0], game.current);
       player.draw(renderer);
+    }
+
+    for (int e = 0; e < 3; e++) {
+      if (player.getVicinity(entityPos[e])) {
+        buttons[e].draw();
+        game.near[e] = true;
+      } else {
+        game.near[e] = false;
+      }
     }
 
     // animation.draw(renderer);

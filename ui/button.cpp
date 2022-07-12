@@ -21,10 +21,10 @@ private:
   int x;
   int y;
   int radius;
-  SDL_Texture *circleTexture;
-  SDL_Texture *textTexture;
-  SDL_Surface *circleSurface;
-  SDL_Surface *textSurface;
+  SDL_Texture *circleTexture[];
+  SDL_Texture *textTexture[];
+  SDL_Surface *circleSurface[];
+  SDL_Surface *textSurface[];
   SDL_Rect containerRect;
   SDL_Rect circleRect;
   SDL_Rect textRect;
@@ -89,6 +89,31 @@ void Button::setText(const char *text[]) {
   textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
   textRect = setRect(x + 20, y - 10, 30, 20);
   SDL_FreeSurface(textSurface);
+}
+
+void Button::setAllButtons() {
+  const char *buttonText[3][2] = {
+    {"M", "Talk"},
+    {"G", "Take"},
+    {"H", "Enter"}
+  };
+
+  for (int t = 0; t < 3; t++) {
+    buttons[t].setup(renderer, font);
+    buttons[t].setText(buttonText[t]);
+
+    SDL_Color circleFontColor = {255, 255, 255};
+    circleSurface[t] = TTF_RenderText_Blended(font, text[0], circleFontColor);
+    circleTexture[t] = SDL_CreateTextureFromSurface(renderer, circleSurface[t]);
+    circleRect = setRect(x - 9, y - 9, 14, 14);
+    SDL_FreeSurface(circleSurface[t]);
+
+    SDL_Color textFontColor = {0, 0, 0};
+    textSurface[t] = TTF_RenderText_Blended(font, text[1], textFontColor);
+    textTexture[t] = SDL_CreateTextureFromSurface(renderer, textSurface[t]);
+    textRect = setRect(x + 20, y - 10, 30, 20);
+    SDL_FreeSurface(textSurface[t]);
+  }
 }
 
 SDL_Rect Button::setRect(int x, int y, int height, int width) {
