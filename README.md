@@ -3,8 +3,8 @@ Clean Story aims to outline task-based story logic for RPG games.
 
 &nbsp;
 ## Requirements
-SDL2
-GNU compiler
+SDL2 <br/>
+GNU compiler <br/>
 Libraries: SLD2, SDL2_ttf, SDL2_mixer
 
 &nbsp;
@@ -17,8 +17,8 @@ If you would like to play the sample game, clone this repository and run `sh com
 
 &nbsp;
 ## Game Objects
-Player
-Wizard
-World
-Screen
+Player <br/>
+Wizard <br/>
+World <br/>
+Screen <br/>
 Story
