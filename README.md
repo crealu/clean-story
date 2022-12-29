@@ -1,5 +1,5 @@
-# Clean Story
-Clean Story aims to outline task-based story logic for RPG games.
+# Storyline
+Storyline aims to outline task-based story logic for RPG games. The files in this repository can be used as sample templates or roadmaps to designing game components.
 
 &nbsp;
 ## Requirements
@@ -8,17 +8,10 @@ GNU compiler <br/>
 Libraries: SLD2, SDL2_ttf, SDL2_mixer
 
 &nbsp;
-## Usage
-The codebase can be used as a roadmap to creating game components and story logic. Each game object is implemented with an effort at self-containment.
+## Usage & Play
+Follow these steps
+1. Clone this repo
+2. Navigate to cloned directory
+3. Run `sh compile.sh`
+4. Run `./storyline`
 
-&nbsp;
-## Play
-If you would like to play the sample game, clone this repository and run `sh compile.sh`
-
-&nbsp;
-## Game Objects
-Player <br/>
-Wizard <br/>
-World <br/>
-Screen <br/>
-Story
