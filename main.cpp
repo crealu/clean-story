@@ -14,13 +14,12 @@ int main(int arc, char *argv[]) {
   Player player;
   Home home;
   Menu menu;
-  // Button button;
   // Button buttons[3];
-  Button button;
+  // Button button;
   Theme themes;
   Screen screens[3];
   Animation animation;
-  // Music song("assets/audio/phased.mp3");
+  Music song("assets/audio/phased.mp3");
 
   for (int s = 0; s < 3; s++) {
     screens[s].setup(renderer, font);
@@ -66,7 +65,7 @@ int main(int arc, char *argv[]) {
 
     for (int e = 0; e < 3; e++) {
       if (player.getVicinity(entityPos[e])) {
-        buttons[e].draw();
+        // buttons[e].draw();
         game.near[e] = true;
       } else {
         game.near[e] = false;
