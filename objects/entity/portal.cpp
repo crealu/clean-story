@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include <math.h>
-#include "shapes/hexagon.cpp"
+#include "../shapes/hexagon.cpp"
 
 class Portal {
 public:

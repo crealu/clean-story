@@ -3,5 +3,5 @@
 #include "screen.cpp"
 #include "theme.cpp"
 #include "music.cpp"
-#include "player.cpp"
 #include "animation.cpp"
+#include "entity/player/player.cpp"

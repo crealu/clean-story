@@ -4,8 +4,8 @@
 #include <SDL2/SDL_ttf.h>
 #include "world.cpp"
 #include "wave.cpp"
-#include "wizard.cpp"
-#include "portal.cpp"
+#include "entity/wizard.cpp"
+#include "entity/portal.cpp"
 #include "../ui/script.cpp"
 #include "../ui/dialog.cpp"
 // #include "../ui/button.cpp"

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "shapes/triangle.cpp"
+#include "../shapes/triangle.cpp"
 
 class Hat {
 public:
