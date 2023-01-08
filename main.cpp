@@ -5,7 +5,7 @@ int main(int arc, char *argv[]) {
   initialize();
 
   TTF_Font *font = TTF_OpenFont("assets/fonts/Comfortaa[wght].ttf", 20);
-  SDL_Window *window = initWindow("Clean Story", 640, 480);
+  SDL_Window *window = initWindow("Storyline", 640, 480);
   SDL_Renderer *renderer = initRenderer(window);
   SDL_Event event;
 
@@ -14,8 +14,7 @@ int main(int arc, char *argv[]) {
   Player player;
   Home home;
   Menu menu;
-  // Button buttons[3];
-  // Button button;
+  Button buttons[3];
   Theme themes;
   Screen screens[3];
   Animation animation;
@@ -30,16 +29,16 @@ int main(int arc, char *argv[]) {
   menu.setText(font, renderer);
 
   pos entityPos[3];
-  // const char *buttonText[3][2] = {
-  //   {"M", "Talk"},
-  //   {"G", "Take"},
-  //   {"H", "Enter"}
-  // };
-  //
-  // for (int t = 0; t < 3; t++) {
-  //   buttons[t].setup(renderer, font);
-  //   buttons[t].setText(buttonText[t]);
-  // }
+  const char *buttonText[3][2] = {
+    {"M", "Talk"},
+    {"G", "Take"},
+    {"H", "Enter"}
+  };
+
+  for (int t = 0; t < 3; t++) {
+    buttons[t].setup(renderer, font);
+    buttons[t].setText(buttonText[t]);
+  }
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -65,7 +64,7 @@ int main(int arc, char *argv[]) {
 
     for (int e = 0; e < 3; e++) {
       if (player.getVicinity(entityPos[e])) {
-        // buttons[e].draw();
+        buttons[e].draw();
         game.near[e] = true;
       } else {
         game.near[e] = false;

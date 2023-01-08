@@ -5,7 +5,9 @@
 #include <SDL2/SDL_mixer.h>
 #include "common/structs.hpp"
 #include "objects/objects.hpp"
-#include "ui/ui.hpp"
+#include "ui/menu/menu.cpp"
+#include "ui/home/home.cpp"
+#include "ui/button/button.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {

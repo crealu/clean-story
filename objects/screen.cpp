@@ -6,8 +6,8 @@
 #include "wave.cpp"
 #include "entity/wizard.cpp"
 #include "entity/portal.cpp"
-#include "../ui/script.cpp"
-#include "../ui/dialog.cpp"
+#include "../ui/script/script.cpp"
+#include "../ui/dialog/dialog.cpp"
 // #include "../ui/button.cpp"
 using namespace std;
 
