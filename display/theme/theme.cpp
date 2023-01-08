@@ -1,13 +1,7 @@
-#include <SDL2/SDL.h>
-
-class Theme {
-public:
-  Theme();
-  ~Theme();
-  themeColor getColor(int index);
-};
+#include "theme.hpp"
 
 Theme::Theme() {}
+
 Theme::~Theme() {}
 
 themeColor Theme::getColor(int index) {

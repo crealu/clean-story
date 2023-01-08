@@ -4,10 +4,18 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include "common/structs.hpp"
-#include "objects/objects.hpp"
+#include "display/screen/screen.cpp"
+#include "display/theme/theme.cpp"
 #include "ui/menu/menu.cpp"
 #include "ui/home/home.cpp"
 #include "ui/button/button.cpp"
+#include "sound/music/music.cpp"
+#include "objects/game/game.cpp"
+#include "objects/story/story.cpp"
+// #include "objects/objects.hpp"
+
+
+#include "entity/player/player.cpp"
 
 int quitGame(int running, SDL_Window *window, SDL_Event &event);
 int quitGame(int running, SDL_Window *window, SDL_Event &event) {

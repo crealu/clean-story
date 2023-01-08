@@ -1,13 +1,4 @@
-#include <SDL2/SDL_mixer.h>
-
-class Chunk {
-public:
-  Chunk(const char *musicFile);
-  ~Chunk();
-  void play();
-private:
-  Mix_Chunk *chunk;
-};
+#include "chunk.hpp"
 
 Chunk::Chunk(const char *musicFile) {
   chunk = Mix_LoadWAV(musicFile);

@@ -17,7 +17,7 @@ int main(int arc, char *argv[]) {
   Button buttons[3];
   Theme themes;
   Screen screens[3];
-  Animation animation;
+  // Animation animation;
   Music song("assets/audio/phased.mp3");
 
   for (int s = 0; s < 3; s++) {

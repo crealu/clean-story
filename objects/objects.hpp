@@ -1,7 +1,0 @@
-#include "game.cpp"
-#include "story.cpp"
-#include "screen.cpp"
-#include "theme.cpp"
-#include "music.cpp"
-#include "animation.cpp"
-#include "entity/player/player.cpp"

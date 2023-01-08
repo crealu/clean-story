@@ -2,7 +2,7 @@
 #include <string>
 #include <cmath>
 #include <SDL2/SDL.h>
-#include "../../chunk.cpp"
+#include "../../sound/chunk/chunk.cpp"
 using namespace std;
 
 class Player {
