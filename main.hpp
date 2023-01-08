@@ -12,23 +12,9 @@
 #include "sound/music/music.cpp"
 #include "objects/game/game.cpp"
 #include "objects/story/story.cpp"
-// #include "objects/objects.hpp"
-
-
 #include "entity/player/player.cpp"
-
-int quitGame(int running, SDL_Window *window, SDL_Event &event);
-int quitGame(int running, SDL_Window *window, SDL_Event &event) {
-  switch (event.type) {
-    case SDL_QUIT:
-    case SDL_WINDOWEVENT_CLOSE:
-      running = 0;
-      if (window)
-        window = NULL;
-      break;
-  }
-  return running;
-}
+// #include "entity/wizard/wizard.cpp"
+// #include "entity/portal/portal.cpp"
 
 void checkFontError(TTF_Font *font);
 void checkFontError(TTF_Font *font) {

@@ -39,3 +39,14 @@ void Game::changeWorld(int theKey) {
   if (theKey == SDLK_t && active != 0)
     active--;
 }
+
+void Game::quit(SDL_Window *window, SDL_Event &event) {
+  switch (event.type) {
+    case SDL_QUIT:
+    case SDL_WINDOWEVENT_CLOSE:
+      running = 0;
+      if (window)
+        window = NULL;
+      break;
+  }
+}

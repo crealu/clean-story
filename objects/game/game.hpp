@@ -13,4 +13,5 @@ public:
   void handleInput(SDL_Event &event);
   void changeState(int theKey);
   void changeWorld(int theKey);
+  void quit(SDL_Window *window, SDL_Event &event);
 };

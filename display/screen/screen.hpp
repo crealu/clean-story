@@ -8,7 +8,6 @@
 #include "../../entity/portal/portal.cpp"
 #include "../../ui/script/script.cpp"
 #include "../../ui/dialog/dialog.cpp"
-// #include "../ui/button.cpp"
 using namespace std;
 
 class Screen {

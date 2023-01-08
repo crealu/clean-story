@@ -26,6 +26,7 @@ void Screen::draw(bool near, int current) {
     drawDialogBox();
     dialog[current].draw(renderer);
   }
+  
   if (hatReturned)
     portal.draw(renderer);
 }

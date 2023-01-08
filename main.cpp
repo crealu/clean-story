@@ -9,11 +9,11 @@ int main(int arc, char *argv[]) {
   SDL_Renderer *renderer = initRenderer(window);
   SDL_Event event;
 
+  Home home;
+  Menu menu;
   Game game;
   Story story;
   Player player;
-  Home home;
-  Menu menu;
   Button buttons[3];
   Theme themes;
   Screen screens[3];
@@ -42,7 +42,8 @@ int main(int arc, char *argv[]) {
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
-      game.running = quitGame(game.running, window, event);
+      game.quit(window, event);
+      // game.running = quitGame(game.running, window, event);
       game.current = screens[game.active].setCurrent(event, game.current);
       game.handleInput(event);
       player.setActiveScreen(screens[game.active]);
