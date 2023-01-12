@@ -8,6 +8,7 @@
 #include "display/theme/theme.cpp"
 #include "ui/menu/menu.cpp"
 #include "ui/home/home.cpp"
+#include "ui/spin/spin.cpp"
 #include "ui/button/button.cpp"
 #include "sound/music/music.cpp"
 #include "objects/game/game.cpp"

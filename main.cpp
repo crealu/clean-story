@@ -10,6 +10,7 @@ int main(int arc, char *argv[]) {
   SDL_Event event;
 
   Home home;
+  Spin spin;
   Menu menu;
   Game game;
   Story story;
@@ -27,6 +28,7 @@ int main(int arc, char *argv[]) {
 
   home.setText(font, renderer);
   menu.setText(font, renderer);
+  spin.setText(font, renderer);
 
   pos entityPos[3];
   const char *buttonText[3][2] = {
@@ -39,6 +41,8 @@ int main(int arc, char *argv[]) {
     buttons[t].setup(renderer, font);
     buttons[t].setText(buttonText[t]);
   }
+
+  spin.setAngle();
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -55,7 +59,7 @@ int main(int arc, char *argv[]) {
     entityPos[2] = screens[game.active].portal.getPosition();
 
     if (game.state == "home") {
-      home.draw(renderer);
+      spin.draw(renderer);
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
