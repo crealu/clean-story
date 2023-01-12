@@ -6,3 +6,4 @@ Music::Music(const char *musicFile) {
 }
 
 Music::~Music() {}
+

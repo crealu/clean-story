@@ -1,9 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <stdio.h>
-using namespace std;
-
 class Script {
 public:
   Script();
