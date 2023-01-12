@@ -1,7 +1,7 @@
-class World {
+class Background {
 public:
-  World(SDL_Color worldColor);
-  ~World();
+  Background(SDL_Color BackgroundColor);
+  ~Background();
   void draw(SDL_Renderer *renderer);
 
 private:

@@ -3,12 +3,13 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <math.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include "common/structs.hpp"
-#include "display/screen/screen.cpp"
-#include "display/theme/theme.cpp"
+#include "scene/world/world.cpp"
+#include "scene/theme/theme.cpp"
 #include "ui/menu/menu.cpp"
 #include "ui/home/home.cpp"
 #include "ui/spin/spin.cpp"
@@ -17,10 +18,6 @@
 #include "objects/game/game.cpp"
 #include "objects/story/story.cpp"
 #include "entity/player/player.cpp"
-// #include "entity/wizard/wizard.cpp"
-// #include "entity/portal/portal.cpp"
-
-// using namespace std;
 
 void checkFontError(TTF_Font *font);
 void checkFontError(TTF_Font *font) {

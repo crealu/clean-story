@@ -1,14 +1,14 @@
-#include "../world/world.cpp"
+#include "../background/background.cpp"
 #include "../wave/wave.cpp"
 #include "../../entity/wizard/wizard.cpp"
 #include "../../entity/portal/portal.cpp"
 #include "../../ui/script/script.cpp"
 #include "../../ui/dialog/dialog.cpp"
 
-class Screen {
+class World {
 public:
-  Screen();
-  ~Screen();
+  World();
+  ~World();
   void setup(SDL_Renderer *theRenderer, TTF_Font *theFont);
   void draw(bool near, int current);
   void drawDialogBox();
@@ -25,7 +25,7 @@ public:
   TTF_Font *font;
 
 private:
-  World *world;
+  Background *background;
   Wave *wave;
   Dialog *dialog;
   SDL_Rect dialogBox;

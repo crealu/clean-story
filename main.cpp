@@ -17,13 +17,14 @@ int main(int arc, char *argv[]) {
   Player player;
   Button buttons[3];
   Theme themes;
-  Screen screens[3];
+  // Screen screens[3];
+  World worlds[3];
   // Animation animation;
   Music song("assets/audio/phased.mp3");
 
   for (int s = 0; s < 3; s++) {
-    screens[s].setup(renderer, font);
-    screens[s].setColor(themes.getColor(s));
+    worlds[s].setup(renderer, font);
+    worlds[s].setColor(themes.getColor(s));
   }
 
   home.setText(font, renderer);
@@ -48,22 +49,22 @@ int main(int arc, char *argv[]) {
     while (SDL_PollEvent(&event)) {
       game.quit(window, event);
       // game.running = quitGame(game.running, window, event);
-      game.current = screens[game.active].setCurrent(event, game.current);
+      game.current = worlds[game.active].setCurrent(event, game.current);
       game.handleInput(event);
-      player.setActiveScreen(screens[game.active]);
+      player.setActiveScreen(worlds[game.active]);
       player.handleInput(event);
     }
 
-    entityPos[0] = screens[game.active].wizard->getPosition();
-    entityPos[1] = screens[game.active].wizard->getHatPosition();
-    entityPos[2] = screens[game.active].portal.getPosition();
+    entityPos[0] = worlds[game.active].wizard->getPosition();
+    entityPos[1] = worlds[game.active].wizard->getHatPosition();
+    entityPos[2] = worlds[game.active].portal.getPosition();
 
     if (game.state == "home") {
       spin.draw(renderer);
     } else if (game.state == "menu") {
       menu.draw(renderer);
     } else {
-      screens[game.active].draw(game.near[0], game.current);
+      worlds[game.active].draw(game.near[0], game.current);
       player.draw(renderer);
     }
 

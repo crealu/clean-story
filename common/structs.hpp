@@ -1,7 +1,7 @@
 using namespace std;
 
 struct themeColor {
-  SDL_Color worldColor;
+  SDL_Color backgroundColor;
   SDL_Color waveColor;
   SDL_Color wizardColor;
 };

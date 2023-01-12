@@ -1,4 +1,4 @@
-#include "../../objects/shapes/triangle.cpp"
+#include "../../common/shapes/triangle.cpp"
 
 class Hat {
 public:

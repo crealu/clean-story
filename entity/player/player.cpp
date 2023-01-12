@@ -21,7 +21,7 @@ Player::Player() {
 
 Player::~Player() {}
 
-void Player::setActiveScreen(Screen activeScreen) {
+void Player::setActiveScreen(World activeScreen) {
   screen = activeScreen;
 }
 

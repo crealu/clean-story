@@ -7,7 +7,7 @@ class Player {
 public:
   Player();
   ~Player();
-  void setActiveScreen(Screen activeScreen);
+  void setActiveScreen(World activeScreen);
   void handleInput(SDL_Event &event);
   void draw(SDL_Renderer *renderer);
   void move(int key);
@@ -17,7 +17,7 @@ public:
   void enter(int key);
   void update();
   bool getVicinity(pos entityPosition);
-  Screen screen;
+  World screen;
 
 private:
   SDL_Rect rect[3];
