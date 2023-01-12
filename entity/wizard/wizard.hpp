@@ -1,5 +1,3 @@
-#include <iostream>
-#include <SDL2/SDL.h>
 #include "../../objects/shapes/triangle.cpp"
 
 class Hat {
