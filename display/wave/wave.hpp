@@ -1,7 +1,3 @@
-#include <iostream>
-#include <SDL2/SDL.h>
-// #include <math.h>
-
 class Wave {
 public:
   Wave(SDL_Color color);

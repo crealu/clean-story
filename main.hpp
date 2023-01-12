@@ -20,6 +20,8 @@
 // #include "entity/wizard/wizard.cpp"
 // #include "entity/portal/portal.cpp"
 
+// using namespace std;
+
 void checkFontError(TTF_Font *font);
 void checkFontError(TTF_Font *font) {
   if (!font) {

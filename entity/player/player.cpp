@@ -1,4 +1,5 @@
 #include "player.hpp"
+using namespace std;
 
 Player::Player() {
   SDL_Rect rects[3] = {

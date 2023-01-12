@@ -1,14 +1,9 @@
-#include <iostream>
-#include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 #include "../world/world.cpp"
 #include "../wave/wave.cpp"
 #include "../../entity/wizard/wizard.cpp"
 #include "../../entity/portal/portal.cpp"
 #include "../../ui/script/script.cpp"
 #include "../../ui/dialog/dialog.cpp"
-using namespace std;
 
 class Screen {
 public:

@@ -1,8 +1,7 @@
-//#include <iostream>
+#include <iostream>
 //#include <string>
 //#include <SDL2/SDL.h>
 #include "../../sound/chunk/chunk.cpp"
-// using namespace std;
 
 class Player {
 public:
