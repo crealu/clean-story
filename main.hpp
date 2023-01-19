@@ -9,6 +9,7 @@
 #include <SDL2/SDL_mixer.h>
 #include "common/structs.hpp"
 #include "scene/world/world.cpp"
+#include "scene/world/midori.cpp"
 #include "scene/theme/theme.cpp"
 #include "ui/menu/menu.cpp"
 #include "ui/home/home.cpp"
@@ -18,6 +19,7 @@
 #include "objects/game/game.cpp"
 #include "objects/story/story.cpp"
 #include "entity/player/player.cpp"
+#include "entity/shard/shard.cpp"
 
 void checkFontError(TTF_Font *font);
 void checkFontError(TTF_Font *font) {

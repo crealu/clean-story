@@ -10,7 +10,7 @@ public:
   World();
   ~World();
   void setup(SDL_Renderer *theRenderer, TTF_Font *theFont);
-  void draw(bool near, int current);
+  virtual void draw(bool near, int current);
   void drawDialogBox();
   void prepareDialog();
   void updateDialog();

@@ -1,6 +1,9 @@
 #include <SDL2/SDL_ttf.h>
 #include "main.hpp"
 
+void drawShards(Shard shards[], SDL_Renderer *renderer);
+
+
 int main(int arc, char *argv[]) {
   initialize();
 
@@ -15,35 +18,36 @@ int main(int arc, char *argv[]) {
   Game game;
   Story story;
   Player player;
-  Button buttons[3];
   Theme themes;
-  // Screen screens[3];
+  Shard shards[3];
+  Button buttons[3];
   World worlds[3];
-  // Animation animation;
   Music song("assets/audio/phased.mp3");
+  // Screen screens[3];
+  // Animation animation;
 
-  for (int s = 0; s < 3; s++) {
-    worlds[s].setup(renderer, font);
-    worlds[s].setColor(themes.getColor(s));
-  }
+  SDL_Color shardColor = {75, 145, 48};
 
-  home.setText(font, renderer);
-  menu.setText(font, renderer);
-  spin.setText(font, renderer);
-
-  pos entityPos[3];
   const char *buttonText[3][2] = {
     {"M", "Talk"},
     {"G", "Take"},
     {"H", "Enter"}
   };
 
-  for (int t = 0; t < 3; t++) {
-    buttons[t].setup(renderer, font);
-    buttons[t].setText(buttonText[t]);
+  for (int s = 0; s < 3; s++) {
+    worlds[s].setup(renderer, font);
+    worlds[s].setColor(themes.getColor(s));
+    buttons[s].setup(renderer, font);
+    buttons[s].setText(buttonText[s]);
+    shards[s].setup(shardColor, 50 + (s*200), 50 + (s * 150));
   }
 
+  home.setText(font, renderer);
+  menu.setText(font, renderer);
+  spin.setText(font, renderer);
   spin.setAngle();
+
+  pos entityPos[3];
 
   while (game.running) {
     while (SDL_PollEvent(&event)) {
@@ -55,10 +59,6 @@ int main(int arc, char *argv[]) {
       player.handleInput(event);
     }
 
-    entityPos[0] = worlds[game.active].wizard->getPosition();
-    entityPos[1] = worlds[game.active].wizard->getHatPosition();
-    entityPos[2] = worlds[game.active].portal.getPosition();
-
     if (game.state == "home") {
       spin.draw(renderer);
     } else if (game.state == "menu") {
@@ -68,6 +68,10 @@ int main(int arc, char *argv[]) {
       player.draw(renderer);
     }
 
+    entityPos[0] = worlds[game.active].wizard->getPosition();
+    entityPos[1] = worlds[game.active].wizard->getHatPosition();
+    entityPos[2] = worlds[game.active].portal.getPosition();
+
     for (int e = 0; e < 3; e++) {
       if (player.getVicinity(entityPos[e])) {
         buttons[e].draw();
@@ -76,6 +80,8 @@ int main(int arc, char *argv[]) {
         game.near[e] = false;
       }
     }
+
+    drawShards(shards, renderer);
 
     // animation.draw(renderer);
     SDL_RenderPresent(renderer);
@@ -87,3 +93,10 @@ int main(int arc, char *argv[]) {
   SDL_Quit();
   return 0;
 }
+
+void drawShards(Shard shards[], SDL_Renderer *renderer) {
+  for (int i = 0; i < 3; i++) {
+    shards[i].draw(renderer);
+  }
+}
+
