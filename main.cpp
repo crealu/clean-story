@@ -21,7 +21,14 @@ int main(int arc, char *argv[]) {
   Theme themes;
   Shard shards[3];
   Button buttons[3];
+  World midoritierra("./assets/stories/green/script1.txt");
+  World aotierra("./assets/stories/blue/script1.txt");
+  World akatierra("./assets/stories/red/script1.txt");
+
   World worlds[3];
+  worlds[0] = midoritierra;
+  worlds[1] = akatierra;
+  worlds[2] = aotierra;
   Music song("assets/audio/phased.mp3");
   // Screen screens[3];
   // Animation animation;

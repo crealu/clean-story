@@ -9,7 +9,6 @@
 #include <SDL2/SDL_mixer.h>
 #include "common/structs.hpp"
 #include "scene/world/world.cpp"
-#include "scene/world/midori.cpp"
 #include "scene/theme/theme.cpp"
 #include "ui/menu/menu.cpp"
 #include "ui/home/home.cpp"

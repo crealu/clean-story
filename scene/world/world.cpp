@@ -9,6 +9,15 @@ World::World() {
   dialog = new Dialog[script->length];
 }
 
+World::World(const char *script_file) {
+  SDL_Rect rect = {20, 410, 600, 50};
+  dialogBox = rect;
+  showDialog = false;
+  script = new Script;
+  script->update(script_file);
+  dialog = new Dialog[script->length];
+}
+
 World::~World() {}
 
 void World::setup(SDL_Renderer *theRenderer, TTF_Font *theFont) {

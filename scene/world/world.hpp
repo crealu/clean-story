@@ -8,6 +8,7 @@
 class World {
 public:
   World();
+  World(const char *script_file);
   ~World();
   void setup(SDL_Renderer *theRenderer, TTF_Font *theFont);
   virtual void draw(bool near, int current);
@@ -16,10 +17,10 @@ public:
   void updateDialog();
   void setColor(struct themeColor color);
   int setCurrent(SDL_Event &event, int current);
-  Wizard *wizard;
-  Script *script;
   int dialogLimit;
   bool hatReturned;
+  Wizard *wizard;
+  Script *script;
   Portal portal;
   SDL_Renderer *renderer;
   TTF_Font *font;
