@@ -19,9 +19,11 @@ int main(int arc, char *argv[]) {
   Story story;
   Player player;
   Theme themes;
-  Shard shards[3];
   Button buttons[3];
   World midoritierra("./assets/stories/green/script1.txt");
+  Shard shards[3];
+  midoritierra.addShards(shards);
+  
   World aotierra("./assets/stories/blue/script1.txt");
   World akatierra("./assets/stories/red/script1.txt");
 
@@ -33,7 +35,7 @@ int main(int arc, char *argv[]) {
   // Screen screens[3];
   // Animation animation;
 
-  SDL_Color shardColor = {75, 145, 48};
+  // SDL_Color shardColor = {75, 145, 48};
 
   const char *buttonText[3][2] = {
     {"M", "Talk"},
@@ -46,7 +48,7 @@ int main(int arc, char *argv[]) {
     worlds[s].setColor(themes.getColor(s));
     buttons[s].setup(renderer, font);
     buttons[s].setText(buttonText[s]);
-    shards[s].setup(shardColor, 50 + (s*200), 50 + (s * 150));
+    // shards[s].setup(shardColor, 50 + (s*200), 50 + (s * 150));
   }
 
   home.setText(font, renderer);
@@ -88,7 +90,7 @@ int main(int arc, char *argv[]) {
       }
     }
 
-    drawShards(shards, renderer);
+    // drawShards(shards, renderer);
 
     // animation.draw(renderer);
     SDL_RenderPresent(renderer);
@@ -101,9 +103,9 @@ int main(int arc, char *argv[]) {
   return 0;
 }
 
-void drawShards(Shard shards[], SDL_Renderer *renderer) {
-  for (int i = 0; i < 3; i++) {
-    shards[i].draw(renderer);
-  }
-}
+// void drawShards(Shard shards[], SDL_Renderer *renderer) {
+//   for (int i = 0; i < 3; i++) {
+//     shards[i].draw(renderer);
+//   }
+// }
 

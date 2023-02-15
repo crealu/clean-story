@@ -18,7 +18,6 @@
 #include "objects/game/game.cpp"
 #include "objects/story/story.cpp"
 #include "entity/player/player.cpp"
-#include "entity/shard/shard.cpp"
 
 void checkFontError(TTF_Font *font);
 void checkFontError(TTF_Font *font) {

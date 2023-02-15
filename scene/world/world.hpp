@@ -2,6 +2,7 @@
 #include "../wave/wave.cpp"
 #include "../../entity/wizard/wizard.cpp"
 #include "../../entity/portal/portal.cpp"
+#include "../../entity/shard/shard.cpp"
 #include "../../ui/script/script.cpp"
 #include "../../ui/dialog/dialog.cpp"
 
@@ -16,6 +17,7 @@ public:
   void prepareDialog();
   void updateDialog();
   void setColor(struct themeColor color);
+  void addShards(Shard shards[3]);
   int setCurrent(SDL_Event &event, int current);
   int dialogLimit;
   bool hatReturned;
@@ -30,5 +32,6 @@ private:
   Wave *wave;
   Dialog *dialog;
   SDL_Rect dialogBox;
+  Shard worldShards[3];
   bool showDialog;
 };

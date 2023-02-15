@@ -31,6 +31,9 @@ void World::draw(bool near, int current) {
   wave->draw(renderer);
   wizard->draw(renderer, near);
 
+  for (int s = 0; s < 3; s++)
+    worldShards[s].draw(renderer);
+
   if (showDialog) {
     drawDialogBox();
     dialog[current].draw(renderer);
@@ -64,6 +67,14 @@ void World::setColor(struct themeColor color) {
   background = new Background(backgroundColor);
   wave = new Wave(waveColor);
   wizard = new Wizard(wizardColor);
+}
+
+void World::addShards(Shard shards[3]) {
+  SDL_Color shardColor = {75, 145, 48};
+  for (int s = 0; s < 3; s++) {
+    worldShards[s] = shards[s];
+    worldShards[s].setup(shardColor, 50 + (s*200), 50 + (s * 150)); 
+  }
 }
 
 int World::setCurrent(SDL_Event &event, int current) {
